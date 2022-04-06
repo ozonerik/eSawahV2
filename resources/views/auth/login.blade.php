@@ -5,7 +5,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="{{ asset('index2.html') }}" class="h1"><b>Admin</b>LTE</a>
+      <a href="/" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
@@ -21,7 +21,7 @@
           </div>
           @error('email')
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
+                {{ $message }}
             </span>
           @enderror
         </div>
@@ -34,7 +34,7 @@
           </div>
           @error('password')
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
+                {{ $message }}
             </span>
           @enderror
         </div>

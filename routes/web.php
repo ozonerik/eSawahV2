@@ -23,5 +23,5 @@ Auth::routes(['verify' => true]);
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    //Route::get('/home', Home::class)->name('home')->middleware('verified');
+    Route::get('/home', Home::class)->name('home')->middleware('verified');
 });

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Home;
+use App\Http\Livewire\Counter;
 //use App\Http\Controllers\HomeController;
 
 /*
@@ -23,5 +24,6 @@ Auth::routes(['verify' => true]);
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/home', Home::class)->name('home')->middleware('verified');
+    Route::get('/home', Home::class)->name('home');
+    Route::get('/count', Counter::class)->name('counter');
 });

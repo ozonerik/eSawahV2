@@ -12,8 +12,10 @@
             {{ __('A fresh verification link has been sent to your email address.') }}
         </div>
       @endif
+      <div class="text-center">
       {{ __('Before proceeding, please check your email for a verification link.') }}
       {{ __('If you did not receive the email') }},
+      </div>
       <form method="POST" action="{{ route('verification.resend') }}">
       @csrf
         <div class="row">

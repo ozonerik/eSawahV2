@@ -15,14 +15,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <!-- toogle switch -->
+  <link rel="stylesheet" href="{{ asset('dist/css/docs.css') }}">
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav id="mynavbar" class="main-header navbar navbar-expand-md navbar-light">
+  <nav class="main-header navbar navbar-expand-md navbar-light">
     <div class="container">
-      <a href="../../index3.html" class="navbar-brand">
+      <a href="/" class="navbar-brand">
         <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
@@ -37,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="/" class="nav-link">Home</a>
           </li>
         </ul>
+        
         <!-- Left navbar links -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item d-none d-md-block">
@@ -45,9 +48,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item d-none d-md-block">
-            <div class="custom-control custom-switch mt-2">
-              <input type="checkbox" class="custom-control-input" onclick="fungsi_darkmode()" id="myCheck">
-              <label class="custom-control-label" for="myCheck"></label>
+            <div class="theme-switch-wrapper nav-link">
+              <label class="theme-switch" for="checkbox">
+              <input type="checkbox" id="checkbox" />
+              <span class="slider round"></span>
+              </label>
             </div>
           </li>
           <li class="nav-item">
@@ -109,20 +114,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <script>
-function fungsi_darkmode() {
-  // Get the checkbox
-  var checkBox = document.getElementById("myCheck");
-  var element = document.body;
-  var navbar = document.getElementById("mynavbar");
-  // If the checkbox is checked, display the output text
-  if (checkBox.checked == true){
-    element.classList.add("dark-mode");
-    navbar.classList.add("navbar-dark");
-  } else {
-    element.classList.remove("dark-mode");
-    navbar.classList.remove("navbar-dark");
+  var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  var currentTheme = localStorage.getItem('theme');
+  var mainHeader = document.querySelector('.main-header');
+
+  if (currentTheme) {
+    if (currentTheme === 'dark') {
+      if (!document.body.classList.contains('dark-mode')) {
+        document.body.classList.add("dark-mode");
+      }
+      if (mainHeader.classList.contains('navbar-light')) {
+        mainHeader.classList.add('navbar-dark');
+        mainHeader.classList.remove('navbar-light');
+      }
+      toggleSwitch.checked = true;
+    }
   }
-}
+
+  function switchTheme(e) {
+    if (e.target.checked) {
+      if (!document.body.classList.contains('dark-mode')) {
+        document.body.classList.add("dark-mode");
+      }
+      if (mainHeader.classList.contains('navbar-light')) {
+        mainHeader.classList.add('navbar-dark');
+        mainHeader.classList.remove('navbar-light');
+      }
+      localStorage.setItem('theme', 'dark');
+    } else {
+      if (document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove("dark-mode");
+      }
+      if (mainHeader.classList.contains('navbar-dark')) {
+        mainHeader.classList.add('navbar-light');
+        mainHeader.classList.remove('navbar-dark');
+      }
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  toggleSwitch.addEventListener('change', switchTheme, false);
 </script>
 </body>
 </html>

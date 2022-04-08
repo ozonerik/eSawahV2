@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+  <nav id="mynavbar" class="main-header navbar navbar-expand-md navbar-light">
     <div class="container">
       <a href="../../index3.html" class="navbar-brand">
         <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -30,14 +30,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <ul class="navbar-nav ml-auto mr-3 d-block d-md-none">
-          <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-              <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-          </li>
-        </ul>
-
       <div class="collapse navbar-collapse order-3" id="navbarCollapse">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
@@ -51,6 +43,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
               <i class="fas fa-expand-arrows-alt"></i>
             </a>
+          </li>
+          <li class="nav-item d-none d-md-block">
+            <div class="custom-control custom-switch mt-2">
+              <input type="checkbox" class="custom-control-input" onclick="fungsi_darkmode()" id="myCheck">
+              <label class="custom-control-label" for="myCheck"></label>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -110,5 +108,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+<script>
+function fungsi_darkmode() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  var element = document.body;
+  var navbar = document.getElementById("mynavbar");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    element.classList.add("dark-mode");
+    navbar.classList.add("navbar-dark");
+  } else {
+    element.classList.remove("dark-mode");
+    navbar.classList.remove("navbar-dark");
+  }
+}
+</script>
 </body>
 </html>

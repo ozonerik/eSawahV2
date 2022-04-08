@@ -28,42 +28,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
-
-      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="/" class="nav-link">Home</a>
-          </li>
-        </ul>
-        
-        <!-- Left navbar links -->
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item d-none d-md-block">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-              <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-          </li>
-          <li class="nav-item d-none d-md-block">
-            <div class="theme-switch-wrapper nav-link">
-              <label class="theme-switch" for="checkbox">
-              <input type="checkbox" id="checkbox" />
-              <span class="slider round"></span>
-              </label>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            {{ __('Sign Out') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-          </li>
-        </ul>
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      </ul>
+      <ul class="navbar-nav mr-2 mr-md-0">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-2 mr-md-0">
+        <li class="nav-item">
+          <div class="theme-switch-wrapper nav-link">
+            <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <span class="slider round"></span>
+            </label>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-2 mr-md-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          {{ __('Sign Out') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+          </form>
+        </li>
+      </ul>
       </div>
     </div>
   </nav>

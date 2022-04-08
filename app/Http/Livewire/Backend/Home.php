@@ -3,11 +3,16 @@
 namespace App\Http\Livewire\Backend;
 
 use Livewire\Component;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Home extends Component
 {
-    use AuthorizesRequests;
+
+    public $count = 0;
+
+    public function increment()
+    {
+        $this->count++;
+    }
     
     public function render()
     {

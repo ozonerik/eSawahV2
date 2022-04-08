@@ -22,7 +22,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- toogle switch -->
-  <link rel="stylesheet" href="{{ asset('dist/css/docs.css') }}">
+  <link rel="stylesheet" href="{{ asset('dist/css/toogle-switch.css') }}">
+  <!-- toastr -->
+  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -217,6 +219,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+<!-- toastr -->
+<script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+<script>
+toastr.options = {
+"closeButton": false,
+"debug": false,
+"newestOnTop": true,
+"progressBar": true,
+"positionClass": "toast-top-right",
+"preventDuplicates": false,
+"onclick": null,
+"showDuration": "300",
+"hideDuration": "1000",
+"timeOut": "2000",
+"extendedTimeOut": "1000",
+"showEasing": "swing",
+"hideEasing": "linear",
+"showMethod": "fadeIn",
+"hideMethod": "fadeOut"
+}
+</script>
+<script>
+@if(Session::has('success'))
+toastr.success("{{ session('success') }}")
+@endif
+@if(Session::has('error'))
+toastr.error("{{ session('error') }}")
+@endif
+@if(Session::has('info'))
+toastr.info("{{ session('info') }}")
+@endif
+@if(Session::has('warning'))
+toastr.warning("{{ session('warning') }}")
+@endif
+</script>
 <script>
   var toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   var currentTheme = localStorage.getItem('theme');

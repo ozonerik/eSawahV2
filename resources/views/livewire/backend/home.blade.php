@@ -18,6 +18,8 @@
                     {{ session('status') }}
                 </div>
             @endif
+            <button wire:click="increment">+</button>
+            <h1>{{ $count }}</h1>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

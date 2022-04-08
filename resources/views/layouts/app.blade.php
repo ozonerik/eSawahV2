@@ -97,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
       <li class="nav-item">
         <div class="custom-control custom-switch mt-2">
-          <input type="checkbox" class="custom-control-input" onclick="myFunction()" id="myCheck">
+          <input type="checkbox" class="custom-control-input" onclick="fungsi_darkmode()" id="myCheck">
           <label class="custom-control-label" for="myCheck"></label>
         </div>
       </li>
@@ -244,14 +244,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <script>
-function myFunction() {
+function fungsi_darkmode() {
   // Get the checkbox
   var checkBox = document.getElementById("myCheck");
   var element = document.body;
   var navbar = document.getElementById("mynavbar");
-  // Get the output text
-  var text = document.getElementById("text");
-
   // If the checkbox is checked, display the output text
   if (checkBox.checked == true){
     element.classList.add("dark-mode");

@@ -14,8 +14,7 @@
                 </div>
             </div>
             <div class="card-body">
-                    {{ get_currentroute() }}
-                    <h1></h1>
+                <h3>{{ get_currentroute() }}</h3>
             </div>
         </div>
     </section>

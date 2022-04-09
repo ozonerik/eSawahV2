@@ -3,8 +3,10 @@
         <li class="breadcrumb-item active">Dashboard</a></li>
     </x-content_header>
 @endpush
+@push('search')
+    <x-navitem_search/>
+@endpush
 <div>
-    <x-content_search/>
     <div class="row mx-1">
         <x-card_section width="4" order="1" smallorder="2">
             <x-card name="Dashboard">

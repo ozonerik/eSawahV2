@@ -10,7 +10,7 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <x-navitem_search/>
+        @stack('search')
         <x-navitem_fullscreen/>
         <x-navitem_darkmode/>
         <x-navitem_photo/>

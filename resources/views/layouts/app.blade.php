@@ -18,7 +18,6 @@
             </x-navitem_tree>
         </x-sidebar>
         <div class="content-wrapper">
-            @stack('header')
             <div class="content">
                 @yield('content')
             </div>

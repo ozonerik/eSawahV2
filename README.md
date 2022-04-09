@@ -32,6 +32,6 @@
 
 eSawah is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## developer
+## Developer
 
-aplikasi ini dibuat oleh  [M. Ade Erik](mailto:ozonerik@gmail.com)
+Aplikasi ini dibuat oleh  [M. Ade Erik](mailto:ozonerik@gmail.com)

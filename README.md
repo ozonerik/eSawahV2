@@ -1,9 +1,11 @@
 <p align="center"><img src="https://www.esawah.my.id/logo/esawah-logo.png" width="100"></p>
 
 ## About esawah
-<b>esawah</b> adalah sistem informasi dan managerial tentang penyewaan sawah
+
+<b>esawah</b> adalah aplikasi manajemen penyewaan sawah berbasis web.
 
 ## Changelogs
+
 <b><i>v2.0.0</i></b>
 <ul>
 <li><b>New</b> Laravel v9</li>
@@ -26,3 +28,7 @@
 ## License
 
 eSawah is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## developer
+
+aplikasi ini dibuat oleh  [M. Ade Erik](mailto:ozonerik@gmail.com)

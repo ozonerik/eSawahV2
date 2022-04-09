@@ -14,11 +14,7 @@
               </div>
         </div>
         <div class="card-body">
-            <button class="btn btn-primary" wire:click="increment">+</button>
-            <h1>{{ $count }}</h1>
-        </div>
-        <div class="card-footer">
-          Footer
+                <h1> INI ADALAH DASHBOARD</h1>
         </div>
     </div>
   </section>

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Backend\Home;
-use App\Http\Livewire\Counter;
+use App\Http\Livewire\Frontend\Home;
+use App\Http\Livewire\Backend\Dashboard;
 //use App\Http\Controllers\HomeController;
 
 /*
@@ -16,14 +16,15 @@ use App\Http\Livewire\Counter;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+// Route::get('/', function () {
+//     return view('landing');
+// });
+
+Route::get('/', Home::class)->name('home');
 
 Auth::routes(['verify' => true]);
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/home', Home::class)->name('home');
-    Route::get('/count', Counter::class)->name('counter');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 });

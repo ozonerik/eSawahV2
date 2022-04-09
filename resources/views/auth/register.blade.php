@@ -2,9 +2,7 @@
 @section('content')
 <div class="register-box">
     <div class="card card-outline card-primary">
-        <div class="card-header text-center">
-            <a href="/" class="h1"><b>Admin</b>LTE</a>
-        </div>
+        <x-logo_guest/>
         <div class="card-body">
             <p class="login-box-msg">Register a new membership</p>
             <form method="POST" action="{{ route('register') }}">

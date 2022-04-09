@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="eSawah | Aplikasi Manajemen Penyewaan Sawah">
-    <meta name="keywords" content="eSawah, Lanja, Sawah, Garap, Sewa">
-    <meta name="author" content="M. Ade Erik">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <x-metatag/>
     <x-favicon/>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,6 +14,9 @@
 </head>
 <body class="hold-transition login-page">
     @yield('content')
+    <footer class="pt-5">
+        <x-copyright />
+    </footer>
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->

@@ -3,9 +3,7 @@
 <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
-        <div class="card-header text-center">
-            <a href="/" class="h1"><b>Admin</b>LTE</a>
-        </div>
+        <x-logo_guest/>
         <div class="card-body">
             <p class="login-box-msg">{{ __('Reset Password') }}</p>
             <form method="POST" action="{{ route('password.update') }}">

@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="eSawah | Aplikasi Manajemen Penyewaan Sawah">
-    <meta name="keywords" content="eSawah, Lanja, Sawah, Garap, Sewa">
-    <meta name="author" content="M. Ade Erik">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <x-metatag/>
     <x-favicon/>
     <!-- Styles -->
     @livewireStyles
@@ -24,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
-    </head>
+</head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -40,42 +33,9 @@
             </ul>
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                    <form class="form-inline">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-navbar" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    </div>
-                </li>
-                <!-- Navbar fullscreen -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <!-- Navbar darkmode switch -->
-                <li class="nav-item">
-                    <div class="theme-switch-wrapper nav-link">
-                        <label class="theme-switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" />
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                </li>
+                <x-navitem_search/>
+                <x-navitem_fullscreen/>
+                <x-navitem_darkmode/>
                 <!-- Photo Profile -->
                 <div class="navbar-brand">
                     <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image" height="28">
@@ -99,72 +59,19 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">eSawah</span>
-            </a>
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Starter Pages
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Active Page</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
-                                </a>
-                            </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Simple Link
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
+        <x-sidebar>
+            <x-navitem_menu name="Dashboard" routename="dashboard" icon="fas fa-tachometer-alt" />
+            <x-navitem_tree icon="fas fa-tachometer-alt" name="Menu Utama" :open="false">
+                <x-navitem_menu name="Sub Menu 1" routename="home" icon="far fa-circle nav-icon" />
+                <x-navitem_menu name="Sub Menu 2" routename="home" icon="far fa-circle nav-icon" />
+            </x-navitem_tree>
+        </x-sidebar>
         <!-- /.sidebar -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item active"><a href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
-                        </ol>
-                    </div><!-- /.col -->
-                    </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
+            <x-content_header name="Dashboard">
+                <li class="breadcrumb-item active">Dashboard</a></li>
+            </x-content_header>
             <!-- Main content -->
             <div class="content">
                 @yield('content')
@@ -177,7 +84,7 @@
                 Made with <i class="fa fa-heart text-danger"></i> in Cirebon
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2022 <a href="https://esawah.my.id">esawah.my.id</a>.</strong> All rights reserved.
+            <x-copyright />
         </footer>
     </div>
 

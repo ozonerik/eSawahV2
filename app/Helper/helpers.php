@@ -8,5 +8,5 @@ function cek_currentroute($routelist){
 }
 
 function get_currentroute(){
-    return Route::currentRouteName();;
+    return Route::currentRouteName();
 }

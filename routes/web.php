@@ -17,7 +17,7 @@ use App\Http\Livewire\Counter;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Auth::routes(['verify' => true]);

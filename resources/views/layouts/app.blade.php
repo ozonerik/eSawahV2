@@ -9,6 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <x-favicon/>
     <!-- Styles -->
     @livewireStyles
     <!-- Google Font: Source Sans Pro -->
@@ -176,7 +177,7 @@
                 Made with <i class="fa fa-heart text-danger"></i> in Cirebon
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2022 <a href="mailto:ozonerik@gmail.com">ozonerik</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2022 <a href="https://esawah.my.id">esawah.my.id</a>.</strong> All rights reserved.
         </footer>
     </div>
 

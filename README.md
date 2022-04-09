@@ -14,18 +14,19 @@
 <li><b>New</b> Fontawesome v6</li>
 <li><b>New</b> Bootstrap Icon v1.8</li>
 <li><b>New</b> Spatie Permission V5</li>
+<li><b>New</b> Admin LTE v3.2.0</li>
 <li><b>New</b> startbootstrap.com</li>
 </ul>
 
 ## Packages
 
 - **[Laravel 9](https://laravel.com/docs/9.x/releases)**
-- **[Livewire](https://laravel-livewire.com/docs/2.x/quickstart)**
+- **[Livewire 2](https://laravel-livewire.com/docs/2.x/quickstart)**
 - **[Bootstrap 5](https://getbootstrap.com/docs/5.1/getting-started/introduction/)**
 - **[Fontawesome 6](https://fontawesome.com/icons)**
-- **[Bootstrap Icon](https://icons.getbootstrap.com/#icons)**
-- **[Spatie Permission](https://spatie.be/docs/laravel-permission/v5/introduction)**
-- **[Admin LTE](https://github.com/ColorlibHQ/AdminLTE)**
+- **[Bootstrap Icon 1](https://icons.getbootstrap.com/#icons)**
+- **[Spatie Permission 5](https://spatie.be/docs/laravel-permission/v5/introduction)**
+- **[Admin LTE 3](https://github.com/ColorlibHQ/AdminLTE)**
 - **[Grayscale Template](https://startbootstrap.com/theme/grayscale)**
 
 ## License

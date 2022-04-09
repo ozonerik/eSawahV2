@@ -26,7 +26,7 @@
         <!-- Main Sidebar Container -->
         <x-sidebar>
             <x-navitem_menu name="Dashboard" routename="dashboard" icon="fas fa-tachometer-alt" />
-            <x-navitem_tree icon="fas fa-tachometer-alt" name="Menu Utama" :open="cek_currentroute(['dashboard','home'])">
+            <x-navitem_tree icon="fas fa-tachometer-alt" name="Menu Utama" :open="cek_currentroute(['routelain','routelain2'])">
                 <x-navitem_menu name="Sub Menu 1" routename="home" icon="far fa-circle nav-icon" />
                 <x-navitem_menu name="Sub Menu 2" routename="home" icon="far fa-circle nav-icon" />
             </x-navitem_tree>

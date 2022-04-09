@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mx-1">
   <!-- left section -->
   <section class="col connectedSortable">
     <div class="card">

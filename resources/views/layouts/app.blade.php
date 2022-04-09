@@ -21,43 +21,8 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-            </ul>
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <x-navitem_search/>
-                <x-navitem_fullscreen/>
-                <x-navitem_darkmode/>
-                <!-- Photo Profile -->
-                <div class="navbar-brand">
-                    <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image" height="28">
-                </div>
-                <!-- Navbar signout -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">{{ __('Profile') }}</a>
-                    <div class="dropdown-divider"></div>
-                        <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button class="dropdown-item" type="submit">{{ __('Sign Out') }}</button>
-                        </form>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+        <x-navbar />
         <!-- /.navbar -->
-
         <!-- Main Sidebar Container -->
         <x-sidebar>
             <x-navitem_menu name="Dashboard" routename="dashboard" icon="fas fa-tachometer-alt" />

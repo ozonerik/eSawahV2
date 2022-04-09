@@ -14,6 +14,7 @@
 <li><b>New</b> Fontawesome v6</li>
 <li><b>New</b> Bootstrap Icon v1.8</li>
 <li><b>New</b> Spatie Permission V5</li>
+<li><b>New</b> startbootstrap.com</li>
 </ul>
 
 ## Packages
@@ -24,6 +25,8 @@
 - **[Fontawesome 6](https://fontawesome.com/icons)**
 - **[Bootstrap Icon](https://icons.getbootstrap.com/#icons)**
 - **[Spatie Permission](https://spatie.be/docs/laravel-permission/v5/introduction)**
+- **[Admin LTE](https://github.com/ColorlibHQ/AdminLTE)**
+- **[Grayscale Template](https://startbootstrap.com/theme/grayscale)**
 
 ## License
 

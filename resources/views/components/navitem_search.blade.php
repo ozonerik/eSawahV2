@@ -4,6 +4,6 @@
         <i class="fas fa-search"></i>
     </a>
     <div class="navbar-search-block">
-        @livewire('search')
+        @livewire('search',['target_comp' => $target])
     </div>
 </li>

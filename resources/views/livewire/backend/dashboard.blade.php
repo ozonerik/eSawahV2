@@ -1,21 +1,18 @@
+@push('header')
+<x-content_header name="Dashboard">
+    <li class="breadcrumb-item active">Dashboard</a></li>
+</x-content_header>
+@endpush
+
 <div class="row mx-1">
-    <!-- left section -->
-    <section class="col connectedSortable">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Dashboard</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                <h3>{{ get_currentroute() }}</h3>
-            </div>
-        </div>
-    </section>
+    <x-card_section width="4" order="1" smallorder="2">
+        <x-card name="Dashboard">
+            <h3>1</h3>
+        </x-card>
+    </x-card_section>
+    <x-card_section width="8" order="2" smallorder="1">
+        <x-card name="Dashboard">
+            <h3>2</h3>
+        </x-card>
+    </x-card_section>
 </div>

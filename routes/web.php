@@ -20,7 +20,8 @@ use App\Http\Livewire\Backend\Dashboard;
 //     return view('landing');
 // });
 
-Route::get('/', Home::class)->name('home');
+Route::get('/', Home::class);
+Route::get('/home', Home::class)->name('home');
 
 Auth::routes(['verify' => true]);
 //Route::get('/home', [HomeController::class, 'index'])->name('home');

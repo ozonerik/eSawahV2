@@ -11,11 +11,12 @@ class navitem_search extends Component
      *
      * @return void
      */
-    public $target;
+    public $target, $placeholder;
     
-    public function __construct($target)
+    public function __construct($target, $placeholder)
     {
         $this->target = $target;
+        $this->placeholder = $placeholder;
     }
 
     /**

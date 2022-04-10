@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Search extends Component
 {
-    public $search_txt, $target_comp;
+    public $search_txt, $target_comp, $placeholder_comp;
 
     private function component_target(){
         switch ($this->target_comp) {

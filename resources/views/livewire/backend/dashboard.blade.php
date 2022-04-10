@@ -1,8 +1,8 @@
 @push('search')
-    <x-navitem_search target='dashboard'/>
+    <x-navitem_search target='dashboard' placeholder="Cari User"/>
 @endpush
 <div>
-    <x-content_header name="Dashboard">
+    <x-content_header name="Dashboard" >
         <li class="breadcrumb-item active">Dashboard</a></li>
     </x-content_header>
     <div class="row mx-1">

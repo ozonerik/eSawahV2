@@ -1,5 +1,5 @@
 @push('search')
-    <x-navitem_search target='dashboard' placeholder="Cari User"/>
+    <x-navitem_search target='dashboard' placeholder="Search..."/>
 @endpush
 <div>
     <x-content_header name="Dashboard" >

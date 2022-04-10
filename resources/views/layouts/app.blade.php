@@ -23,9 +23,7 @@
             </div>
         </div>
         <footer class="main-footer">
-            <div class="float-right d-none d-sm-inline">
-                Made with <i class="fa fa-heart text-danger"></i> in Cirebon
-            </div>
+            <x-app_version />
             <x-copyright />
         </footer>
     </div>

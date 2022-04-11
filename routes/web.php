@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontend\Home;
 use App\Http\Livewire\Backend\Dashboard;
-//use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +15,10 @@ use App\Http\Livewire\Backend\Dashboard;
 |
 */
 
-// Route::get('/', function () {
-//     return view('landing');
-// });
-
 Route::get('/', Home::class);
 Route::get('/home', Home::class)->name('home');
 
 Auth::routes(['verify' => true]);
-//Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');

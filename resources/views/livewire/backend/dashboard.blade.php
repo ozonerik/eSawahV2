@@ -3,50 +3,10 @@
 @endpush
 @push('js')
     <!-- ChartJS -->
-    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
-    <script>
-        var areaChartData = {
-            labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                label               : 'Digital Goods',
-                backgroundColor     : 'rgba(60,141,188,0.9)',
-                borderColor         : 'rgba(60,141,188,0.8)',
-                pointRadius          : false,
-                pointColor          : '#3b8bba',
-                pointStrokeColor    : 'rgba(60,141,188,1)',
-                pointHighlightFill  : '#fff',
-                pointHighlightStroke: 'rgba(60,141,188,1)',
-                data                : [28, 48, 40, 19, 86, 27, 90]
-                }
-            ]
-        }
-        //-------------
-        //- BAR CHART -
-        //-------------
-        var barChartCanvas = $('#barChart').get(0).getContext('2d')
-        var barChartCanvas2 = $('#barChart2').get(0).getContext('2d')
-        var barChartData = $.extend(true, {}, areaChartData)
-        var temp0 = areaChartData.datasets[0]
-        barChartData.datasets[0] = temp0
-
-        var barChartOptions = {
-        responsive              : true,
-        maintainAspectRatio     : false,
-        datasetFill             : false
-        }
-
-        new Chart(barChartCanvas, {
-        type: 'bar',
-        data: barChartData,
-        options: barChartOptions
-        })
-        new Chart(barChartCanvas2, {
-        type: 'bar',
-        data: barChartData,
-        options: barChartOptions
-        })
-    </script>
+    <script src="{{ asset('plugins/chart.js/chart371.js') }}"></script>
+    <script src="{{ asset('plugins/chart.js/chartjs-plugin-datalabels.min.js') }}"></script>
+    <x-chart_script name="barChart" target="barChart" type="bar" labelcolor="white" :label="['jan','feb','mar']" :data="[10,20,30]" :color="['blue']"/>
+    <x-chart_script name="barChart2" target="barChart2" type="bar" labelcolor="white" :label="['2020','2021','2022']" :data="[10,20,30]" :color="['red']"/>
 @endpush
 <div>
     <x-content_header name="Dashboard" >
@@ -101,6 +61,31 @@
                 <a href="#" class="uppercase">View All</a>
             </x-slot> 
         </x-card_list>
+    </div>
+    <div class="row mx-1">
+        <x-card_tablestriped width="12" title="Pawongan Terbaik">
+            <x-slot:thead>
+                <th>No</th>
+                <th>Pawongan</th>
+                <th>Sawah</th>
+                <th>Nilai Lanja</th>
+            </x-slot>
+                <tr>
+                    <td>1</td>
+                    <td>Asep</td>
+                    <td>Dukuh Jeruk</td>
+                    <td>4.000.000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dedeh</td>
+                    <td>Karangampel</td>
+                    <td>2.000.000</td>
+                </tr>
+            <x-slot:footer>
+                <a href="#" class="btn btn-sm btn-info">Tombol</a>
+            </x-slot>
+        </x-card_table>
     </div>
     <!-- <div class="row mx-1">
         <x-card_section width="12" order="1" smallorder="1">

@@ -1,7 +1,7 @@
 <div class="col-md-{{ $width }} connectedSortable">
     <div class="card card-{{ $type }}">
         <div class="card-header">
-        <h3 class="card-title">{{ $title }}</h3>
+        <h3 class="card-title"><i class="fas fa-chart-bar"></i>  {{ $title }}</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>

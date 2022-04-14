@@ -12,28 +12,39 @@
         </div>
         </div>
         <div class="card-body p-0">
-            <div class="input-group input-group-sm float-left mb-2 ml-3 pl-1" style="width: 75px;">
-                <select class="form-control" wire:model="perPage">
-                    <option value="5">5</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="{{ $data->total() }}">All</option>
-               </select>
-            </div>
-            <div class="input-group input-group-sm float-right mb-2 mr-3" style="width: 200px;">
-                <input type="text" name="table_search" class="form-control" placeholder="Search">
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                    <i class="fas fa-search"></i>
-                    </button>
+            <div class="row mx-3 pl-1 mb-2">
+                <div class="col-md-1 p-0 order-2 order-md-1 pr-md-3">
+                    <div class="input-group input-group-sm mx-auto float-md-left mb-2 mb-md-0">
+                        <select class="form-control" wire:model="perPage">
+                            <option value="5">5</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="{{ $data->total() }}">All</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-8 p-0 order-3 order-md-2 px-md-2">
+                    <div class="text-center">
+                        {{ $menu }}
+                    </div>
+                </div>
+                <div class="col-md-3 p-0 order-1 order-md-3 pl-md-3">
+                    <div class="input-group input-group-sm mx-auto float-md-right mb-2 mb-md-0">
+                        <input type="text" name="table_search" class="form-control" wire:model="search" placeholder="Search">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped m-0">
                     <thead>
                         <tr>
-                            <th class="text-center"><input type="checkbox"></th>
+                            <th class="text-center"><input type="checkbox" wire:model="selectPage"></th>
                             <th>No</th>
                             @foreach($thead as $val)
                             <th>{{ $val }}</th>
@@ -44,7 +55,7 @@
                     <tbody>
                         @foreach($data as $key=>$row)
                         <tr>
-                            <td class="text-center"><input type="checkbox"></td>
+                            <td class="text-center"><input type="checkbox" value="{{ $row->id }}" wire:model="checked"></td>
                             <td>{{$data->firstItem() + $key}}</td>
                             @foreach($tbody as $val)
                             <td>{{ $row->$val }}</td>
@@ -59,7 +70,10 @@
             </div>
         </div>
         <div class="card-footer clearfix">
-            {{ $data->links() }}
+            <div class="float-left">
+                <small>Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} entries</small>
+            </div>
+            {{ $data->links() }} 
         </div>
     </div>
 </div>

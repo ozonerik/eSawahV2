@@ -30,30 +30,13 @@
         <x-card_chart width="6" type="info" title="Grafik Lanja per Tahun" idbarchart="barChart2"/>
     </div>
     <div class="row mx-1">
-        <x-card_table width="6" title="Pawongan Terbaik">
-            <x-slot:thead>
-                <th>No</th>
-                <th>Pawongan</th>
-                <th>Sawah</th>
-                <th>Nilai Lanja</th>
-            </x-slot>
-                <tr>
-                    <td>1</td>
-                    <td>Asep</td>
-                    <td>Dukuh Jeruk</td>
-                    <td>4.000.000</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Dedeh</td>
-                    <td>Karangampel</td>
-                    <td>2.000.000</td>
-                </tr>
+        <x-card_list width="6" title="Pawongan Terbaik">
+            <x-card_listitem photo="{{asset('dist/img/default-150x150.png')}}" link="#" title="Asep" desc="Sawah Mundu" value="1.000.000" />
+            <x-card_listitem photo="{{asset('dist/img/default-150x150.png')}}" link="#" title="Bobi" desc="Sawah Karangampel" value="2.000.000" />
             <x-slot:footer>
-                <a href="#" class="btn btn-sm btn-info float-left">Place New Order</a>
-                <a href="#" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-            </x-slot>
-        </x-card_table>
+                <a href="#" class="uppercase">View All</a>
+            </x-slot> 
+        </x-card_list>
         <x-card_list width="6" title="Tunggakan Pawongan">
             <x-card_listitem photo="{{asset('dist/img/default-150x150.png')}}" link="#" title="Asep" desc="Sawah Mundu" value="1.000.000" />
             <x-card_listitem photo="{{asset('dist/img/default-150x150.png')}}" link="#" title="Bobi" desc="Sawah Karangampel" value="2.000.000" />
@@ -63,27 +46,9 @@
         </x-card_list>
     </div>
     <div class="row mx-1">
-        <x-card_tablestriped width="12" title="Pawongan Terbaik">
-            <x-slot:thead>
-                <th>No</th>
-                <th>Pawongan</th>
-                <th>Sawah</th>
-                <th>Nilai Lanja</th>
-            </x-slot>
-                <tr>
-                    <td>1</td>
-                    <td>Asep</td>
-                    <td>Dukuh Jeruk</td>
-                    <td>4.000.000</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Dedeh</td>
-                    <td>Karangampel</td>
-                    <td>2.000.000</td>
-                </tr>
-            <x-slot:footer>
-                <a href="#" class="btn btn-sm btn-info">Tombol</a>
+        <x-card_table width="12" title="Pawongan Terbaik" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']">
+            <x-slot:btn>
+                <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
             </x-slot>
         </x-card_table>
     </div>

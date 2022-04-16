@@ -32,6 +32,10 @@ class Profile extends Component
         $this->selectPage=false;
     }
 
+    public function is_checked($id){
+        return in_array($id,$this->checked);
+    }
+
     public function render()
     {
         $data['user'] = $this->User;

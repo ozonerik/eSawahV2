@@ -54,7 +54,7 @@
                     </thead>
                     <tbody>
                         @foreach($data as $key=>$row)
-                        <tr>
+                        <tr class="@if($this->is_checked($row->id)) table-info @endif">
                             <td class="text-center"><input type="checkbox" value="{{ $row->id }}" wire:model="checked"></td>
                             <td>{{$data->firstItem() + $key}}</td>
                             @foreach($tbody as $val)

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend;
 
 use Livewire\Component;
+use App\Models\User;
 
 class Result extends Component
 {
@@ -12,8 +13,21 @@ class Result extends Component
         'search' => ['except' => '', 'as' => 's'],
     ];
 
+    public function getUserProperty(){
+        $user = User::query();
+        
+        if(!empty($this->search)){
+            $user->where('name','like','%'.$this->search.'%');
+        }else{
+            $user->find(0);
+        }
+            
+        return $user;
+    }
+
     public function render()
     {
-        return view('livewire.backend.result')->extends('layouts.app');
+        $data['user']=$this->User->get();
+        return view('livewire.backend.result',$data)->extends('layouts.app');
     }
 }

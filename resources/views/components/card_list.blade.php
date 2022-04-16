@@ -16,8 +16,10 @@
                 {{ $slot }}
             </ul>
         </div>
+        @if(!empty($footer))
         <div class="card-footer text-center">
             {{ $footer}}
         </div>
+        @endif
     </div>
 </div>

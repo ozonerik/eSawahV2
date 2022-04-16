@@ -11,7 +11,7 @@ class Profile extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $perPage=2;
+    public $perPage=5;
     public $selectPage = false;
     public $checked = [];
     public $search='';

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontend\Home;
 use App\Http\Livewire\Backend\Dashboard;
+use App\Http\Livewire\Backend\Profile;
+use App\Http\Livewire\Backend\Result;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +25,9 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/result', Result::class)->name('result');
+    Route::get('/profile', Profile::class)->name('profile');
+    // Route::group(['middleware' => ['role:admin']], function () {
+    //     Route::get('/profile', Profile::class)->name('profile');
+    // });
 });

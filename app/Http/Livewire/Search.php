@@ -12,8 +12,9 @@ class Search extends Component
         $this->search_txt='';
     }
     
-    public function get_search(){      
-        return redirect()->to('/result?s='.$this->search_txt); 
+    public function get_search(){    
+        session()->flash('search', $this->search_txt);  
+        return redirect()->route('result'); 
     }
 
     public function render()

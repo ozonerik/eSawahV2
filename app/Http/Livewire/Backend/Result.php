@@ -4,14 +4,12 @@ namespace App\Http\Livewire\Backend;
 
 use Livewire\Component;
 use App\Models\User;
+use \Illuminate\Session\SessionManager;
 
 class Result extends Component
 {
     public $search='';
-
-    protected $queryString = [
-        'search' => ['except' => '', 'as' => 's'],
-    ];
+    public $test;
 
     public function getUserProperty(){
         $user = User::query();
@@ -23,6 +21,11 @@ class Result extends Component
         }
             
         return $user;
+    }
+
+    public function mount(SessionManager $session)
+    {
+        $this->search=$session->get("search");
     }
 
     public function render()

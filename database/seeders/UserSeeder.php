@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@test.id',
                 'password' => Hash::make('1234567890'),
+                'email_verified_at' => Carbon::now(),
             ]);
         $user->assignRole('admin');
         $user = User::create(
@@ -29,6 +31,7 @@ class UserSeeder extends Seeder
                 'name' => 'User',
                 'email' => 'user@test.id',
                 'password' => Hash::make('1234567890'),
+                'email_verified_at' => Carbon::now(),
             ]);
         $user->assignRole('user');
     }

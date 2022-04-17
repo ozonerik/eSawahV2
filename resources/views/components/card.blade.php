@@ -13,4 +13,9 @@
     <div class="card-body">
         {{ $slot }}
     </div>
+    @if(!empty($footer))
+    <div class="card-footer clearfix">
+        {{ $footer}}
+    </div>
+    @endif
 </div>

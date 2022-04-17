@@ -61,7 +61,7 @@
                             <td>{{ $row->$val }}</td>
                             @endforeach
                             <td>
-                                {{ $btn }}
+                                {{ $rowbtn }}
                             </td>
                         </tr>
                         @endforeach

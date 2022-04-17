@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@test.id',
-                'password' => Hash::make('123456789'),
+                'password' => Hash::make('1234567890'),
                 'email_verified_at' => Carbon::now(),
             ]);
         $user->assignRole('admin');
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'User',
                 'email' => 'user@test.id',
-                'password' => Hash::make('123456789'),
+                'password' => Hash::make('1234567890'),
                 'email_verified_at' => Carbon::now(),
             ]);
         $user->assignRole('user');

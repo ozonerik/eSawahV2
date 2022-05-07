@@ -1,4 +1,4 @@
-<section class="col-md-{{ $width }} order-{{ $smallorder }} order-md-{{ $order }} connectedSortable">
+<div class="col-md-{{ $width }} order-{{ $smallorder }} order-md-{{ $order }} connectedSortable">
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">{{ $name }}</h3>
@@ -20,4 +20,4 @@
         </div>
         @endif
     </div>
-</section>
+</div>

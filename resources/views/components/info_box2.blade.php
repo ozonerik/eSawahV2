@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6">
+<div class="col-12 col-md-4">
     <div class="info-box bg-{{ $type }}">
         <span class="info-box-icon"><i class="{{ $icon }}"></i></span>
         <div class="info-box-content">

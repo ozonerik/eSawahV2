@@ -19,8 +19,9 @@
         <x-info_box icon="fas fa-coins" message="Nilai Lanja" value="1K" type="info"/>
     </div>
     <div class="row mx-1">
-        <x-info_box2 icon="fas fa-wallet" message="Total Lanja Masuk Tahun 2022" value="10" type="success"/>
+        <x-info_box2 icon="fas fa-wallet" message="Nilai Lanja Tahun 2022" value="10" type="success"/>
         <x-info_box2 icon="fas fa-donate" message="Nilai Zakat Tahun 2022" value="10" type="primary"/>
+        <x-info_box2 icon="fas fa-file-invoice-dollar" message="Nilai PBB Tahun 2022" value="10" type="warning"/>
     </div>
     <div class="row mx-1">
         <x-card_chart width="6" type="warning" title="Grafik Lanja Tahun 2022" idbarchart="barChart"/>

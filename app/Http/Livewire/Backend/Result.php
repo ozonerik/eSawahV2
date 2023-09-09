@@ -9,7 +9,6 @@ use \Illuminate\Session\SessionManager;
 class Result extends Component
 {
     public $search='';
-    public $test;
 
     public function getUserProperty(){
         $user = User::query();

@@ -12,7 +12,7 @@ class Result extends Component
 
     public function getUserProperty(){
         $user = User::query();
-        
+        //pencarian user
         if(!empty($this->search)){
             $user->where('name','like','%'.$this->search.'%');
         }else{

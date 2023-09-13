@@ -33,21 +33,38 @@
     <div class="row mx-1 pb-3">
         <div class="col-12 col-md-3"></div>
         <x-card_section2 name="Update Password" type="primary" width="9" order="3" smallorder="3">
+        <form wire:submit.prevent="updatepasswd">
             <div class="form-group">
                 <label for="currentpassword">Current Password</label>
-                <input type="password" class="form-control" id="currentpassword" placeholder="Current Password">
+                <input wire:model="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" id="currentpassword" placeholder="Current Password">
+                @error('current_password')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="newpassword">New Password</label>
-                <input type="password" class="form-control" id="newpassword" placeholder="New Password">
+                <input wire:model="password" type="password" class="form-control @error('password') is-invalid @enderror" id="newpassword" placeholder="New Password">
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="confirmpassword">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password">
+                <input wire:model="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="confirmpassword" placeholder="Confirm Password">
+                @error('password_confirmation')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
             <div class="form-group text-md-right text-center">
-                <button wire:click="onRead" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
+        </form>
         </x-card-section2>
     </div>
 </div>

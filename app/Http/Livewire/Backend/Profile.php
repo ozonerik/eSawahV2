@@ -15,6 +15,8 @@ class Profile extends Component
 {
     use WithFileUploads;
     public $user,$name,$email,$current_password,$password,$password_confirmation,$photo;
+    public $stphoto=false;
+    public $upload_id=1;
 
     private function resetpasswd(){
         $this->current_password='';
@@ -24,11 +26,13 @@ class Profile extends Component
         $this->resetValidation();
     }
 
-    public function updated($photo)
+    public function updatedPhoto()
     {
-        $this->validateOnly($photo, [
+        $this->upload_id++;
+        $this->validate([
             'photo' => 'image|max:1024', // 1MB Max
         ]);
+        $this->stphoto = true;
     }
 
     public function render()
@@ -67,7 +71,7 @@ class Profile extends Component
         $this->validate([
             'photo' => 'image|max:1024', // 1MB Max
         ]);
- 
+        $this->stphoto = true;
         //$this->photo->store('photos');
         //flash message
         session()->flash('success', 'Photo Berhasil Diubah.');

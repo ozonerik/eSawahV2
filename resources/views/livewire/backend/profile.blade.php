@@ -1,13 +1,21 @@
+@push('js')
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+@endpush
     <div>
     <x-content_header name="Profile" >
         <li class="breadcrumb-item active">Profile</a></li>
     </x-content_header>
     <div class="row mx-1 pb-3">
-        <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1">
-            <form wire:submit.prevent="updatephoto">
+        <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1" :photo="$photo" :stphoto="$stphoto">
+            <form wire:submit.prevent="updatephoto" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="custom-file">
-                        <input wire:model="photo" type="file" class="custom-file-input form-control @error('photo') is-invalid @enderror" id="PhotoProfile">
+                        <input id="file-{{$upload_id}}" wire:model="photo" type="file" class="custom-file-input form-control @error('photo') is-invalid @enderror">
                         <label class="custom-file-label" for="PhotoProfile">Choose file</label>
                         @error('photo')
                             <span class="invalid-feedback" role="alert">

@@ -11,18 +11,15 @@ $(function () {
         <li class="breadcrumb-item active">Profile</a></li>
     </x-content_header>
     <div class="row mx-1 pb-3">
-        <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1" :photo="$photo" :stphoto="$stphoto">
+        <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1">
             <form wire:submit.prevent="updatephoto" enctype="multipart/form-data">
                 <div class="form-group">
-                    <div class="custom-file">
-                        <input id="file-{{$upload_id}}" wire:model="photo" type="file" class="custom-file-input form-control @error('photo') is-invalid @enderror">
-                        <label class="custom-file-label" for="PhotoProfile">Choose file</label>
+                        <input type="file" id="formFile" wire:model="photo" wire:target="photo" wire:loading.attr="disabled" class="form-control @error('photo') is-invalid @enderror" >
                         @error('photo')
                             <span class="invalid-feedback" role="alert">
                                 {{ $message }}
                             </span>
                         @enderror
-                    </div>
                 </div>
                 <div class="form-group text-md-right text-center">
                 <button class="btn btn-primary" type="submit" wire:target="photo" wire:loading.attr="disabled">

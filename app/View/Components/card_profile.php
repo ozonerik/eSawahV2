@@ -11,15 +11,13 @@ class card_profile extends Component
      *
      * @return void
      */
-    public $width, $order, $smallorder, $name, $photo, $stphoto;
-    public function __construct( $width, $order, $smallorder, $name, $photo, $stphoto )
+    public $width, $order, $smallorder, $name;
+    public function __construct( $width, $order, $smallorder, $name )
     {
         $this->width = $width;
         $this->order = $order;
         $this->smallorder = $smallorder;
         $this->name = $name;
-        $this->photo = $photo;
-        $this->stphoto = $stphoto;
     }
 
     /**

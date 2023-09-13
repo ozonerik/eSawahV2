@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithFileUploads;
 
 class Profile extends Component
 {
-    public $mode='read';
-    public $user,$name,$email,$current_password,$password,$password_confirmation;
+    use WithFileUploads;
+    public $user,$name,$email,$current_password,$password,$password_confirmation,$photo;
 
     private function resetpasswd(){
         $this->current_password='';
@@ -23,9 +24,15 @@ class Profile extends Component
         $this->resetValidation();
     }
 
+    public function updated($photo)
+    {
+        $this->validateOnly($photo, [
+            'photo' => 'image|max:1024', // 1MB Max
+        ]);
+    }
+
     public function render()
     {
-        $user=User::find(Auth::user()->id);
         return view('livewire.backend.profile')->extends('layouts.app');
     }
     
@@ -51,6 +58,19 @@ class Profile extends Component
         ]);
         //flash message
         session()->flash('success', 'Profile Berhasil Diupdate.');
+        //redirect
+        return redirect()->route('profile');
+    }
+
+    public function updatephoto()
+    {
+        $this->validate([
+            'photo' => 'image|max:1024', // 1MB Max
+        ]);
+ 
+        //$this->photo->store('photos');
+        //flash message
+        session()->flash('success', 'Photo Berhasil Diubah.');
         //redirect
         return redirect()->route('profile');
     }

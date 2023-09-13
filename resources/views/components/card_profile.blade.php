@@ -2,19 +2,16 @@
     <div class="card card-primary h-100">
         <div class="card-header text-center">{{ $name }}</div>
         <div class="card-body box-profile">
-        <div class="text-center">
-            @if(!empty(Auth::user()->photo))
-            <img class="profile-user-img img-fluid img-circle" src="{{asset(Auth::user()->photo)}}" alt="User picture">
-            @else
-            <img class="profile-user-img img-fluid img-circle" src="{{asset('img/avatar.png')}}" alt="User picture">
-            @endif
-        </div>
-        <h3 class="profile-username text-center">{{ucwords(Auth::user()->name)}}</h3>
-        <p class="text-muted text-center">{{ucwords(Auth::user()->getRoleNames()->implode(','))}}</p>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
+            <div class="text-center">
+                @if(!empty(Auth::user()->photo))
+                <img class="profile-user-img img-fluid img-circle" src="{{asset(Auth::user()->photo)}}" alt="User picture">
+                @else
+                <img class="profile-user-img img-fluid img-circle" src="{{asset('img/avatar.png')}}" alt="User picture">
+                @endif
             </div>
+            <h3 class="profile-username text-center">{{ucwords(Auth::user()->name)}}</h3>
+            <p class="text-muted text-center">{{ucwords(Auth::user()->getRoleNames()->implode(','))}}</p>
+            {{ $slot }}
         </div>
         <!-- /.card-body -->
     </div>

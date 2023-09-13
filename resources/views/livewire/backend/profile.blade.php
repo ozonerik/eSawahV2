@@ -3,7 +3,27 @@
         <li class="breadcrumb-item active">Profile</a></li>
     </x-content_header>
     <div class="row mx-1 pb-3">
-        <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1"/>
+        <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1">
+            <form wire:submit.prevent="updatephoto">
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input wire:model="photo" type="file" class="custom-file-input form-control @error('photo') is-invalid @enderror" id="PhotoProfile">
+                        <label class="custom-file-label" for="PhotoProfile">Choose file</label>
+                        @error('photo')
+                            <span class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group text-md-right text-center">
+                <button class="btn btn-primary" type="submit" wire:target="photo" wire:loading.attr="disabled">
+                    <span wire:target="photo" wire:loading.class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span wire:target="photo" wire:loading.class="sr-only">Save</span>
+                </button>
+                </div>
+            </form>
+        </x-card_profile>
         <x-card_section2 name="Profile Information" type="primary" width="9" order="2" smallorder="2">
         <form wire:submit.prevent="updateprofile">
             <div class="form-group">

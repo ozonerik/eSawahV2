@@ -14,12 +14,15 @@ $(function () {
         <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1">
             <form wire:submit.prevent="updatephoto" enctype="multipart/form-data">
                 <div class="form-group">
-                        <input type="file" id="formFile" wire:model="photo" wire:target="photo" wire:loading.attr="disabled" class="form-control @error('photo') is-invalid @enderror" >
+                    <div class="custom-file" wire:ignore>
+                        <input type="file" id="formFile"  wire:model="photo" wire:target="photo" wire:loading.attr="disabled" class="custom-file-input form-control @error('photo') is-invalid @enderror" >
+                        <label class="custom-file-label" for="customFile">Choose file</label>
                         @error('photo')
-                            <span class="invalid-feedback" role="alert">
-                                {{ $message }}
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
                         @enderror
+                    </div>
                 </div>
                 <div class="form-group text-md-right text-center">
                 <button class="btn btn-primary" type="submit" wire:target="photo" wire:loading.attr="disabled">

@@ -31,13 +31,6 @@ class Profile extends Component
         }
     }
 
-    public function updatedPhoto()
-    {
-        $this->validate([
-            'photo' => 'image|max:1024', // 1MB Max
-        ]);
-    }
-
     public function render()
     {
         return view('livewire.backend.profile')->extends('layouts.app');
@@ -71,9 +64,14 @@ class Profile extends Component
 
     public function updatephoto()
     {
-        $this->validate([
-            'photo' => 'image|max:1024', // 1MB Max
-        ]);
+        $validatedData = Validator::make(
+            ['photo' => $this->photo],
+            ['photo' => 'image|max:1024'],
+        );
+        if ($validatedData->fails()) {
+            session()->flash('error', 'Failed, '.$validatedData->errors()->first());
+            return redirect()->route('profile');
+        }
         $myfile = User::findOrFail(Auth::user()->id);
         $this->oldpath = $myfile->photo;
         //dd($this->oldpath);

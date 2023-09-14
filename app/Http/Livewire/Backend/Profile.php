@@ -48,6 +48,7 @@ class Profile extends Component
 
     public function updateprofile()
     {
+        $errors = $this->getErrorBag();
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id
@@ -64,15 +65,18 @@ class Profile extends Component
 
     public function updatephoto()
     {
-        $validatedData = Validator::make(
-            ['photo' => $this->photo],
-            ['photo' => 'image|max:1024'],
-        );
-        if ($validatedData->fails()) {
-            session()->flash('errorphoto',$validatedData->errors()->first());
-            //dd($validatedData->errors()->first());
-            return redirect()->route('profile');
-        }
+        // $errors = $this->getErrorBag();
+        // $this->validate([
+        //     'photo' => 'image|max:1024'
+        // ]);
+         $validatedData = Validator::make(
+             ['photo' => $this->photo],
+             ['photo' => 'image|max:1024'],
+         );
+         if ($validatedData->fails()) {
+             session()->flash('photo',$validatedData->errors()->first('photo'));
+             return redirect()->route('profile');
+         }
         $myfile = User::findOrFail(Auth::user()->id);
         $this->oldpath = $myfile->photo;
         //dd($this->oldpath);
@@ -99,6 +103,7 @@ class Profile extends Component
 
     public function updatepasswd()
     {
+        $errors = $this->getErrorBag();
         $this->validate([
             'current_password' => ['required', new MatchOldPassword],
             'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],

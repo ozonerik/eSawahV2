@@ -27,6 +27,7 @@ class Users extends Component
         }else{
             $this->checked = [];
         }
+        //dd($this->checked);
     }
 
     public function updatedChecked($value){

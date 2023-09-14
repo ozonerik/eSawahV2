@@ -1,4 +1,8 @@
 <!-- Photo Profile -->
 <div class="navbar-brand">
-    <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" height="28">
+    @if(!empty(Auth::user()->photo))
+    <img class="img-circle" alt="User Image" height="28" src="{{ asset('storage/'.Auth::user()->photo) }}">
+    @else
+    <img class="img-circle" alt="User Image" height="28" src="{{asset('img/avatar.png')}}">
+    @endif
 </div>

@@ -10,11 +10,12 @@ use Illuminate\Validation\Rules\Password;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class Profile extends Component
 {
     use WithFileUploads;
-    public $user,$name,$email,$current_password,$password,$password_confirmation,$photo;
+    public $user,$name,$email,$current_password,$password,$password_confirmation,$photo,$oldpath,$newpath;
 
     private function resetpasswd(){
         $this->current_password='';
@@ -22,6 +23,12 @@ class Profile extends Component
         $this->password_confirmation='';
         $this->resetErrorBag();
         $this->resetValidation();
+    }
+
+    private function deletefile($pathfile){
+        if(Storage::disk('public')->exists($pathfile)){
+            Storage::disk('public')->delete($pathfile);
+        }
     }
 
     public function updatedPhoto()
@@ -67,6 +74,23 @@ class Profile extends Component
         $this->validate([
             'photo' => 'image|max:1024', // 1MB Max
         ]);
+        $myfile = User::findOrFail(Auth::user()->id);
+        $this->oldpath = $myfile->photo;
+        //dd($this->oldpath);
+        $dir='photos'; 
+        if(!empty($this->oldpath)){
+            $this->newpath=$this->photo->store($dir,'public'); //setingan di confi/filesystem
+            $this->deletefile($this->oldpath);
+            User::updateOrCreate(['id' => Auth::user()->id], [
+                'photo' => $this->newpath
+            ]);
+        }else{
+            $this->newpath=$this->photo->store($dir,'public');
+           //dd($this->newpath);
+            User::updateOrCreate(['id' => Auth::user()->id], [
+                'photo' => $this->newpath
+            ]);
+        }
         //$this->photo->store('photos');
         //flash message
         session()->flash('success', 'Photo Berhasil Diubah.');

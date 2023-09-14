@@ -15,13 +15,13 @@ $(function () {
             <form wire:submit.prevent="updatephoto" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="custom-file" wire:ignore>
-                        <input type="file" id="formFile"  wire:model="photo" wire:target="photo" wire:loading.attr="disabled" class="custom-file-input form-control @error('photo') is-invalid @enderror" >
+                        <input type="file" id="formFile"  wire:model="photo" wire:target="photo" wire:loading.attr="disabled" class="custom-file-input form-control @if ($message  = Session::get('errorphoto')) is-invalid @endif" >
                         <label class="custom-file-label" for="customFile">Choose file</label>
-                        @error('photo')
+                        @if ($message  = Session::get('errorphoto'))
                         <span class="invalid-feedback" role="alert">
                             {{ $message }}
                         </span>
-                        @enderror
+                        @endif
                     </div>
                 </div>
                 <div class="form-group text-md-right text-center">

@@ -69,7 +69,8 @@ class Profile extends Component
             ['photo' => 'image|max:1024'],
         );
         if ($validatedData->fails()) {
-            session()->flash('error', 'Failed, '.$validatedData->errors()->first());
+            session()->flash('errorphoto',$validatedData->errors()->first());
+            //dd($validatedData->errors()->first());
             return redirect()->route('profile');
         }
         $myfile = User::findOrFail(Auth::user()->id);

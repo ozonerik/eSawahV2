@@ -39,7 +39,7 @@ class Profile extends Component
     public function mount()
     {
         $this->resetpasswd();
-        $user = User::find(Auth::user()->id);          
+        $users = User::find(Auth::user()->id);          
         if($user) {
             $this->name    = $user->name;
             $this->email  = $user->email;

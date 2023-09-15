@@ -11,15 +11,16 @@ class card_table extends Component
      *
      * @return void
      */
-    public $width, $title, $data, $thead, $tbody;
+    public $width, $title, $data, $thead, $tbody, $tbtn;
 
-    public function __construct($width, $title, $data, $thead, $tbody)
+    public function __construct($width, $title, $data, $thead, $tbody,$tbtn)
     {
         $this->width = $width;
         $this->title = $title;
         $this->data = $data;
         $this->thead = $thead;
         $this->tbody = $tbody;
+        $this->tbtn = $tbtn;
     }
 
     /**

@@ -13,6 +13,10 @@
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- toastr -->
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+<!-- sweetalert2 -->
+<script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> 
+<x-livewire-alert::flash />
+
 <script>
     // Make the dashboard widgets sortable Using jquery UI
     $('.connectedSortable').sortable({

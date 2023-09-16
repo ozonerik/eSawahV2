@@ -7,11 +7,16 @@ use App\Models\User;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Users extends Component
 {
     use WithPagination;
+    use LivewireAlert;
     protected $paginationTheme = 'bootstrap';
+    protected $listeners = [
+        'deluser'
+    ];
 
     public $perPage=5;
     public $selectPage = false;
@@ -19,6 +24,7 @@ class Users extends Component
     public $search='';
     public $mode='read';
     public $ids,$users,$name,$email,$password,$password_confirmation;
+    public $user_id;
     
     public function getUserProperty(){
         return User::where('name','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'userPage');
@@ -41,17 +47,68 @@ class Users extends Component
         return in_array($id,$this->checked);
     }
 
-    public function RowEdit($id){
-        dd($id);
-    }
-
-    public function RowDel($id){
-        User::whereIn('id',[$id])->delete();
+    public function deluser()
+    {
+        User::whereIn('id',$this->user_id)->delete();
+        //reset form
+        $this->resetForm();
         //flash message
         session()->flash('success', 'User berhasil dihapus');
         //redirect
         return redirect()->route('users');
     }
+
+    private function resetForm()
+    {
+        $this->mode='read';
+        $this->user_id='';
+        $this->name='';
+        $this->email='';
+        $this->password='';
+        $this->password_confirmation='';
+        $this->resetErrorBag();
+        $this->resetValidation();
+
+    }
+
+    public function edituser()
+    {
+        $cek_password=( is_null($this->password) || $this->password=="" ) ;
+        
+        if($cek_password){
+            //dd($this->password);
+            $this->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id
+            ]);
+            $users=User::updateOrCreate(['id' => $this->user_id], [
+                'name' => $this->name,
+                'email' => $this->email,
+            ]);
+        }else{
+            //dd($this->password);
+            $this->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id,
+                'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
+                'password_confirmation' => 'required',
+            ]); 
+            $users=User::updateOrCreate(['id' => $this->user_id], [
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => Hash::make($this->password)
+            ]);
+        }
+
+
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'User berhasil diupdate');
+        //redirect
+        return redirect()->route('users');
+    }
+
 
     public function adduser(){
         $this->validate([
@@ -67,6 +124,8 @@ class Users extends Component
             'password' => Hash::make($this->password)
         ]);
         $users->assignRole('user');
+        //reset form
+        $this->resetForm();
         //flash message
         session()->flash('success', 'User berhasil ditambahkan');
         //redirect
@@ -76,9 +135,28 @@ class Users extends Component
     public function onAdd(){
         $this->mode='add';
     }
-
+    
     public function onRead(){
         $this->mode='read';
+        //reset form
+        $this->resetForm();
+    }
+
+    public function onDelete($id){
+        $this->user_id=$id;
+        $users = User::whereIn('id',[$id]);
+        $this->confirm('Apakah anda yakin ingin hapus ?<br>'.$users->pluck('name')->implode(',<br>'), [
+            'onConfirmed' => 'deluser',
+        ]);
+    }
+
+    public function onEdit($id){
+        $this->mode='edit';
+        $this->user_id=$id;
+        $user = User::findOrFail($id);
+        $this->name = $user->name;
+        $this->email = $user->email;
+        
     }
 
     public function render()

@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-3 p-0 order-1 order-md-3 pl-md-3">
                     <div class="input-group input-group-sm mx-auto float-md-right mb-2 mb-md-0">
-                        <input type="text" name="table_search" class="form-control" wire:model="search" placeholder="Search">
+                        <input type="text" name="table_search" class="form-control" wire:model="search" placeholder="Search Name">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                             <i class="fas fa-search"></i>

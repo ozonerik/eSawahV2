@@ -65,18 +65,15 @@ class Profile extends Component
 
     public function updatephoto()
     {
-        // $errors = $this->getErrorBag();
-        // $this->validate([
-        //     'photo' => 'image|max:1024'
-        // ]);
-         $validatedData = Validator::make(
-             ['photo' => $this->photo],
-             ['photo' => 'image|max:1024'],
-         );
-         if ($validatedData->fails()) {
-             session()->flash('photo',$validatedData->errors()->first('photo'));
-             return redirect()->route('profile');
-         }
+        
+          $validatedData = Validator::make(
+              ['photo' => $this->photo],
+              ['photo' => 'image|max:1024'],
+          );
+          if ($validatedData->fails()) {
+              session()->flash('photo',$validatedData->errors()->first('photo'));
+              return redirect()->route('profile');
+          }
         $myfile = User::findOrFail(Auth::user()->id);
         $this->oldpath = $myfile->photo;
         //dd($this->oldpath);

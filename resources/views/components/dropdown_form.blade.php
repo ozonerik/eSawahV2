@@ -1,5 +1,5 @@
-<div class="form-group" wire:ignore>
-    <label for="{{$ids}}" >{{$label}} {{$errors->has( $name )}}</label>
+<div class="form-group">
+    <label for="{{$ids}}" >{{$label}}</label>
     <select wire:model="{{$name}}" id="{{$ids}}" class="form-control @if($errors->has( $name )) is-invalid @endif" >
         <option value="">Please Choose...</option> 
         @foreach ($data as $row)

@@ -86,7 +86,11 @@ class Users extends Component
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id,
                 'opsiroles' => 'required',
-            ]);
+            ],
+            [
+                'opsiroles.required' => 'The :attribute field is required.',
+            ],
+            ['opsiroles' => 'hak akses']);
             $users=User::updateOrCreate(['id' => $this->user_id], [
                 'name' => $this->name,
                 'email' => $this->email,
@@ -99,7 +103,11 @@ class Users extends Component
                 'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
                 'password_confirmation' => 'required',
                 'opsiroles' => 'required',
-            ]); 
+            ],
+            [
+                'opsiroles.required' => 'The :attribute field is required.',
+            ],
+            ['opsiroles' => 'hak akses']); 
             $users=User::updateOrCreate(['id' => $this->user_id], [
                 'name' => $this->name,
                 'email' => $this->email,
@@ -125,7 +133,11 @@ class Users extends Component
             'password_confirmation' => 'required',
             'opsiroles' => 'required',
 
-        ]);
+        ],
+        [
+            'opsiroles.required' => 'The :attribute field is required.',
+        ],
+        ['opsiroles' => 'hak akses']);
         $users=User::updateOrCreate(['id' => $this->ids], [
             'name' => $this->name,
             'email' => $this->email,

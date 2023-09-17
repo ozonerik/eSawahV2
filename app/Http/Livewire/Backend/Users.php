@@ -8,6 +8,10 @@ use Livewire\WithPagination;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
+
 
 class Users extends Component
 {
@@ -23,8 +27,8 @@ class Users extends Component
     public $checked = [];
     public $search='';
     public $mode='read';
-    public $ids,$users,$name,$email,$password,$password_confirmation;
-    public $user_id;
+    public $roles,$ids,$users,$name,$email,$password,$password_confirmation;
+    public $user_id,$user_role,$opsiroles;
     
     public function getUserProperty(){
         return User::where('name','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'userPage');
@@ -66,6 +70,7 @@ class Users extends Component
         $this->email='';
         $this->password='';
         $this->password_confirmation='';
+        $this->opsiroles =null;
         $this->resetErrorBag();
         $this->resetValidation();
 
@@ -73,13 +78,14 @@ class Users extends Component
 
     public function edituser()
     {
-        $cek_password=( is_null($this->password) || $this->password=="" ) ;
-        
+        //dd(empty($this->opsiroles));
+        $cek_password=( is_null($this->password) || $this->password=="" ) ;       
         if($cek_password){
             //dd($this->password);
             $this->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id
+                'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id,
+                'opsiroles' => 'required',
             ]);
             $users=User::updateOrCreate(['id' => $this->user_id], [
                 'name' => $this->name,
@@ -92,15 +98,15 @@ class Users extends Component
                 'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id,
                 'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
                 'password_confirmation' => 'required',
+                'opsiroles' => 'required',
             ]); 
             $users=User::updateOrCreate(['id' => $this->user_id], [
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => Hash::make($this->password)
+                'password' => Hash::make($this->password),
             ]);
         }
-
-
+        $users->syncRoles([$this->opsiroles]);
         //reset form
         $this->resetForm();
         //flash message
@@ -111,19 +117,22 @@ class Users extends Component
 
 
     public function adduser(){
+        //dd($this->opsiroles);
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
             'password_confirmation' => 'required',
+            'opsiroles' => 'required',
 
         ]);
         $users=User::updateOrCreate(['id' => $this->ids], [
             'name' => $this->name,
             'email' => $this->email,
-            'password' => Hash::make($this->password)
+            'password' => Hash::make($this->password),
         ]);
-        $users->assignRole('user');
+        
+        $users->assignRole($this->opsiroles);
         //reset form
         $this->resetForm();
         //flash message
@@ -134,6 +143,12 @@ class Users extends Component
 
     public function onAdd(){
         $this->mode='add';
+        $this->roles=Role::get();
+        $this->name='';
+        $this->email='';
+        $this->password='';
+        $this->password_confirmation='';
+        $this->opsiroles ='';
     }
     
     public function onRead(){
@@ -151,17 +166,20 @@ class Users extends Component
     }
 
     public function onEdit($id){
+        $this->user_roles = User::findOrFail($id)->roles->pluck('name')->implode(',');
+        $this->opsiroles = $this->user_roles;
+        //dd($this->user_roles);
         $this->mode='edit';
         $this->user_id=$id;
         $user = User::findOrFail($id);
         $this->name = $user->name;
-        $this->email = $user->email;
-        
+        $this->email = $user->email;       
     }
 
     public function render()
     {
         $data['user'] = $this->User;
+        $this->roles=Role::get();
         return view('livewire.backend.users',$data)->extends('layouts.app');
     }
     

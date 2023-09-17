@@ -22,9 +22,10 @@
                 <x-input_form ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
                 <x-input_form ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
                 <x-input_form ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
-            <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
-                    <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
-                    <button type="submit" class="btn btn-primary float-right">Save</button>
+                <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
+                <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih=""/>
+                <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
+                <button type="submit" class="btn btn-primary float-right">Save</button>
             </form>
             </x-slot>
         </x-card_form>
@@ -36,9 +37,10 @@
                 <x-input_form ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
                 <x-input_form ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
                 <x-input_form ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
-            <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
-                    <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
-                    <button type="submit" class="btn btn-primary float-right">Save</button>
+                <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
+                <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih="{{$user_roles}}"/>
+                <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
+                <button type="submit" class="btn btn-primary float-right">Save</button>
             </form>
             </x-slot>
         </x-card_form>

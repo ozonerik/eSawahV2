@@ -10,7 +10,8 @@
         <li class="breadcrumb-item active">Dashboard</a></li>
     </x-content_header>
     <div class="row mx-1">
-        <x-card_info title="Selamat Datang" message="Selamat datang, dan selamat menggunakan aplikasi eSawah kami." />
+        <!-- <x-card_info title="Selamat Datang" message="Selamat datang, dan selamat menggunakan aplikasi eSawah kami." /> -->
+        <x-carousel_info />
     </div>         
     <div class="row mx-1">
         <x-info_box icon="fas fa-seedling" message="Sawah" value="10" type="success"/>

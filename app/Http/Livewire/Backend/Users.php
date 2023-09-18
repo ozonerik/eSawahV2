@@ -19,7 +19,8 @@ class Users extends Component
     use LivewireAlert;
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
-        'deluser'
+        'deluser',
+        'deluserselect'
     ];
 
     public $perPage=5;
@@ -51,6 +52,17 @@ class Users extends Component
         return in_array($id,$this->checked);
     }
 
+    public function deluserselect()
+    {
+        User::whereIn('id',$this->checked)->delete();
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'User berhasil dihapus');
+        //redirect
+        return redirect()->route('users');
+    }
+
     public function deluser()
     {
         User::whereIn('id',$this->user_id)->delete();
@@ -74,6 +86,50 @@ class Users extends Component
         $this->resetErrorBag();
         $this->resetValidation();
 
+    }
+
+    public function edituserselected()
+    {
+        //dd(empty($this->opsiroles));
+        $cek_password=( is_null($this->password) || $this->password=="" ) ;       
+        if($cek_password){
+            //dd($this->password);
+            $this->validate([
+                'opsiroles' => 'required',
+            ],
+            [
+                'opsiroles.required' => 'The :attribute field is required.',
+            ],
+            ['opsiroles' => 'hak akses']);
+            $users=User::whereIn('id', $this->checked)->get();
+            foreach($users as $user)
+            {
+                $user->syncRoles([$this->opsiroles]);
+            }
+        }else{
+            //dd($this->password);
+            $this->validate([
+                'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
+                'password_confirmation' => 'required',
+                'opsiroles' => 'required',
+            ],
+            [
+                'opsiroles.required' => 'The :attribute field is required.',
+            ],
+            ['opsiroles' => 'hak akses']);
+            $users=User::whereIn('id', $this->checked)->get();
+            foreach($users as $user)
+            {
+                $user->update(['password'=>Hash::make($this->password)]);
+                $user->syncRoles([$this->opsiroles]);
+            }
+        }
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'User berhasil diupdate');
+        //redirect
+        return redirect()->route('users');
     }
 
     public function edituser()
@@ -178,7 +234,7 @@ class Users extends Component
     }
 
     public function onEdit($id){
-        $this->user_roles = User::findOrFail($id)->roles->pluck('name')->implode(',');
+        $this->user_roles = User::findOrFail($id)->checked->pluck('name')->implode(',');
         $this->opsiroles = $this->user_roles;
         //dd($this->user_roles);
         $this->mode='edit';
@@ -186,6 +242,20 @@ class Users extends Component
         $user = User::findOrFail($id);
         $this->name = $user->name;
         $this->email = $user->email;       
+    }
+
+    public function onEditSelect(){
+        //dd($this->checked);
+        $this->mode='editselect';
+    }
+
+    public function onDelSelect(){
+        //dd($this->checked);
+        $this->mode='read';
+        $users = User::whereIn('id',$this->checked);
+        $this->confirm('Apakah anda yakin ingin hapus ?<br>'.$users->pluck('name')->implode(', '), [
+            'onConfirmed' => 'deluserselect',
+        ]);
     }
 
     public function render()

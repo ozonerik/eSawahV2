@@ -1,5 +1,5 @@
 <div class="col-md-{{ $width }} connectedSortable">
-    <div class="card">
+    <div class="card ">
         <div class="card-header border-transparent">
         <h3 class="card-title">{{ $title }}</h3>
         <div class="card-tools">
@@ -11,7 +11,7 @@
             </button>
         </div>
         </div>
-        <div class="card-body p-0">
+        <div class="card-body">
             <div class="row mx-3 pl-1 mb-2">
                 <div class="col-md-1 p-0 order-2 order-md-1 pr-md-3">
                     <div class="input-group input-group-sm mx-auto float-md-left mb-2 mb-md-0">

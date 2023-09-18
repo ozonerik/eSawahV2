@@ -1,5 +1,5 @@
 <div class="col-12">
-    <div class="card card-default">
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title"><i class="fas fa-bullhorn"></i> Informasi</h3>
             <div class="card-tools">

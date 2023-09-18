@@ -1,5 +1,5 @@
 <div class="col-md-{{ $width }} order-{{ $smallorder }} order-md-{{ $order }} connectedSortable mb-3 mb-md-0">
-    <div class="card card-primary h-100">
+    <div class="card card-primary">
         <div class="card-header text-center">{{ $name }}</div>
         <div class="card-body box-profile">
             <div class="text-center">

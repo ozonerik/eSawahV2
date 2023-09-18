@@ -35,5 +35,13 @@ class UserSeeder extends Seeder
                 'email_verified_at' => Carbon::now(),
             ]);
         $user->assignRole('user');
+        $user = User::create(
+            [
+                'name' => 'pro',
+                'email' => 'pro@test.id',
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => Carbon::now(),
+            ]);
+        $user->assignRole('pro');
     }
 }

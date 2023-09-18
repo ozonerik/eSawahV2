@@ -29,5 +29,7 @@ class RoleSeeder extends Seeder
 
         // this can be done as separate statements
         $role = Role::create(['name' => 'user']);
+        // this can be done as separate statements
+        $role = Role::create(['name' => 'pro']);
     }
 }

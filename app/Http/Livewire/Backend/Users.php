@@ -11,6 +11,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
+use Illuminate\Support\Facades\Storage;
 
 
 class Users extends Component
@@ -54,6 +55,7 @@ class Users extends Component
 
     public function deluserselect()
     {
+        $this->hapusfileselect();
         User::whereIn('id',$this->checked)->delete();
         //reset form
         $this->resetForm();
@@ -65,7 +67,8 @@ class Users extends Component
 
     public function deluser()
     {
-        User::whereIn('id',$this->user_id)->delete();
+        $this->hapusfile($this->user_id);
+        User::findOrFail($this->user_id)->delete();
         //reset form
         $this->resetForm();
         //flash message
@@ -86,6 +89,32 @@ class Users extends Component
         $this->resetErrorBag();
         $this->resetValidation();
 
+    }
+
+    private function deletefile($pathfile){
+        if(Storage::disk('public')->exists($pathfile)){
+            Storage::disk('public')->delete($pathfile);
+        }
+    }
+
+    private function hapusfile($id){
+        $this->oldpath = User::findOrFail($id)->photo;
+        //dd($this->oldpath);
+        $dir='photos'; 
+        if(!empty($this->oldpath)){
+            $this->deletefile($this->oldpath);
+        }
+    }
+
+    private function hapusfileselect(){
+        $myfile = User::whereIn('id', $this->checked)->get();
+        foreach($myfile as $q)
+        {
+            $q->photo;
+            if(!empty( $q->photo )){
+                $this->deletefile( $q->photo );
+            }
+        }
     }
 
     public function edituserselected()
@@ -234,7 +263,8 @@ class Users extends Component
     }
 
     public function onEdit($id){
-        $this->user_roles = User::findOrFail($id)->checked->pluck('name')->implode(',');
+        $this->roles=Role::get();
+        $this->user_roles = User::findOrFail($id)->getRoleNames()->implode(',');
         $this->opsiroles = $this->user_roles;
         //dd($this->user_roles);
         $this->mode='edit';
@@ -261,7 +291,7 @@ class Users extends Component
     public function render()
     {
         $data['user'] = $this->User;
-        $this->roles=Role::get();
+        //$this->roles=Role::get();
         return view('livewire.backend.users',$data)->extends('layouts.app');
     }
     

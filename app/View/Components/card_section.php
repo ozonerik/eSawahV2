@@ -11,13 +11,14 @@ class card_section extends Component
      *
      * @return void
      */
-    public $width, $order, $smallorder, $name;
-    public function __construct( $width, $order, $smallorder, $name )
+    public $width, $order, $type, $smallorder, $name;
+    public function __construct( $width, $order, $type, $smallorder, $name )
     {
         $this->width = $width;
         $this->name = $name;
         $this->order = $order;
         $this->smallorder = $smallorder;
+        $this->type = $type;
     }
 
     /**

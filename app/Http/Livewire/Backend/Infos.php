@@ -199,7 +199,8 @@ class Infos extends Component
         $this->ids=$id;
         $info = Info::findOrFail($id);
         $this->title = $info->title;
-        $this->message = $info->message;       
+        $this->message = $info->message;
+        $this->img = $info->img;     
     }
 
     public function editinfo()

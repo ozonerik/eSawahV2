@@ -11,9 +11,11 @@ class carousel_info extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data=$data;
     }
 
     /**

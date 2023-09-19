@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-3 p-0 order-1 order-md-3 pl-md-3">
                     <div class="input-group input-group-sm mx-auto float-md-right mb-2 mb-md-0">
-                        <input type="text" name="table_search" class="form-control" wire:model="search" placeholder="Search Name">
+                        <input type="text" name="table_search" class="form-control" wire:model="search" placeholder="{{ $search }}">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                             <i class="fas fa-search"></i>
@@ -58,12 +58,17 @@
                             <td class="text-center"><input type="checkbox" value="{{ $row->id }}" wire:model="checked"></td>
                             <td>{{$data->firstItem() + $key}}</td>
                             @foreach($tbody as $val)
-                            <td>{{ $row->$val }}</td>
+                                <td>@if($val=="images"||$val=="photos"||$val=="img"||$val=="photo"||$val=="image")
+                                    <img alt="images" src="{{ asset( $row->$val ) }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
+                                    @else 
+                                        {{ $row->$val }} 
+                                    @endif 
+                                </td>
                             @endforeach
                             <td>
                                 @if( in_array('edit',$tbtn) &&  in_array('del',$tbtn) )
                                 <button wire:click.prevent="onEdit({{ $row->id }})" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit" ><i class="fas fa-edit"></i></button>         
-                                <button wire:click.prevent="onDelete({{ $row->id }})" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></button>
+                                <button wire:click.prevent="onDelete({{ $row->id }})" class="btn btn-sm btn-danger mt-1 mt-md-0" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></button>
                                 @elseif(in_array('edit',$tbtn))
                                 <button wire:click.prevent="onEdit({{ $row->id }})" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit" ><i class="fas fa-edit"></i></button>
                                 @elseif(in_array('del',$tbtn))

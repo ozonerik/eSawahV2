@@ -13,9 +13,9 @@
         <x-sidebar>
             <x-navitem_menu name="Dashboard" routename="dashboard" icon="fas fa-tachometer-alt" />
             <x-navitem_menu name="Profile" routename="profile" icon="fas fa-user" />
-            <x-navitem_tree icon="fas fa-tools" name="Settings" :open="cek_currentroute(['users','info'])">
+            <x-navitem_tree icon="fas fa-tools" name="Settings" :open="cek_currentroute(['users','infos'])">
                 <x-navitem_menu name="Users" routename="users" icon="fas fa-users" />
-                <x-navitem_menu name="Info" routename="info" icon="fas fa-bullhorn" />
+                <x-navitem_menu name="Info" routename="infos" icon="fas fa-bullhorn" />
             </x-navitem_tree>
         </x-sidebar>
         <div class="content-wrapper">

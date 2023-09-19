@@ -11,9 +11,9 @@ class card_table extends Component
      *
      * @return void
      */
-    public $width, $title, $data, $thead, $tbody, $tbtn;
+    public $width, $title, $data, $thead, $tbody, $tbtn, $search;
 
-    public function __construct($width, $title, $data, $thead, $tbody,$tbtn)
+    public function __construct($width, $title, $data, $thead, $tbody,$tbtn,$search)
     {
         $this->width = $width;
         $this->title = $title;
@@ -21,6 +21,7 @@ class card_table extends Component
         $this->thead = $thead;
         $this->tbody = $tbody;
         $this->tbtn = $tbtn;
+        $this->search =$search;
     }
 
     /**

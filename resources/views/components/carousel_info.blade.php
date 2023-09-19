@@ -13,16 +13,20 @@
         </div>
         <div class="card-body">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="carousel-bg" style="background-image: url('https://img.freepik.com/free-photo/beautiful-diamond-beach-penida-island-bali-indonesia_181624-41884.jpg?w=996&t=st=1694995281~exp=1694995881~hmac=3e458e0f39fbc4cea0971e43ce66f5db1b22e5bbd1098d929e1bf3b6ec9dd674')">
-                            <div class="carousel-caption d-block d-inline-block">
-                            <h5>First slide label</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    @foreach($data as $key=>$q)
+                    <div class="carousel-item @if(($q->incrementing +$key) == 1 ) active @endif">
+                        <div class="carousel-bg rounded-top" style="background-image: url({{ $q->images}})">
+                            <div class="carousel-caption d-block d-inline-block rounded-bottom">
+                            <h5>{{ $q->titles}}</h5>
+                            <p>{{ $q->messages}}</p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
+                
                 <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>

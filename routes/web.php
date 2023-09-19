@@ -6,7 +6,7 @@ use App\Http\Livewire\Backend\Dashboard;
 use App\Http\Livewire\Backend\Profile;
 use App\Http\Livewire\Backend\Result;
 use App\Http\Livewire\Backend\Users;
-use App\Http\Livewire\Backend\Info;
+use App\Http\Livewire\Backend\Infos;
 
 
 /*
@@ -31,6 +31,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/profile', Profile::class)->name('profile');
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/users', Users::class)->name('users');
-        Route::get('/info', Info::class)->name('info');
+        Route::get('/infos', Infos::class)->name('infos');
     });
 });

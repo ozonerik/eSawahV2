@@ -17,15 +17,15 @@ class InfoSeeder extends Seeder
     {
         $info = Info::create(
             [
-                'titles' => 'Judul Pesan 1',
-                'messages' => 'Isi Pesan Satu',
-                'images' => 'dist/img/user1-128x128.jpg',
+                'title' => 'Judul Pesan 1',
+                'message' => 'Isi Pesan Satu',
+                'img' => 'photo2.png',
             ]);
         $info = Info::create(
             [
-                'titles' => 'Judul Pesan 2',
-                'messages' => 'Isi Pesan Dua',
-                'images' => 'dist/img/user1-128x128.jpg',
+                'title' => 'Judul Pesan 2',
+                'message' => 'Isi Pesan Dua',
+                'img' => 'photo2.png',
             ]);
     }
 }

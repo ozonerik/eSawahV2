@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@test.id',
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => Carbon::now(),
-                'photo' => 'dist/img/user1-128x128.jpg',
+                'photo' => 'avatar.png',
             ]);
         $user->assignRole('admin');
         $user = User::create(

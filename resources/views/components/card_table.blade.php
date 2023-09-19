@@ -59,7 +59,7 @@
                             <td>{{$data->firstItem() + $key}}</td>
                             @foreach($tbody as $val)
                                 <td>@if($val=="images"||$val=="photos"||$val=="img"||$val=="photo"||$val=="image")
-                                    <img alt="images" src="{{ asset( $row->$val ) }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
+                                    <img alt="images" src="{{ asset('storage/'.$row->$val) }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
                                     @else 
                                         {{ $row->$val }} 
                                     @endif 

@@ -10,7 +10,7 @@
         <li class="breadcrumb-item active">Dashboard</a></li>
     </x-content_header>
     <div class="row mx-1">
-        <x-carousel_info :data="$infobanner" />
+        <x-carousel_info :data="$infobanner" slideaktif="{{ $juminfo }}"/>
     </div>         
     <div class="row mx-1">
         <x-info_box icon="fas fa-seedling" message="Sawah" value="10" type="success"/>

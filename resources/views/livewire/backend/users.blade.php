@@ -5,7 +5,7 @@
     </x-content_header>
     <div class="row mx-1">
         @if($mode=='read')
-        <x-card_table width="12" title="Users" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','del']" search="Search Name">
+        <x-card_table width="12" title="Daftar Users" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','del']" search="Search Name">
             <x-slot:menu>
                 <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                 <button wire:click="onEditSelect" class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit" @if(empty($checked)) disabled @endif><i class="fas fa-edit"></i></button>
@@ -15,7 +15,7 @@
             </x-slot>
         </x-card_table>
         @elseif($mode=='add')
-        <x-card_form name="Add User" width="12" order="12" smallorder="12" closeto="onRead">
+        <x-card_form name="Add User" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Add User</h4>
             <x-slot:footer>
             <form wire:submit.prevent="adduser">
@@ -30,7 +30,7 @@
             </x-slot>
         </x-card_form>
         @elseif($mode=='edit')
-        <x-card_form name="Edit User" width="12" order="12" smallorder="12" closeto="onRead">
+        <x-card_form name="Edit User" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Edit User</h4>
             <x-slot:footer>
             <form wire:submit.prevent="edituser">
@@ -45,7 +45,7 @@
             </x-slot>
         </x-card_form>
         @elseif($mode=='editselect')
-        <x-card_form name="Edit User Selected" width="12" order="12" smallorder="12" closeto="onRead">
+        <x-card_form name="Edit User Selected" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Edit User Selected</h4>
             <x-slot:footer>
             <form wire:submit.prevent="edituserselected">

@@ -11,8 +11,8 @@ class Info extends Model
 
     protected $fillable = [
         'title',
-        'messages',
-        'images',
+        'message',
+        'img',
     ];
 
 

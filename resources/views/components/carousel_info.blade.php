@@ -12,26 +12,25 @@
             </div>
         </div>
         <div class="card-body">
-            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                
+            <div id="carouselInfo" class="carousel slide carousel-fade" data-ride="carousel">   
                 <div class="carousel-inner">
                     @foreach($data as $key=>$q)
-                    <div class="carousel-item @if(($q->incrementing +$key) == 1 ) active @endif">
-                        <div class="carousel-bg rounded-top" style="background-image: url({{ $q->images}})">
+                    <div class="carousel-item @if(($q->incrementing +$key) == $slideaktif ) active @endif">
+                        <div class="carousel-bg rounded-top" style="background-image: url('{{ Storage::url($q->img) }}')">
                             <div class="carousel-caption d-block d-inline-block rounded-bottom">
-                            <h5>{{ $q->titles}}</h5>
-                            <p>{{ $q->messages}}</p>
+                            <h5>{{ $q->title}}</h5>
+                            <p>{{ $q->message}}</p>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
                 
-                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carouselInfo" role="button" data-slide="next">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselInfo" role="button" data-slide="prev">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>

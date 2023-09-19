@@ -1,5 +1,7 @@
 <div class="form-group">
+    @if(!empty($label))
     <label for="{{$ids}}">{{$label}}</label>
+    @endif
     <div class="custom-file">
         <input type="file" wire:model="{{$name}}" wire:target="{{$name}}" wire:loading.attr="disabled" class="custom-file-input @if($errors->has($name)) is-invalid @endif" id="{{$ids}}" aria-describedby="{{$ids}}">
         <label class="custom-file-label" for="{{$ids}}">{{ $placeholder }}</label>

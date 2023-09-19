@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Backend;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
@@ -49,7 +48,6 @@ class Profile extends Component
 
     public function updateprofile()
     {
-        $errors = $this->getErrorBag();
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id
@@ -64,17 +62,19 @@ class Profile extends Component
         return redirect()->route('profile');
     }
 
+    public function updatedPhoto($value){
+        if($value){
+            $this->filename=$value->getClientOriginalName();
+        }else{
+            $this->filename="Choose File";
+        }
+    }
+
     public function updatephoto()
     {
-        
-          $validatedData = Validator::make(
-              ['photo' => $this->photo],
-              ['photo' => 'image|max:1024'],
-          );
-          if ($validatedData->fails()) {
-              session()->flash('photo',$validatedData->errors()->first('photo'));
-              return redirect()->route('profile');
-          }
+        $this->validate([
+            'photo' => 'image|max:1024'
+        ]);
         $myfile = User::findOrFail(Auth::user()->id);
         $this->oldpath = $myfile->photo;
         //dd($this->oldpath);
@@ -101,7 +101,6 @@ class Profile extends Component
 
     public function updatepasswd()
     {
-        $errors = $this->getErrorBag();
         $this->validate([
             'current_password' => ['required', new MatchOldPassword],
             'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],

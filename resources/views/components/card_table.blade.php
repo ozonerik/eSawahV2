@@ -1,6 +1,6 @@
 <div class="col-md-{{ $width }} connectedSortable">
-    <div class="card ">
-        <div class="card-header border-transparent">
+    <div class="card card-{{ $type }}">
+        <div class="card-header">
         <h3 class="card-title">{{ $title }}</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool ml-2" data-card-widget="collapse">

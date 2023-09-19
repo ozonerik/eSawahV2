@@ -5,7 +5,7 @@
     </x-content_header>
     <div class="row mx-1">
         @if($mode=='read')
-        <x-card_table width="12" title="Daftar Users" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','del']" search="Search...">
+        <x-card_table type="primary" width="12" title="Daftar Users" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','del']" search="Search...">
             <x-slot:menu>
                 <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                 <button wire:click="onEditSelect" class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit" @if(empty($checked)) disabled @endif><i class="fas fa-edit"></i></button>

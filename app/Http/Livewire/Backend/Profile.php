@@ -16,6 +16,7 @@ class Profile extends Component
 {
     use WithFileUploads;
     public $user,$name,$email,$current_password,$password,$password_confirmation,$photo,$oldpath,$newpath;
+    public $filename="Choose File";
 
     private function resetpasswd(){
         $this->current_password='';

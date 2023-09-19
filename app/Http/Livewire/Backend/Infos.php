@@ -24,6 +24,7 @@ class Infos extends Component
     public $mode='read';
     public $ids,$title,$message,$img;
     public $oldpath,$newpath;
+    public $filename="Choose File";
     
     //jangan gunakan variabel dengan nama rules dan messages 
  
@@ -75,6 +76,14 @@ class Infos extends Component
         $this->message='';
     }
 
+    public function updatedImg($value){
+        if($value){
+            $this->filename=$value->getClientOriginalName();
+        }else{
+            $this->filename="Choose File";
+        }
+    }
+    
     public function addinfo(){
         //dd($this->img);
         $validatedData = $this->validate(
@@ -83,23 +92,17 @@ class Infos extends Component
             'message' => 'required|min:4|max:255',
             'img' => 'required|image|max:1024'
         ]);
-
         if ($validatedData->fails()) {
             session()->flash('img',$validatedData->errors()->first('img'));
             return redirect()->route('infos');
         }
-
         $dir='info'; 
         $this->newpath=$this->img->store($dir,'public');
-
-        //dd($this->message);
-
         $info=Info::updateOrCreate(['id' => $this->ids], [
             'title' => $this->title,
             'message' => $this->message,
             'img' => $this->newpath,
         ]);
-
         //flash message
         session()->flash('success', 'Info terbaru berhasil ditambahkan');
         //redirect

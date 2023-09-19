@@ -18,7 +18,7 @@
             <form wire:submit.prevent="addinfo">
                 <x-input_form ids="title" label="Title" types="text" name="title" placeholder="Type Title" />
                 <x-input_form ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
-                <x-file_form2 ids="img" label="Image" name="img"/>
+                <x-file_form2 ids="img" label="Image" name="img" :placeholder="$filename"/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>
             </form>

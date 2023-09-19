@@ -11,13 +11,14 @@ class file_form2 extends Component
      *
      * @return void
      */
-    public $ids, $name, $label;
+    public $ids, $name, $label, $placeholder;
 
-    public function __construct($ids, $name, $label)
+    public function __construct($ids, $name, $label, $placeholder)
     {
         $this->ids = $ids;
         $this->name = $name;
         $this->label = $label;
+        $this->placeholder =$placeholder;
     }
 
     /**

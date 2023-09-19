@@ -282,6 +282,7 @@ class Users extends Component
     public function onEditSelect(){
         //dd($this->checked);
         $this->mode='editselect';
+        $this->roles=Role::get();
     }
 
     public function onDelSelect(){
@@ -297,7 +298,6 @@ class Users extends Component
     public function render()
     {
         $data['user'] = $this->User;
-        //$this->roles=Role::get();
         return view('livewire.backend.users',$data)->extends('layouts.app');
     }
     

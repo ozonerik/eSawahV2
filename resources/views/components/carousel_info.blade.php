@@ -17,8 +17,8 @@
                     @foreach($data as $key=>$q)
                     <div class="carousel-item @if(($q->incrementing +$key) == 1 ) active @endif">
                         @if(($q->incrementing +$key) == 1 )
-                        <div class="ribbon-wrapper">
-                            <div class="ribbon bg-primary">
+                        <div class="ribbon-wrapper ribbon-lg">
+                            <div class="ribbon text-lg bg-primary">
                             NEW
                             </div>
                         </div>

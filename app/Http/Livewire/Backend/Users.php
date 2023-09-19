@@ -33,7 +33,13 @@ class Users extends Component
     public $user_id,$user_role,$opsiroles;
     
     public function getUserProperty(){
-        return User::where('name','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'userPage');
+        $searchQuery = trim($this->search);
+        $requestData = ['name', 'email'];
+        return User::where(function($q) use($requestData, $searchQuery) {
+            foreach ($requestData as $field)
+               $q->orWhere($field, 'like', "%{$searchQuery}%");
+        })->paginate($this->perPage,['*'], 'userPage');
+        //return User::where('name','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'userPage');
     }
 
     public function updatedSelectPage($value){

@@ -5,7 +5,7 @@
     </x-content_header>
     <div class="row mx-1">
         @if($mode=='read')
-        <x-card_table width="12" title="Slide Banner Info" :data="$Info" :thead="['Title','Message','Image']" :tbody="['title','message','img']" :tbtn="['edit','del']" search="Search Title">
+        <x-card_table width="12" title="Slide Banner Info" :data="$Info" :thead="['Title','Message','Image']" :tbody="['title','message','img']" :tbtn="['edit','del']" search="Search...">
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
             <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
@@ -18,18 +18,7 @@
             <form wire:submit.prevent="addinfo">
                 <x-input_form ids="title" label="Title" types="text" name="title" placeholder="Type Title" />
                 <x-input_form ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
-                <div class="form-group">
-                    <label for="image">image</label>
-                    <div class="custom-file">
-                        <input type="file" wire:model="img" wire:target="img" wire:loading.attr="disabled" class="custom-file-input @if($errors->has('img')) is-invalid @endif" id="image" aria-describedby="image">
-                        <label class="custom-file-label" for="image">Choose file</label>
-                        @if($errors->has('img'))
-                            <span class="invalid-feedback" role="alert">
-                                {{ $errors->first('img') }}
-                            </span>
-                        @endif
-                    </div>
-                </div>
+                <x-file_form2 ids="img" label="Image" name="img"/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>
             </form>

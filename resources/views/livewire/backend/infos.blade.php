@@ -24,6 +24,19 @@
             </form>
             </x-slot>
         </x-card_form>
+        @elseif($mode=='edit')
+        <x-card_form name="Edit Info" width="12" order="1" smallorder="1" closeto="onRead">
+            <h4>Add Info</h4>
+            <x-slot:footer>
+            <form wire:submit.prevent="editinfo">
+                <x-input_form ids="title" label="Title" types="text" name="title" placeholder="Type Title" />
+                <x-input_form ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
+                <x-file_form2 ids="img" label="Image" name="img" :placeholder="$filename"/>
+                <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
+                <button type="submit" class="btn btn-primary float-right">Save</button>
+            </form>
+            </x-slot>
+        </x-card_form>
         @endif
     </div>
 </div>

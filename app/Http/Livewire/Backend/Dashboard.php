@@ -12,12 +12,11 @@ class Dashboard extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $perPage=10;
-    public $infobanner,$juminfo;
+    public $infobanner;
 
     public function mount()
     {
-        $this->infobanner=Info::all();
-        $this->juminfo=Info::all()->count();
+        $this->infobanner=Info::orderBy('updated_at', 'DESC')->get();
     }
     
     public function render()

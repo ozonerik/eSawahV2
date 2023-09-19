@@ -115,7 +115,6 @@ class Users extends Component
         $myfile = User::whereIn('id', $this->checked)->get();
         foreach($myfile as $q)
         {
-            $q->photo;
             if(!empty( $q->photo )){
                 $this->deletefile( $q->photo );
             }
@@ -289,7 +288,7 @@ class Users extends Component
         //dd($this->checked);
         $this->mode='read';
         $users = User::whereIn('id',$this->checked);
-        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$users->pluck('name')->implode(',<br>')."</p>", 
+        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$users->pluck('name')->implode(', ')."</p>", 
         [
             'onConfirmed' => 'deluserselect'
         ]);

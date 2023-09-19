@@ -56,10 +56,16 @@
                         @foreach($data as $key=>$row)
                         <tr class="@if($this->is_checked($row->id)) table-primary @endif">
                             <td class="text-center"><input type="checkbox" value="{{ $row->id }}" wire:model="checked"></td>
-                            <td>{{$data->firstItem() + $key}}</td>
+                            <td>{{$data->firstItem() + $key}}
+                                
+                            </td>
                             @foreach($tbody as $val)
                                 <td>@if($val=="images"||$val=="photos"||$val=="img"||$val=="photo"||$val=="image")
-                                    <img alt="images" src="{{ asset('storage/'.$row->$val) }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
+                                        @if(!empty($row->$val))
+                                        <img alt="images" src="{{ asset('storage/'.$row->$val) }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
+                                        @else
+                                        <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
+                                        @endif
                                     @else 
                                         {{ $row->$val }} 
                                     @endif 

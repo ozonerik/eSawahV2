@@ -40,7 +40,7 @@ class Infos extends Component
         return Info::where(function($q) use($requestData, $searchQuery) {
             foreach ($requestData as $field)
                $q->orWhere($field, 'like', "%{$searchQuery}%");
-        })->paginate($this->perPage,['*'], 'infoPage');
+        })->orderBy('updated_at', 'DESC')->paginate($this->perPage,['*'], 'infoPage');
 
         //return Info::where('title','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'infoPage');
     }
@@ -68,6 +68,26 @@ class Infos extends Component
     private function deletefile($pathfile){
         if(Storage::disk('public')->exists($pathfile)){
             Storage::disk('public')->delete($pathfile);
+        }
+    }
+
+    private function hapusfile($id){
+        $this->oldpath = Info::findOrFail($id)->img;
+        //dd($this->oldpath);
+        $dir='info'; 
+        if(!empty($this->oldpath)){
+            $this->deletefile($this->oldpath);
+        }
+    }
+
+    public function hapusfileselect()
+    {
+        $info = Info::whereIn('id', $this->checked)->get();
+        foreach($info as $q)
+        {
+            if(!empty( $q->img )){
+                $this->deletefile( $q->img );
+            }
         }
     }
 
@@ -101,23 +121,32 @@ class Infos extends Component
     
     public function addinfo(){
         //dd($this->img);
-        $validatedData = $this->validate(
-        [ 
-            'title' => 'required|min:4|max:255',
-            'message' => 'required|min:4|max:255',
-            'img' => 'required|image|max:1024'
-        ]);
-        if ($validatedData->fails()) {
-            session()->flash('img',$validatedData->errors()->first('img'));
-            return redirect()->route('infos');
-        }
         $dir='info'; 
-        $this->newpath=$this->img->store($dir,'public');
-        $info=Info::updateOrCreate(['id' => $this->ids], [
-            'title' => $this->title,
-            'message' => $this->message,
-            'img' => $this->newpath,
-        ]);
+        if(!empty($this->img)){
+            $this->validate(
+            [ 
+                'title' => 'required|min:4|max:255',
+                'message' => 'required|min:4|max:255',
+                'img' => 'image|max:1024'
+            ]);
+            $this->newpath=$this->img->store($dir,'public');
+            $info=Info::updateOrCreate(['id' => $this->ids], [
+                'title' => $this->title,
+                'message' => $this->message,
+                'img' => $this->newpath,
+            ]);
+        }else{
+            $this->validate(
+                [ 
+                    'title' => 'required|min:4|max:255',
+                    'message' => 'required|min:4|max:255',
+                ]);
+                $info=Info::updateOrCreate(['id' => $this->ids], [
+                    'title' => $this->title,
+                    'message' => $this->message,
+                ]);
+        }  
+
         //flash message
         session()->flash('success', 'Info terbaru berhasil ditambahkan');
         //redirect
@@ -135,7 +164,77 @@ class Infos extends Component
 
     public function delinfo()
     {
-        dd('hapus');
+        $this->hapusfile($this->ids);
+        Info::findOrFail($this->ids)->delete();
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'Info berhasil dihapus');
+        //redirect
+        return redirect()->route('infos');
     }
+
+    public function onDelSelect(){
+        $info = Info::whereIn('id',$this->checked);
+        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$info->pluck('title')->implode(', ')."</p>", 
+        [
+            'onConfirmed' => 'delinfoselect'
+        ]);
+    }
+
+    public function delinfoselect()
+    {
+        $this->hapusfileselect();
+        Info::whereIn('id',$this->checked)->delete();
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'User berhasil dihapus');
+        //redirect
+        return redirect()->route('infos');
+    }
+
+    public function onEdit($id){
+        $this->mode='edit';
+        $this->ids=$id;
+        $info = Info::findOrFail($id);
+        $this->title = $info->title;
+        $this->message = $info->message;       
+    }
+
+    public function editinfo()
+    {     
+        $dir='info'; 
+        if(!empty($this->img)){
+            $this->validate(
+            [ 
+                'title' => 'required|min:4|max:255',
+                'message' => 'required|min:4|max:255',
+                'img' => 'image|max:1024'
+            ]);
+            $this->newpath=$this->img->store($dir,'public');
+            $info=Info::updateOrCreate(['id' => $this->ids], [
+                'title' => $this->title,
+                'message' => $this->message,
+                'img' => $this->newpath,
+            ]);
+        }else{
+            $this->validate(
+                [ 
+                    'title' => 'required|min:4|max:255',
+                    'message' => 'required|min:4|max:255',
+                ]);
+                $info=Info::updateOrCreate(['id' => $this->ids], [
+                    'title' => $this->title,
+                    'message' => $this->message,
+                ]);
+        }  
+
+        //flash message
+        session()->flash('success', 'Info berhasil diupdate');
+        //redirect
+        return redirect()->route('infos');
+    }
+
 
 }

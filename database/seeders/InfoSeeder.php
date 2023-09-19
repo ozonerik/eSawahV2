@@ -19,13 +19,13 @@ class InfoSeeder extends Seeder
             [
                 'title' => 'Judul Pesan 1',
                 'message' => 'Isi Pesan Satu',
-                'img' => 'photo2.png',
+                'img' => '',
             ]);
         $info = Info::create(
             [
                 'title' => 'Judul Pesan 2',
                 'message' => 'Isi Pesan Dua',
-                'img' => 'photo2.png',
+                'img' => '',
             ]);
     }
 }

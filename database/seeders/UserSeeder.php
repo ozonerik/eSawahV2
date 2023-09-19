@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@test.id',
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => Carbon::now(),
-                'photo' => 'avatar.png',
+                'photo' => '',
             ]);
         $user->assignRole('admin');
         $user = User::create(
@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
                 'email' => 'user@test.id',
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => Carbon::now(),
+                'photo' => '',
             ]);
         $user->assignRole('user');
         $user = User::create(
@@ -41,6 +42,7 @@ class UserSeeder extends Seeder
                 'email' => 'pro@test.id',
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => Carbon::now(),
+                'photo' => '',
             ]);
         $user->assignRole('pro');
     }

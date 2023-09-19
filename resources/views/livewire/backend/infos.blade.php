@@ -20,7 +20,7 @@
                 <x-input_form ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
                 <x-file_form2 ids="img" label="Image" name="img" :placeholder="$filename"/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
-                <button type="submit" class="btn btn-primary float-right">Save</button>
+                <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>
             </x-slot>
         </x-card_form>
@@ -33,7 +33,7 @@
                 <x-input_form ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
                 <x-file_form2 ids="img" label="Image" name="img" :placeholder="$filename"/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
-                <button type="submit" class="btn btn-primary float-right">Save</button>
+                <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>
             </x-slot>
         </x-card_form>

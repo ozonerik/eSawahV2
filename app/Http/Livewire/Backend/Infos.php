@@ -25,6 +25,10 @@ class Infos extends Component
     public $ids,$title,$message,$img;
     public $oldpath,$newpath;
     public $filename="Choose File";
+    protected $listeners = [
+        'delinfo',
+        'delinfoselect'
+    ];
     
     //jangan gunakan variabel dengan nama rules dan messages 
  
@@ -60,10 +64,22 @@ class Infos extends Component
         return view('livewire.backend.infos',$data)->extends('layouts.app');
     }
     // Batas Akhir Fungsi Tabel
+    
     private function deletefile($pathfile){
         if(Storage::disk('public')->exists($pathfile)){
             Storage::disk('public')->delete($pathfile);
         }
+    }
+
+    private function resetForm()
+    {
+        $this->ids='';
+        $this->title='';
+        $this->message='';
+        $this->img=null;
+        $this->resetErrorBag();
+        $this->resetValidation();
+
     }
 
     public function onRead(){
@@ -72,8 +88,7 @@ class Infos extends Component
 
     public function onAdd(){
         $this->mode='add';
-        $this->title='';
-        $this->message='';
+        $this->resetForm();
     }
 
     public function updatedImg($value){
@@ -107,7 +122,20 @@ class Infos extends Component
         session()->flash('success', 'Info terbaru berhasil ditambahkan');
         //redirect
         return redirect()->route('infos');
+    }
 
+    public function onDelete($id){
+        $this->ids=$id;
+        $info = Info::whereIn('id',[$id]);
+        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$info->pluck('title')->implode(',<br>')."</p>", 
+        [
+            'onConfirmed' => 'delinfo'
+        ]);
+    }
+
+    public function delinfo()
+    {
+        dd('hapus');
     }
 
 }

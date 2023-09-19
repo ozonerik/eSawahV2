@@ -30,7 +30,7 @@ class Users extends Component
     public $search='';
     public $mode='read';
     public $roles,$ids,$users,$name,$email,$password,$password_confirmation;
-    public $user_id,$user_role,$opsiroles;
+    public $user_role,$opsiroles;
     
     public function getUserProperty(){
         $searchQuery = trim($this->search);
@@ -73,8 +73,8 @@ class Users extends Component
 
     public function deluser()
     {
-        $this->hapusfile($this->user_id);
-        User::findOrFail($this->user_id)->delete();
+        $this->hapusfile($this->ids);
+        User::findOrFail($this->ids)->delete();
         //reset form
         $this->resetForm();
         //flash message
@@ -85,8 +85,7 @@ class Users extends Component
 
     private function resetForm()
     {
-        $this->mode='read';
-        $this->user_id='';
+        $this->ids='';
         $this->name='';
         $this->email='';
         $this->password='';
@@ -175,14 +174,14 @@ class Users extends Component
             //dd($this->password);
             $this->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id,
+                'email' => 'required|string|email|max:255|unique:users,email,' . $this->ids,
                 'opsiroles' => 'required',
             ],
             [
                 'opsiroles.required' => 'The :attribute field is required.',
             ],
             ['opsiroles' => 'hak akses']);
-            $users=User::updateOrCreate(['id' => $this->user_id], [
+            $users=User::updateOrCreate(['id' => $this->ids], [
                 'name' => $this->name,
                 'email' => $this->email,
             ]);
@@ -190,7 +189,7 @@ class Users extends Component
             //dd($this->password);
             $this->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users,email,' . $this->user_id,
+                'email' => 'required|string|email|max:255|unique:users,email,' . $this->ids,
                 'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
                 'password_confirmation' => 'required',
                 'opsiroles' => 'required',
@@ -199,7 +198,7 @@ class Users extends Component
                 'opsiroles.required' => 'The :attribute field is required.',
             ],
             ['opsiroles' => 'hak akses']); 
-            $users=User::updateOrCreate(['id' => $this->user_id], [
+            $users=User::updateOrCreate(['id' => $this->ids], [
                 'name' => $this->name,
                 'email' => $this->email,
                 'password' => Hash::make($this->password),
@@ -261,10 +260,11 @@ class Users extends Component
     }
 
     public function onDelete($id){
-        $this->user_id=$id;
+        $this->ids=$id;
         $users = User::whereIn('id',[$id]);
-        $this->confirm('Apakah anda yakin ingin hapus ?<br>'.$users->pluck('name')->implode(',<br>'), [
-            'onConfirmed' => 'deluser',
+        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$users->pluck('name')->implode(',<br>')."</p>", 
+        [
+            'onConfirmed' => 'deluser'
         ]);
     }
 
@@ -274,7 +274,7 @@ class Users extends Component
         $this->opsiroles = $this->user_roles;
         //dd($this->user_roles);
         $this->mode='edit';
-        $this->user_id=$id;
+        $this->ids=$id;
         $user = User::findOrFail($id);
         $this->name = $user->name;
         $this->email = $user->email;       
@@ -289,8 +289,9 @@ class Users extends Component
         //dd($this->checked);
         $this->mode='read';
         $users = User::whereIn('id',$this->checked);
-        $this->confirm('Apakah anda yakin ingin hapus ?<br>'.$users->pluck('name')->implode(', '), [
-            'onConfirmed' => 'deluserselect',
+        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$users->pluck('name')->implode(',<br>')."</p>", 
+        [
+            'onConfirmed' => 'deluserselect'
         ]);
     }
 

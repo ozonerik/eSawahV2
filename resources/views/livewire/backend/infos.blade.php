@@ -5,7 +5,7 @@
     </x-content_header>
     <div class="row mx-1">
         @if($mode=='read')
-        <x-card_table type="primary" width="12" title="Slide Banner Info" :data="$Info" :thead="['Title','Message','Image']" :tbody="['title','message','img']" :tbtn="['edit','del']" search="Search...">
+        <x-card_table type="primary" width="12" order="1" smallorder="1" title="Slide Banner Info" :data="$Info" :thead="['Title','Message','Image']" :tbody="['title','message','img']" :tbtn="['edit','del']" search="Search...">
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
             <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
@@ -16,8 +16,8 @@
             <h4>Add Info</h4>
             <x-slot:footer>
             <form wire:submit.prevent="addinfo">
-                <x-input_form ids="title" label="Title" types="text" name="title" placeholder="Type Title" />
-                <x-input_form ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
+                <x-input_form disabled="false" ids="title" label="Title" types="text" name="title" placeholder="Type Title" />
+                <x-input_form disabled="false" ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
                 <div class="form-group">
                     <div class="font-weight-bold mb-2">Image</div>
                     @if(!empty($img))
@@ -37,8 +37,8 @@
             <h4>Add Info</h4>
             <x-slot:footer>
             <form wire:submit.prevent="editinfo">
-                <x-input_form ids="title" label="Title" types="text" name="title" placeholder="Type Title" />
-                <x-input_form ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
+                <x-input_form disabled="false" ids="title" label="Title" types="text" name="title" placeholder="Type Title" />
+                <x-input_form disabled="false" ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
                 <div class="form-group">
                     <div class="font-weight-bold mb-2">Image</div>
                     @if(!empty($img))

@@ -16,8 +16,8 @@
         </x-card_profile>
         <x-card_section2 name="Profile Information" type="primary" width="9" order="2" smallorder="2">
         <form wire:submit.prevent="updateprofile">
-            <x-input_form ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
-            <x-input_form ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
+            <x-input_form disabled="false" ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
+            <x-input_form disabled="false" ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
             <div class="form-group text-md-right text-center">
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
@@ -28,9 +28,9 @@
         <div class="col-12 col-md-3"></div>
         <x-card_section2 name="Update Password" type="primary" width="9" order="3" smallorder="3">
         <form wire:submit.prevent="updatepasswd">
-            <x-input_form ids="currentpassword" label="Current password" types="password" name="current_password" placeholder="Current Password" />
-            <x-input_form ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
-            <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
+            <x-input_form disabled="false" ids="currentpassword" label="Current password" types="password" name="current_password" placeholder="Current Password" />
+            <x-input_form disabled="false" ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
+            <x-input_form disabled="false" ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
             <div class="form-group text-md-right text-center">
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>

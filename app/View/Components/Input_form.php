@@ -11,15 +11,16 @@ class Input_form extends Component
      *
      * @return void
      */
-    public $ids, $types, $name, $placeholder, $label;
+    public $ids, $types, $name, $placeholder, $label, $disabled;
 
-    public function __construct($ids, $types, $name, $placeholder, $label)
+    public function __construct($ids, $types, $name, $placeholder, $label, $disabled)
     {
         $this->ids = $ids;
         $this->types = $types; 
         $this->name = $name;
         $this->placeholder = $placeholder;
         $this->label = $label;
+        $this->disabled = $disabled;
     }
 
     /**

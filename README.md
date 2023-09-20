@@ -10,12 +10,13 @@
 <ul>
 <li><b>New</b> Laravel v9</li>
 <li><b>New</b> Livewire v2</li>
-<li><b>New</b> Bootstrap v5 UI</li>
+<li><b>New</b> Bootstrap v5 UI</li></del>
 <li><b>New</b> Fontawesome v6</li>
 <li><b>New</b> Bootstrap Icon v1.8</li>
 <li><b>New</b> Spatie Permission V5</li>
 <li><b>New</b> Admin LTE v3.2.0</li>
 <li><b>New</b> startbootstrap.com</li>
+<li><b>New</b> jantinnerezo/livewire-alert</li>
 </ul>
 
 ## Packages
@@ -28,6 +29,8 @@
 - **[Spatie Permission 5](https://spatie.be/docs/laravel-permission/v5/introduction)**
 - **[Admin LTE 3](https://github.com/ColorlibHQ/AdminLTE)**
 - **[Grayscale Template](https://startbootstrap.com/theme/grayscale)**
+- **[jantinnerezo/livewire-alert](https://github.com/jantinnerezo/livewire-alert)**
+
 
 ## License
 

@@ -7,6 +7,7 @@ use App\Http\Livewire\Backend\Profile;
 use App\Http\Livewire\Backend\Result;
 use App\Http\Livewire\Backend\Users;
 use App\Http\Livewire\Backend\Infos;
+use App\Http\Livewire\Backend\Sawahs;
 
 
 /*
@@ -28,6 +29,7 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/result', Result::class)->name('result');
+    Route::get('/sawahs', Sawahs::class)->name('sawahs');
     Route::get('/profile', Profile::class)->name('profile');
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/users', Users::class)->name('users');

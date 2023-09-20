@@ -12,6 +12,9 @@
         <x-navbar />
         <x-sidebar>
             <x-navitem_menu name="Dashboard" routename="dashboard" icon="fas fa-tachometer-alt" />
+            <x-navitem_tree icon="fas fa-mountain" name="Sawah" :open="cek_currentroute(['sawahs'])">
+                <x-navitem_menu name="Daftar Sawah" routename="sawahs" icon="fas fa-map" />
+            </x-navitem_tree>
             <x-navitem_menu name="Profile" routename="profile" icon="fas fa-user" />
             <x-navitem_tree icon="fas fa-tools" name="Settings" :open="cek_currentroute(['users','infos'])">
                 <x-navitem_menu name="Users" routename="users" icon="fas fa-users" />

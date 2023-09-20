@@ -60,13 +60,21 @@
                                 
                             </td>
                             @foreach($tbody as $val)
-                                <td>@if($val=="images"||$val=="photos"||$val=="img"||$val=="photo"||$val=="image")
+                                <td>
+                                    <!--gambar-->
+                                    @if($val=="images"||$val=="photos"||$val=="img"||$val=="photo"||$val=="image")
                                         @if(!empty($row->$val))
-                                        <img alt="images" src="{{ asset('storage/'.$row->$val) }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
+                                        <img alt="images" src="{{ asset('storage/'.$row->$val) }}" class="img-thumbnail rounded float-left" style="max-width:150px"/> 
                                         @else
-                                        <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded float-left" style="max-height:150px"/> 
+                                        <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded float-left" style="max-width:150px"/> 
                                         @endif
-                                    @else 
+                                    <!--luas-->
+                                    @elseif($val=="luas")
+                                        {{ number_format($row->$val,2) }} ( {{ get_convtobata($row->$val) }} )
+                                    <!--harga-->
+                                    @elseif(substr($val,0,5) == "harga")
+                                        {{ get_convtorp($row->$val) }}
+                                    @else
                                         {{ $row->$val }} 
                                     @endif 
                                 </td>

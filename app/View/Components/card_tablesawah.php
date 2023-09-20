@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class card_table extends Component
+class card_tablesawah extends Component
 {
     /**
      * Create a new component instance.
@@ -34,6 +34,6 @@ class card_table extends Component
      */
     public function render()
     {
-        return view('components.card_table');
+        return view('components.card_tablesawah');
     }
 }

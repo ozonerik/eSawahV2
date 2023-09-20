@@ -5,7 +5,7 @@
     </x-content_header>
     <div class="row mx-1">
         @if($mode=='read')
-        <x-card_table type="primary" width="12" title="Daftar Users" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','del']" search="Search...">
+        <x-card_table type="primary" width="12" order="1" smallorder="1" title="Daftar Users" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','del']" search="Search...">
             <x-slot:menu>
                 <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                 <button wire:click="onEditSelect" class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit" @if(empty($checked)) disabled @endif><i class="fas fa-edit"></i></button>
@@ -19,10 +19,10 @@
             <h4>Add User</h4>
             <x-slot:footer>
             <form wire:submit.prevent="adduser">
-                <x-input_form ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
-                <x-input_form ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
-                <x-input_form ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
-                <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
+                <x-input_form disabled="false" ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
+                <x-input_form disabled="false" ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
+                <x-input_form disabled="false" ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
+                <x-input_form disabled="false" ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
                 <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih=""/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>
@@ -34,10 +34,10 @@
             <h4>Edit User</h4>
             <x-slot:footer>
             <form wire:submit.prevent="edituser">
-                <x-input_form ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
-                <x-input_form ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
-                <x-input_form ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
-                <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
+                <x-input_form disabled="false" ids="name" label="Name" types="text" name="name" placeholder="Enter Name" />
+                <x-input_form disabled="false" ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
+                <x-input_form disabled="false" ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
+                <x-input_form disabled="false" ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
                 <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih="{{$user_roles}}"/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>
@@ -49,8 +49,8 @@
             <h4>Edit User Selected</h4>
             <x-slot:footer>
             <form wire:submit.prevent="edituserselected">
-                <x-input_form ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
-                <x-input_form ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
+                <x-input_form disabled="false" ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
+                <x-input_form disabled="false" ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
                 <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih=""/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>

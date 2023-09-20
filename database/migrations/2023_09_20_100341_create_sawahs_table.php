@@ -26,8 +26,11 @@ return new class extends Migration
             $table->string('b_selatan')->nullable();
             $table->string('namapenjual')->nullable();
             $table->unsignedInteger('hargabeli')->nullable();
+            $table->string('namapembeli')->nullable();
+            $table->unsignedInteger('hargajual')->nullable();
             $table->string('img')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

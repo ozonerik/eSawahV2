@@ -37,7 +37,7 @@ class Sawahs extends Component
      // Batas Awal Fungsi Tabel
     public function getSawahProperty(){
         $searchQuery = trim($this->search);
-        $requestData = ['nosawah','namasawah','luas','lokasi','latlang','b_barat','b_utara','b_timur','b_selatan','namapenjual','hargabeli',];
+        $requestData = ['nosawah','namasawah','luas','lokasi'];
         return Sawah::where(function($q) use($requestData, $searchQuery) {
             foreach ($requestData as $field)
                $q->orWhere($field, 'like', "%{$searchQuery}%");

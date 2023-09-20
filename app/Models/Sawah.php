@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sawah extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'nosawah',
@@ -20,9 +21,11 @@ class Sawah extends Model
         'b_timur',
         'b_selatan',
         'namapenjual',
+        'hargabeli',
+        'namapembeli',
+        'hargajual',
         'img',
         'user_id',
-        'hargabeli',
     ];
     
     public function users()

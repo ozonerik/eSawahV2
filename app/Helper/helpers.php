@@ -109,7 +109,7 @@ function get_lanja($meter,$kw){
     $kw=intval($kw);
     $bata=floatval($meter)/14.00;
     $lanja=$bata/100;
-    $nlanjakw=number_format(strval(round($lanja*$kw,2)),2,',','.');
+    $nlanjakw=strval(number_format(round($lanja*$kw,2),2,',','.'));
     $lanjatext=$nlanjakw." kw";
     return $lanjatext;
 }
@@ -118,7 +118,7 @@ function get_nlanja($meter,$kw,$harga){
     $kw=intval($kw);
     $bata=floatval($meter)/14.00;
     $lanja=$bata/100;
-    $nlanjarp=number_format(strval(round($lanja*$kw,2)*$harga),0,',','.');
+    $nlanjarp=strval(number_format(round($lanja*$kw,2)*$harga,0,',','.'));
     $nlanjatext="Rp. ".$nlanjarp;
     return $nlanjatext;
 }

@@ -20,10 +20,13 @@
             <x-input_form ids="l2" label="L2" types="text" name="l2" placeholder="Enter L2" disabled="false"/>
             <x-input_form ids="la" label="LA" types="text" name="la" placeholder="Enter LA" disabled="false"/>
             <x-input_form ids="m" label="M" types="text" name="m" placeholder="Enter M" disabled="false"/>
+            <x-input_form ids="hgpadi" label="Harga Padi" types="text" name="hgpadi" placeholder="Enter Harga Padi" disabled="false"/>
             <x-input_form ids="ls1" label="Luas (umum) m2 " types="text" name="ls1" placeholder="Luas...." disabled="true"/>
-            <x-input_form ids="ls2" label="Luas (pres) m2" types="text" name="ls2" placeholder="Luas...." disabled="true"/>
             <x-input_form ids="ls3" label="Luas (umum) bata" types="text" name="ls3" placeholder="Luas...." disabled="true"/>
+            <x-input_form ids="ls2" label="Luas (pres) m2" types="text" name="ls2" placeholder="Luas...." disabled="true"/>
             <x-input_form ids="ls4" label="Luas (pres) bata" types="text" name="ls4" placeholder="Luas...." disabled="true"/>
+            <x-input_form ids="lanja" label="Lanja (kw)" types="text" name="lanja" placeholder="Lanja (Kwintal)" disabled="true"/>
+            <x-input_form ids="nlanja" label="Lanja (Rp)" types="text" name="nlanja" placeholder="Lanja (Rp)" disabled="true"/>
             <div class="form-group text-md-right text-center">
                 <button type="submit" class="btn btn-primary">Hitung</button>
             </div>

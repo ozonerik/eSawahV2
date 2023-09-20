@@ -77,3 +77,23 @@ function get_luassegi4($p1,$l1,$p2,$l2,$m){
     $luas=round($v,2);
     return $luas;
 }
+
+function get_lanja($meter){
+    $bata=floatval($meter)/14.00;
+    $lanja=$bata/100;
+    $lanja5=strval(round($lanja*5,2));
+    $lanja6=strval(round($lanja*6,2));
+    $lanja7=strval(round($lanja*7,2));
+    $lanjatext="5kw= ".$lanja5." | "."6kw= ".$lanja6." | "."7kw= ".$lanja7."|";
+    return $lanjatext;
+}
+
+function get_nlanja($meter,$harga){
+    $bata=floatval($meter)/14.00;
+    $lanja=$bata/100;
+    $nlanja5=strval(round($lanja*5,2)*$harga);
+    $nlanja6=strval(round($lanja*6,2)*$harga);
+    $nlanja7=strval(round($lanja*7,2)*$harga);
+    $nlanjatext="5kw= ".$nlanja5." | "."6kw= ".$nlanja6." | "."7kw= ".$nlanja7."|";
+    return $nlanjatext;
+}

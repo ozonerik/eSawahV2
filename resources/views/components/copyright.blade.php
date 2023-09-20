@@ -1,1 +1,1 @@
-<strong>Copyright &copy; 2022 <a href="/">esawah.my.id</a>.</strong> All rights reserved.
+<strong>Copyright &copy; {{ date('Y') }} <a href="{{ url_copyright() }}">{{ get_copyright() }}</a>.</strong> All rights reserved.

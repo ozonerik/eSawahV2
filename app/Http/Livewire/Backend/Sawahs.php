@@ -25,7 +25,9 @@ class Sawahs extends Component
     public $ids,$nosawah,$namasawah,$luas,$lokasi,$latlang,$b_barat,$b_utara,$b_timur,$b_selatan,$namapenjual,$img,$user_id,$hargabeli;
     public $oldpath,$newpath;
     public $filename="Choose File";
-    public $p1,$l1,$p2,$l2,$la,$m,$ls1,$ls2,$ls3,$ls4,$hgpadi,$lanja,$nlanja;
+    public $p1,$l1,$p2,$l2,$la,$m,$ls1,$ls2,$ls3,$ls4,$lanjakw,$lanjarp;
+    public $hgpadi="750000";
+    public $lanja="5";
     protected $listeners = [
         'delsawah',
         'delsawahselect'
@@ -88,6 +90,9 @@ class Sawahs extends Component
     public function updatedHgpadi($value){
         $this->kalkulatorsawah();
     }
+    public function updatedLanja($value){
+        $this->kalkulatorsawah();
+    }
 
     public function kalkulatorsawah(){
         $p1=$this->p1;
@@ -97,14 +102,16 @@ class Sawahs extends Component
         $la=$this->la;
         $m=$this->m;
         $hgpadi=$this->hgpadi;
+        $lanja=$this->lanja;
         
         if(empty($p2)||empty($l2)){
+            $ls1=get_Nconluas($p1*$l1);
             $this->ls1=get_conluas($p1*$l1);
             $this->ls2=get_conluas($p1*$l1);
-            $this->ls3= get_convtobata($p1*$l1);
-            $this->ls4= get_convtobata($p1*$l1);
-            $this->lanja= get_lanja($p1*$l1);
-            $this->nlanja= get_nlanja($p1*$l1,$hgpadi);
+            $this->ls3=get_convtobata($p1*$l1);
+            $this->ls4=get_convtobata($p1*$l1);
+            $this->lanjakw= get_lanja($ls1,$lanja);
+            $this->lanjarp= get_nlanja($ls1,$lanja,$hgpadi);
         }elseif(!empty($m)){
             $ls1=get_luassegi4($p1,$l1,$p2,$l2,$m);
             $ls2=get_luassegi4($p1,$l1,$p2,$l2,$m);
@@ -112,16 +119,16 @@ class Sawahs extends Component
             $this->ls2=get_conluas($ls2);
             $this->ls3= get_convtobata($ls1);
             $this->ls4= get_convtobata($ls2);
-            $this->lanja= get_lanja($ls1);
-            $this->nlanja= get_nlanja($ls1,$hgpadi);
+            $this->lanjakw= get_lanja($ls1,$lanja);
+            $this->lanjarp= get_nlanja($ls1,$lanja,$hgpadi);
         }else{
             $ls1=get_luaspersegi($p1,$l1,$p2,$l2);
             $this->ls1=get_conluas($ls1);
             $this->ls2="";
             $this->ls3= get_convtobata($ls1);
             $this->ls4="";
-            $this->lanja= get_lanja($ls1);
-            $this->nlanja= get_nlanja($ls1,$hgpadi);
+            $this->lanjakw= get_lanja($ls1,$lanja);
+            $this->lanjarp= get_nlanja($ls1,$lanja,$hgpadi);
         }
 
     }

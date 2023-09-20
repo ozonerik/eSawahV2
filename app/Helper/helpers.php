@@ -5,6 +5,14 @@ function get_version(){
     return 'v2.0.0';
 }
 
+function get_copyright(){
+    return 'esawah.my.id';
+}
+
+function url_copyright(){
+    return '/';
+}
+
 function cek_currentroute($routelist){
     $current_route = Route::currentRouteName();
     $cek = in_array($current_route,$routelist);
@@ -17,22 +25,41 @@ function get_currentroute(){
 
 function get_convtobata($value){
     $v=floatval($value)/14.00;
-    $s=strval(round($v,2));
+    $s=strval(number_format(round($v,2),2,',','.'));
     $bata=$s." bata";
     return $bata;
+}
+
+function get_Nconvtobata($value){
+    $v=floatval($value)/14.00;
+    $s=round($v,2);
+    $bata=$s;
+    return $bata;
+}
+
+function get_formatindo($value){
+    $indo=number_format($value,2,',','.');
+    return $indo;
 }
 
 function get_convtorp($value){
     $v=floatval($value);
     $s=strval(round($v,0));
-    $rp="Rp. ".$s;
+    $rp="Rp. ".number_format($s,2,',','.');
     return $rp;
 }
 
 function get_conluas($value){
     $v=floatval($value);
-    $s=strval(round($v,2));
+    $s=strval(number_format(round($v,2),2,',','.'));
     $cluas=$s." m2";
+    return $cluas;
+}
+
+function get_Nconluas($value){
+    $v=floatval($value);
+    $s=round($v,2);
+    $cluas=$s;
     return $cluas;
 }
 
@@ -78,22 +105,20 @@ function get_luassegi4($p1,$l1,$p2,$l2,$m){
     return $luas;
 }
 
-function get_lanja($meter){
+function get_lanja($meter,$kw){
+    $kw=intval($kw);
     $bata=floatval($meter)/14.00;
     $lanja=$bata/100;
-    $lanja5=strval(round($lanja*5,2));
-    $lanja6=strval(round($lanja*6,2));
-    $lanja7=strval(round($lanja*7,2));
-    $lanjatext="5kw= ".$lanja5." | "."6kw= ".$lanja6." | "."7kw= ".$lanja7."|";
+    $nlanjakw=number_format(strval(round($lanja*$kw,2)),2,',','.');
+    $lanjatext=$nlanjakw." kw";
     return $lanjatext;
 }
 
-function get_nlanja($meter,$harga){
+function get_nlanja($meter,$kw,$harga){
+    $kw=intval($kw);
     $bata=floatval($meter)/14.00;
     $lanja=$bata/100;
-    $nlanja5=strval(round($lanja*5,2)*$harga);
-    $nlanja6=strval(round($lanja*6,2)*$harga);
-    $nlanja7=strval(round($lanja*7,2)*$harga);
-    $nlanjatext="5kw= ".$nlanja5." | "."6kw= ".$nlanja6." | "."7kw= ".$nlanja7."|";
+    $nlanjarp=number_format(strval(round($lanja*$kw,2)*$harga),0,',','.');
+    $nlanjatext="Rp. ".$nlanjarp;
     return $nlanjatext;
 }

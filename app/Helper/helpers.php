@@ -25,7 +25,8 @@ function get_currentroute(){
 
 function get_convtobata($value){
     $v=floatval($value)/14.00;
-    $s=strval(number_format(round($v,2),2,',','.'));
+    $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
+    $s=$a->format(round($v,2));
     $bata=$s." bata";
     return $bata;
 }
@@ -45,20 +46,22 @@ function get_NBatatoluas($value){
 }
 
 function get_formatindo($value){
-    $indo=number_format($value,2,',','.');
+    $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
+    $indo=$a->format($value);
     return $indo;
 }
 
 function get_convtorp($value){
     $v=floatval($value);
-    $s=strval(round($v,0));
-    $rp="Rp. ".number_format($s,2,',','.');
+    $s=round($v,0);
+    $rp=get_floatttorp($s);
     return $rp;
 }
 
 function get_conluas($value){
     $v=floatval($value);
-    $s=strval(number_format(round($v,2),2,',','.'));
+    $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
+    $s=$a->format(round($v,2));
     $cluas=$s." m2";
     return $cluas;
 }
@@ -113,19 +116,35 @@ function get_luassegi4($p1,$l1,$p2,$l2,$m){
 }
 
 function get_lanja($meter,$kw){
+    $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
     $kw=intval($kw);
     $bata=floatval($meter)/14.00;
     $lanja=$bata/100;
-    $nlanjakw=strval(number_format(round($lanja*$kw,2),2,',','.'));
+    $val=round($lanja*$kw,2);
+    $nlanjakw=$a->format($val);
     $lanjatext=$nlanjakw." kw";
     return $lanjatext;
 }
 
 function get_nlanja($meter,$kw,$harga){
     $kw=intval($kw);
+    $harga=intval($harga);
     $bata=floatval($meter)/14.00;
     $lanja=$bata/100;
-    $nlanjarp=strval(number_format(round($lanja*$kw,2)*$harga,0,',','.'));
-    $nlanjatext="Rp. ".$nlanjarp;
+    $nlanjarp=round($lanja*$kw,2)*$harga;
+    $nlanjatext=get_floatttorp($nlanjarp);
     return $nlanjatext;
+}
+
+function get_floatttorp($val){
+    $val = floatval($val);
+    $a = new \NumberFormatter("id-ID", \NumberFormatter::CURRENCY);
+    $result=$a->format($val);
+    return $result;
+}
+
+function get_rptofloat($val){
+    $a = new \NumberFormatter("id-ID", \NumberFormatter::CURRENCY);
+    $result=$a->parseCurrency($$val);
+    return $result;
 }

@@ -29,7 +29,7 @@ class SawahSeeder extends Seeder
                 'namapenjual' => '',
                 'hargabeli' => '200000000',
                 'namapembeli' => '',
-                'hargajual' => '',
+                'hargajual' => '0',
                 'img' => '',
                 'user_id' => '1',
             ]);
@@ -48,7 +48,7 @@ class SawahSeeder extends Seeder
                 'namapenjual' => '',
                 'hargabeli' => '300000000',
                 'namapembeli' => '',
-                'hargajual' => '',
+                'hargajual' => '0',
                 'img' => '',
                 'user_id' => '2',
             ]);
@@ -67,7 +67,7 @@ class SawahSeeder extends Seeder
                 'namapenjual' => '',
                 'hargabeli' => '400000000',
                 'namapembeli' => '',
-                'hargajual' => '',
+                'hargajual' => '0',
                 'img' => '',
                 'user_id' => '3',
             ]);

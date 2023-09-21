@@ -26,8 +26,12 @@ class Sawahs extends Component
     public $oldpath,$newpath;
     public $filename="Choose File";
     public $p1,$l1,$p2,$l2,$la,$m,$ls1,$ls2,$ls3,$ls4,$lanjakw,$lanjarp;
+    public $cluas,$cbata,$clanjakw,$clanjarp;
     public $hgpadi="750000";
     public $lanja="5";
+    public $conhgpadi="750000";
+    public $conlanja="5";
+    public $modecal="htluas";
     protected $listeners = [
         'delsawah',
         'delsawahselect'
@@ -68,6 +72,10 @@ class Sawahs extends Component
     }
     // Batas Akhir Fungsi Tabel
 
+    // Batas Awal Fungsi Kalkulator Sawah
+    public function onHtluas(){
+        $this->modecal="htluas";
+    }
     public function updatedP1($value){
         $this->kalkulatorsawah();
     }
@@ -93,7 +101,6 @@ class Sawahs extends Component
     public function updatedLanja($value){
         $this->kalkulatorsawah();
     }
-
     public function kalkulatorsawah(){
         $p1=$this->p1;
         $l1=$this->l1;
@@ -103,7 +110,6 @@ class Sawahs extends Component
         $m=$this->m;
         $hgpadi=$this->hgpadi;
         $lanja=$this->lanja;
-        
         if(empty($p2)||empty($l2)){
             $ls1=get_Nconluas($p1*$l1);
             $this->ls1=get_conluas($p1*$l1);
@@ -131,6 +137,37 @@ class Sawahs extends Component
             $this->lanjarp= get_nlanja($ls1,$lanja,$hgpadi);
         }
 
+    }
+    // Batas Akhir Fungsi Kalkulator Sawah
+
+    public function onCbata(){
+        $this->modecal="htconv";
+    }
+    public function updatedCluas($value){
+        $this->cbata= get_Nconvtobata($this->cluas);
+        $this->konversisawah();
+    }
+    public function updatedCbata($value){
+        $this->cluas= get_Nconluas($this->cbata);
+        $this->konversisawah();
+    }
+    public function updatedConhgpadi($value){
+        //dd($value);
+        $this->konversisawah();
+    }
+    public function updatedConlanja($value){
+        //dd($value);
+        $this->konversisawah();
+    }
+    // Batas Awal Fungsi Konversi Sawah
+    public function konversisawah(){
+        $this->modecal="htconv";
+        $cluas=$this->cluas;
+        $cbata=$this->cbata;
+        $conhgpadi=$this->conhgpadi;
+        $conlanja=$this->conlanja;
+        $this->clanjakw= get_lanja($cluas,$conlanja);
+        $this->clanjarp= get_nlanja($cluas,$conlanja,$conhgpadi);
     }
 
 }

@@ -1,4 +1,4 @@
-<x-card_section name="{{$name}}" type="{{$type}}" width="{{ $width }}" order="{{$order}}" smallorder="{{$smallorder}}">
+<div>
     <form wire:submit.prevent="{{$action}}">
         <img alt="images" src="{{ asset('img/sawah.jpg') }}" class="rounded mx-auto d-block w-75" /> 
         <x-input_form ids="p1" label="P1 (m)" types="text" name="p1" placeholder="Enter P1" disabled="false"/>
@@ -19,4 +19,4 @@
             <button type="submit" class="btn btn-primary">Hitung</button>
         </div>
     </form>
-</x-card-section>
+</div>

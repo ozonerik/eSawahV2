@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class calc_sawah extends Component
+class calc_konversi extends Component
 {
     /**
      * Create a new component instance.
@@ -24,6 +24,6 @@ class calc_sawah extends Component
      */
     public function render()
     {
-        return view('components.calc_sawah');
+        return view('components.calc_konversi');
     }
 }

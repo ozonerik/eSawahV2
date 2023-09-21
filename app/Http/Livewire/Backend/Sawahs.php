@@ -148,7 +148,7 @@ class Sawahs extends Component
         $this->konversisawah();
     }
     public function updatedCbata($value){
-        $this->cluas= get_Nconluas($this->cbata);
+        $this->cluas= get_NBatatoluas($this->cbata);
         $this->konversisawah();
     }
     public function updatedConhgpadi($value){

@@ -37,6 +37,13 @@ function get_Nconvtobata($value){
     return $bata;
 }
 
+function get_NBatatoluas($value){
+    $v=floatval($value)*14.00;
+    $s=round($v,2);
+    $bata=$s;
+    return $bata;
+}
+
 function get_formatindo($value){
     $indo=number_format($value,2,',','.');
     return $indo;

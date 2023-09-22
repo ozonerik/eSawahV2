@@ -207,30 +207,24 @@ class Infos extends Component
     public function editinfo()
     {     
         $dir='info'; 
-        if(!empty($this->img)){
-            $this->validate(
+        $this->validate(
             [ 
                 'title' => 'required|min:4|max:255',
                 'message' => 'required|min:4|max:255',
-                'img' => 'image|max:1024'
+                'img' => 'nullable|image|max:1024'
             ]);
+        if(!empty($this->img)){
+            $this->hapusfile($this->ids);
             $this->newpath=$this->img->store($dir,'public');
-            $info=Info::updateOrCreate(['id' => $this->ids], [
-                'title' => $this->title,
-                'message' => $this->message,
-                'img' => $this->newpath,
-            ]);
         }else{
-            $this->validate(
-                [ 
-                    'title' => 'required|min:4|max:255',
-                    'message' => 'required|min:4|max:255',
-                ]);
-                $info=Info::updateOrCreate(['id' => $this->ids], [
-                    'title' => $this->title,
-                    'message' => $this->message,
-                ]);
-        }  
+            $this->newpath=Info::findOrFail($this->ids)->img;
+        }
+        
+        $info=Info::updateOrCreate(['id' => $this->ids], [
+            'title' => $this->title,
+            'message' => $this->message,
+            'img' => $this->newpath,
+        ]);
 
         //flash message
         session()->flash('success', 'Info berhasil diupdate');

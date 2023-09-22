@@ -32,7 +32,6 @@ class Sawahs extends Component
     public $conhgpadi="750000";
     public $conlanja="5";
     public $modecal="htluas";
-    public $test;
     protected $listeners = [
         'delsawah',
         'delsawahselect'
@@ -68,7 +67,10 @@ class Sawahs extends Component
     public function render()
     {
         //dd($this->Info);
-        $data['Sawah'] = $this->Sawah;
+        $data = [
+            'Sawah'=>$this->Sawah,
+            'Restoresawah'=>$this->Restoresawah,
+        ];
         return view('livewire.backend.sawahs',$data)->extends('layouts.app');
     }
     // Batas Akhir Fungsi Tabel
@@ -271,9 +273,10 @@ class Sawahs extends Component
         }
         $dir='photosawah'; 
         if(!empty($this->img)){
+            $this->hapusfile($this->ids);
             $this->newpath=$this->img->store($dir,'public');
         }else{
-            $this->newpath='';
+            $this->newpath=Sawah::findOrFail($this->ids)->img;
         }  
         $info=Sawah::updateOrCreate(['id' => $this->ids], [
             'nosawah' => $this->nosawah,
@@ -354,6 +357,50 @@ class Sawahs extends Component
         session()->flash('success', 'Sawah berhasil ditambahkan');
         //redirect
         return redirect()->route('sawahs');
+    }
+
+    public function onDelete($id){
+        $this->ids=$id;
+        $sawah = Sawah::whereIn('id',[$id]);
+        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$sawah->pluck('namasawah')->implode(',<br>')."</p>", 
+        [
+            'onConfirmed' => 'delsawah'
+        ]);
+    }
+
+    public function delsawah()
+    {
+        $this->hapusfile($this->ids);
+        Sawah::findOrFail($this->ids)->delete();
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'Sawah berhasil dihapus');
+        //redirect
+        return redirect()->route('sawahs');
+    }
+
+    private function deletefile($pathfile){
+        if(Storage::disk('public')->exists($pathfile)){
+            Storage::disk('public')->delete($pathfile);
+        }
+    }
+
+    private function hapusfile($id){
+        $this->oldpath = Sawah::findOrFail($id)->img;
+        //dd($this->oldpath);
+        $dir='photosawah'; 
+        if(!empty($this->oldpath)){
+            $this->deletefile($this->oldpath);
+        }
+    }
+
+    public function getRestoresawahProperty()
+    {
+        return Sawah::onlyTrashed()->where('user_id',Auth::user()->id)->paginate($this->perPage,['*'], 'sawahtrashPage');
+    }
+    public function onTrashed(){
+        $this->mode='trashed';
     }
 
 }

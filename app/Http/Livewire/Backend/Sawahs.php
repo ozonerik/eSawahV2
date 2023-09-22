@@ -33,8 +33,8 @@ class Sawahs extends Component
     public $conlanja="5";
     public $modecal="htluas";
     protected $listeners = [
-        'delsawah',
-        'delsawahselect'
+        'delsawahselect',
+        'onDelForceProses'
     ];
     
     //jangan gunakan variabel dengan nama rules dan messages 
@@ -361,16 +361,6 @@ class Sawahs extends Component
 
     public function onDelete($id){
         $this->ids=$id;
-        $sawah = Sawah::whereIn('id',[$id]);
-        $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$sawah->pluck('namasawah')->implode(',<br>')."</p>", 
-        [
-            'onConfirmed' => 'delsawah'
-        ]);
-    }
-
-    public function delsawah()
-    {
-        $this->hapusfile($this->ids);
         Sawah::findOrFail($this->ids)->delete();
         //reset form
         $this->resetForm();
@@ -387,8 +377,17 @@ class Sawahs extends Component
     }
 
     private function hapusfile($id){
+        //dd($id);
         $this->oldpath = Sawah::findOrFail($id)->img;
-        //dd($this->oldpath);
+        $dir='photosawah'; 
+        if(!empty($this->oldpath)){
+            $this->deletefile($this->oldpath);
+        }
+    }
+
+    private function hapusfileDel($id){
+        //dd($id);
+        $this->oldpath = Sawah::onlyTrashed()->findOrFail($id)->img;
         $dir='photosawah'; 
         if(!empty($this->oldpath)){
             $this->deletefile($this->oldpath);
@@ -401,6 +400,40 @@ class Sawahs extends Component
     }
     public function onTrashed(){
         $this->mode='trashed';
+    }
+
+    public function onResDel($id){
+        //dd('restore= '.$id);
+        Sawah::where('id',$id)->withTrashed()->restore();
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'Sawah berhasil direstore');
+        //redirect
+        return redirect()->route('sawahs');
+    }
+    
+    
+    public function onDelForce($id){
+        $this->ids=$id;
+        $sawah = Sawah::whereIn('id',[$id]);
+        $this->confirm("Apakah anda yakin ingin hapus permanen ?<p class='text-danger font-weight-bold'>".$sawah->pluck('namasawah')->implode(',<br>')."</p>", 
+        [
+            'onConfirmed' => 'onDelForceProses'
+        ]);
+    }
+
+    public function onDelForceProses(){
+        //dd('delforce= '.$id);
+        //dd($this->ids);
+        $this->hapusfileDel($this->ids);
+        Sawah::where('id',$this->ids)->withTrashed()->forceDelete();
+        //reset form
+        $this->resetForm();
+        //flash message
+        session()->flash('success', 'Sawah berhasil dihapus permanen');
+        //redirect
+        return redirect()->route('sawahs');
     }
 
 }

@@ -3,9 +3,6 @@
         <div class="card-header">
         <h3 class="card-title">{{ $title }}</h3>
         <div class="card-tools">
-            <button wire:click.prevent="onRead" class="btn btn-tool" data-toggle="tooltip" title="Back" >
-                <i class="fa fa-arrow-left"></i>
-            </button>
             <button type="button" class="btn btn-tool ml-2" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
             </button>
@@ -25,6 +22,13 @@
                             <option value="100">100</option>
                             <option value="{{ $data->total() }}">All</option>
                         </select>
+                    </div>
+                </div>
+                <div class="col-md-11 p-0 order-2 pl-md-3">
+                    <div class="mx-auto float-md-right mb-2 mb-md-0">
+                        <button wire:click="onRead" class="btn btn-sm btn-primary btn-block" data-toggle="tooltip" title="Kembali">
+                            <i class="fa fa-arrow-left mr-2"></i>Kembali
+                        </button>
                     </div>
                 </div>
             </div>

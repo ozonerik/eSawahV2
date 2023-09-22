@@ -28,7 +28,7 @@
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
             <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
-            <button wire:click="onTrashed" class="btn btn-sm btn-success" data-toggle="tooltip" title="Restore"><i class="fas fa-trash-restore"></i></button>
+            <button wire:click="onTrashed" class="btn btn-sm btn-success" data-toggle="tooltip" title="Trash"><i class="fa fa-archive mr-2"></i>Trash</button>
         </x-slot>    
         </x-card_tablesawah>
         @elseif($mode=='trashed')

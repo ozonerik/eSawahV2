@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <div class="row mx-3 pl-1 mb-2">
-                <div class="col-md-1 p-0 order-1 pr-md-3">
+                <div class="col-md-2 p-0 order-1 pr-md-3">
                     <div class="input-group input-group-sm mx-auto float-md-left mb-2 mb-md-0">
                         <select class="form-control" wire:model="perPage">
                             <option value="5">5</option>
@@ -24,10 +24,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-11 p-0 order-2 pl-md-3">
+                <div class="col-md-10 p-0 order-2 pl-md-3">
                     <div class="mx-auto float-md-right mb-2 mb-md-0">
                         <button wire:click="onRead" class="btn btn-sm btn-primary btn-block" data-toggle="tooltip" title="Kembali">
-                            <i class="fa fa-arrow-left mr-2"></i>Kembali
+                            <i class="fa fa-arrow-left mr-2"></i>Back
                         </button>
                     </div>
                 </div>

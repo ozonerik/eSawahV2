@@ -245,11 +245,7 @@ class Users extends Component
     public function onAdd(){
         $this->mode='add';
         $this->roles=Role::get();
-        $this->name='';
-        $this->email='';
-        $this->password='';
-        $this->password_confirmation='';
-        $this->opsiroles ='';
+        $this->resetForm();
     }
     
     public function onRead(){

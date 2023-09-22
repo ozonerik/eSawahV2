@@ -30,7 +30,7 @@
         </x-card_form>
         @elseif($mode=='edit')
         <x-card_form name="Edit Info" width="12" order="1" smallorder="1" closeto="onRead">
-            <h4>Add Info</h4>
+            <h4>Edit Info</h4>
             <x-slot:footer>
             <form wire:submit.prevent="editinfo">
                 <x-input_form disabled="false" ids="title" label="Title" types="text" name="title" placeholder="Type Title" />

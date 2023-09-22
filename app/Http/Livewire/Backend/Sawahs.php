@@ -48,7 +48,7 @@ class Sawahs extends Component
         return Sawah::where(function($q) use($requestData, $searchQuery) {
             foreach ($requestData as $field)
                $q->orWhere($field, 'like', "%{$searchQuery}%");
-        })->where('id',Auth::user()->id)->paginate($this->perPage,['*'], 'sawahPage');
+        })->where('user_id',Auth::user()->id)->paginate($this->perPage,['*'], 'sawahPage');
 
         //return Info::where('title','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'infoPage');
     }
@@ -218,9 +218,10 @@ class Sawahs extends Component
     }
 
     private function resetForm(){
+        $this->ids='';
         $this->nosawah='';
         $this->namasawah='';
-        $this->luas='';
+        $this->luas='0';
         $this->lokasi='';
         $this->latlang='';
         $this->b_barat='';
@@ -293,6 +294,64 @@ class Sawahs extends Component
         ]);
         //flash message
         session()->flash('success', 'Sawah berhasil diupdate');
+        //redirect
+        return redirect()->route('sawahs');
+    }
+
+    public function onAdd(){
+        $this->mode='add';
+        $this->resetForm();
+    }
+
+    public function addsawah(){
+        $this->validate(
+            [ 
+                'nosawah' => 'required|string',
+                'namasawah' => 'required|string',
+                'luas' => 'required|numeric',
+                'lokasi' => 'required|string',
+                'latlang' => 'nullable|string',
+                'b_barat' => 'nullable|string',
+                'b_utara' => 'nullable|string',
+                'b_timur' => 'nullable|string',
+                'b_selatan' => 'nullable|string',
+                'namapenjual' => 'nullable|string',
+                'hargabeli' => 'nullable|numeric',
+                'namapembeli' => 'nullable|string',
+                'hargajual' => 'nullable|numeric',
+                'img' => 'nullable|image|max:1024',
+            ]);
+        if(empty($this->hargabeli)){
+            $this->hargabeli='0';
+        }
+        if(empty($this->hargajual)){
+            $this->hargajual='0';
+        }
+        $dir='photosawah'; 
+        if(!empty($this->img)){
+            $this->newpath=$this->img->store($dir,'public');
+        }else{
+            $this->newpath='';
+        }  
+        $info=Sawah::updateOrCreate(['id' => $this->ids], [
+            'nosawah' => $this->nosawah,
+            'namasawah' => $this->namasawah,
+            'luas' => $this->luas,
+            'lokasi' => $this->lokasi,
+            'latlang' => $this->latlang,
+            'b_barat' => $this->b_barat,
+            'b_utara' => $this->b_utara,
+            'b_timur' => $this->b_timur,
+            'b_selatan' => $this->b_selatan,
+            'namapenjual' => $this->namapenjual,
+            'hargabeli' => $this->hargabeli,
+            'namapembeli' => $this->namapembeli,
+            'hargajual' => $this->hargajual,
+            'img' => $this->newpath,
+            'user_id' => Auth::user()->id
+        ]);
+        //flash message
+        session()->flash('success', 'Sawah berhasil ditambahkan');
         //redirect
         return redirect()->route('sawahs');
     }

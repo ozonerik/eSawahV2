@@ -23,7 +23,7 @@ class Infos extends Component
     public $search='';
     public $mode='read';
     public $ids,$title,$message,$img;
-    public $oldpath,$newpath;
+    public $oldpath,$newpath,$tmpimg;
     public $filename="Choose File";
     protected $listeners = [
         'delinfo',
@@ -200,7 +200,8 @@ class Infos extends Component
         $info = Info::findOrFail($id);
         $this->title = $info->title;
         $this->message = $info->message;
-        $this->img = $info->img;     
+        $this->img = $info->img;
+        $this->tmpimg=$info->img;    
     }
 
     public function editinfo()

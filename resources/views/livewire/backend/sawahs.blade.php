@@ -24,7 +24,7 @@
         </x-card-section> 
         
         @if($mode=='read')
-        <x-card_tablesawah type="primary" width="9" order="1" smallorder="1" title="Daftar Sawah" :data="$Sawah" :thead="['No Surat','Nama Sawah','Luas(m2)','Lokasi','Photo']" :tbody="['nosawah','namasawah','luas','lokasi','img']" :tbtn="['edit','del']" search="Search...">
+        <x-card_tablesawah type="primary" width="9" order="1" smallorder="1" title="Daftar Sawah" :data="$Sawah" :thead="['No Surat','Nama Sawah','Luas(m2)','Lokasi','Photo Sawah']" :tbody="['nosawah','namasawah','luas','lokasi','img']" :tbtn="['edit','del']" search="Search...">
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
             <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
@@ -48,7 +48,15 @@
                 <x-input_form disabled="false" ids="hargabeli" label="Harga Beli" types="text" name="hargabeli" placeholder="Type Harga Beli Sawah" />
                 <x-input_form disabled="false" ids="namapembeli" label="Nama Pembeli" types="text" name="namapembeli" placeholder="Type Pembeli Sawah" />
                 <x-input_form disabled="false" ids="hargajual" label="Harga Jual" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
-                <x-file_form2 ids="img" label="Photo Sawah" name="img" :placeholder="$filename"/>
+                <div class="form-group">
+                    <div class="font-weight-bold mb-2">Photo Sawah</div>
+                    @if(!empty($tmpimg))
+                    <img alt="images" src="{{ asset('storage/'. $tmpimg) }}" class="img-thumbnail rounded float-left mb-3" style="max-width:300px"/> 
+                    @else
+                    <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded float-left mb-3" style="max-width:300px"/>
+                    @endif
+                </div>
+                <x-file_form2 ids="img" label="" name="img" :placeholder="$filename"/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>

@@ -23,7 +23,7 @@ class Sawahs extends Component
     public $search='';
     public $mode='read';
     public $ids,$nosawah,$namasawah,$luas,$lokasi,$latlang,$b_barat,$b_utara,$b_timur,$b_selatan,$namapenjual,$hargabeli,$namapembeli,$hargajual,$img,$user_id;
-    public $oldpath,$newpath;
+    public $oldpath,$newpath,$tmpimg;
     public $filename="Choose File";
     public $p1,$l1,$p2,$l2,$la,$m,$ls1,$ls2,$ls3,$ls4,$lanjakw,$lanjarp;
     public $cluas,$cbata,$clanjakw,$clanjarp;
@@ -212,6 +212,8 @@ class Sawahs extends Component
         $this->namapembeli=$sawah->namapembeli;
         $this->hargajual=$sawah->hargajual;
         $this->img=$sawah->img;
+        $this->tmpimg=$sawah->img;
+        
 
     }
 

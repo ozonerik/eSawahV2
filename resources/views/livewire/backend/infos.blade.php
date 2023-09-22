@@ -20,11 +20,7 @@
                 <x-input_form disabled="false" ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
                 <div class="form-group">
                     <div class="font-weight-bold mb-2">Image</div>
-                    @if(!empty($img))
-                    <img alt="images" src="{{ asset('storage/'. $img) }}" class="img-thumbnail rounded" style="max-height:150px"/> 
-                    @else
                     <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded" style="max-height:150px"/> 
-                    @endif
                 </div>
                 <x-file_form2 ids="img" label="Image" name="img" :placeholder="$filename"/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
@@ -41,8 +37,8 @@
                 <x-input_form disabled="false" ids="message" label="Message" types="text" name="message" placeholder="Type Messages" />
                 <div class="form-group">
                     <div class="font-weight-bold mb-2">Image</div>
-                    @if(!empty($img))
-                    <img alt="images" src="{{ asset('storage/'. $img) }}" class="img-thumbnail rounded" style="max-height:150px"/> 
+                    @if(!empty($tmpimg))
+                    <img alt="images" src="{{ asset('storage/'. $tmpimg) }}" class="img-thumbnail rounded" style="max-height:150px"/> 
                     @else
                     <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded" style="max-height:150px"/> 
                     @endif

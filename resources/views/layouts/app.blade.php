@@ -16,10 +16,12 @@
                 <x-navitem_menu name="Daftar Sawah" routename="sawahs" icon="fas fa-map" />
             </x-navitem_tree>
             <x-navitem_menu name="Profile" routename="profile" icon="fas fa-user" />
+            @hasanyrole('admin')
             <x-navitem_tree icon="fas fa-tools" name="Settings" :open="cek_currentroute(['users','infos'])">
                 <x-navitem_menu name="Users" routename="users" icon="fas fa-users" />
                 <x-navitem_menu name="Info" routename="infos" icon="fas fa-bullhorn" />
             </x-navitem_tree>
+            @endhasanyrole
         </x-sidebar>
         <div class="content-wrapper">
             <div class="content">

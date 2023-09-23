@@ -34,11 +34,24 @@ class Sawahs extends Component
     public $modecal="htluas";
     protected $listeners = [
         'delsawahselect',
-        'onDelForceProses'
+        'onDelForceProses',
+        'getLatlangInput',
     ];
     
     //jangan gunakan variabel dengan nama rules dan messages 
- 
+    
+    //awal get lokasi
+    public function getLatlangInput($value)
+    {
+        //dd($value);
+        $this->latlang=$value;
+    }
+
+    public function onGetlokasi(){
+        //dd('Dapatkan Lokasi');
+        $this->dispatchBrowserEvent('getLocation');
+    }
+    //akhir get lokasi
 
      // Batas Awal Fungsi Tabel
     public function getSawahProperty(){
@@ -66,7 +79,7 @@ class Sawahs extends Component
     }
     public function render()
     {
-        //dd($this->Info);
+        //dd($this->latitud);
         $data = [
             'Sawah'=>$this->Sawah,
             'Restoresawah'=>$this->Restoresawah,
@@ -224,6 +237,7 @@ class Sawahs extends Component
     }
 
     private function resetForm(){
+        $this->kordinat='';
         $this->ids='';
         $this->nosawah='';
         $this->namasawah='';
@@ -319,6 +333,7 @@ class Sawahs extends Component
     }
 
     public function onAdd(){
+        //dd($this->kordinat);
         $this->mode='add';
         $this->resetForm();
     }

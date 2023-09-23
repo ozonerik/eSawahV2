@@ -1,3 +1,22 @@
+@push('js')
+<script>
+window.addEventListener('getLocation', event => {
+    
+    const successCallback = (position) => {
+        let coord=position.coords.latitude+','+position.coords.longitude
+        Livewire.emit('getLatlangInput', coord);
+    };
+    const errorCallback = (error) => {
+        Livewire.emit('getLatlangInput', 'Geolocation is not supported by this browser.');
+    };
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+    };
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+})
+</script>
+@endpush
 <div>
     <x-content_header name="Sawah" >
         <li class="breadcrumb-item active">Sawah</li>
@@ -42,7 +61,7 @@
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
-                <x-input_form disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Type Kordinat Sawah" />
+                <x-inputlokasi_form wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
                 <x-input_form disabled="" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
                 <x-input_form disabled="" ids="b_utara" label="Batas Utara/Lor" types="text" name="b_utara" placeholder="Type Batas Utara Sawah" />
                 <x-input_form disabled="" ids="b_timur" label="Batas Timur/Wetan" types="text" name="b_timur" placeholder="Type Batas Timur Sawah" />
@@ -92,7 +111,7 @@
                     @endif
                 </div>
                 <x-file_form2 ids="img" label="" name="img" :placeholder="$filename" capture="environment"/>
-                <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
+                <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>
             </x-slot>

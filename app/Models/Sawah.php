@@ -23,7 +23,11 @@ class Sawah extends Model
         'namapenjual',
         'hargabeli',
         'namapembeli',
+        'tglbeli',
         'hargajual',
+        'tgljual',
+        'nop',
+        'nilaipajak',
         'img',
         'user_id',
     ];

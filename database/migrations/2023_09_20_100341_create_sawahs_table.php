@@ -25,9 +25,13 @@ return new class extends Migration
             $table->string('b_timur')->nullable();
             $table->string('b_selatan')->nullable();
             $table->string('namapenjual')->nullable();
-            $table->integer('hargabeli')->unsigned()->nullable()->default(0);;
+            $table->integer('hargabeli')->unsigned()->nullable()->default(0);
             $table->string('namapembeli')->nullable();
-            $table->integer('hargajual')->unsigned()->nullable()->default(0);;
+            $table->date('tglbeli')->nullable();
+            $table->integer('hargajual')->unsigned()->nullable()->default(0);
+            $table->date('tgljual')->nullable();
+            $table->string('nop')->nullable();
+            $table->integer('nilaipajak')->unsigned()->nullable()->default(0);
             $table->string('img')->nullable();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();

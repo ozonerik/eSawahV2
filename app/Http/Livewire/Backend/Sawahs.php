@@ -22,7 +22,7 @@ class Sawahs extends Component
     public $checked = [];
     public $search='';
     public $mode='read';
-    public $ids,$nosawah,$namasawah,$luas,$lokasi,$latlang,$b_barat,$b_utara,$b_timur,$b_selatan,$namapenjual,$hargabeli,$namapembeli,$hargajual,$img,$user_id;
+    public $ids,$nosawah,$namasawah,$luas,$lokasi,$latlang,$b_barat,$b_utara,$b_timur,$b_selatan,$namapenjual,$hargabeli,$tglbeli,$namapembeli,$hargajual,$tgljual,$nop,$nilaipajak,$img,$user_id;
     public $oldpath,$newpath,$tmpimg;
     public $filename="Choose File";
     public $p1,$l1,$p2,$l2,$la,$m,$ls1,$ls2,$ls3,$ls4,$lanjakw,$lanjarp;
@@ -211,8 +211,12 @@ class Sawahs extends Component
         $this->b_selatan=$sawah->b_selatan;
         $this->namapenjual=$sawah->namapenjual;
         $this->hargabeli=$sawah->hargabeli;
+        $this->tglbeli=$sawah->tglbeli;
         $this->namapembeli=$sawah->namapembeli;
         $this->hargajual=$sawah->hargajual;
+        $this->tgljual=$sawah->tgljual;
+        $this->nop=$sawah->nop;
+        $this->nilaipajak=$sawah->nilaipajak;
         $this->img=$sawah->img;
         $this->tmpimg=$sawah->img;
         
@@ -232,8 +236,12 @@ class Sawahs extends Component
         $this->b_selatan='';
         $this->namapenjual='';
         $this->hargabeli='0';
+        $this->tglbeli='';
         $this->namapembeli='';
         $this->hargajual='0';
+        $this->tgljual='';
+        $this->nop='';
+        $this->nilaipajak='0';
         $this->img=null;
         $this->resetErrorBag();
         $this->resetValidation();
@@ -261,8 +269,12 @@ class Sawahs extends Component
                 'b_selatan' => 'nullable|string',
                 'namapenjual' => 'nullable|string',
                 'hargabeli' => 'nullable|numeric',
+                'tglbeli' => 'nullable|string',
                 'namapembeli' => 'nullable|string',
                 'hargajual' => 'nullable|numeric',
+                'tgljual' => 'nullable|string',
+                'nop' => 'nullable|string',
+                'nilaipajak' => 'nullable|numeric',
                 'img' => 'nullable|image|max:1024',
             ]);
         if(empty($this->hargabeli)){
@@ -290,8 +302,12 @@ class Sawahs extends Component
             'b_selatan' => $this->b_selatan,
             'namapenjual' => $this->namapenjual,
             'hargabeli' => $this->hargabeli,
+            'tglbeli' => $this->tglbeli,
             'namapembeli' => $this->namapembeli,
             'hargajual' => $this->hargajual,
+            'tgljual' => $this->tgljual,
+            'nop' => $this->nop,
+            'nilaipajak' => $this->nilaipajak,
             'img' => $this->newpath,
             'user_id' => Auth::user()->id
         ]);
@@ -321,8 +337,12 @@ class Sawahs extends Component
                 'b_selatan' => 'nullable|string',
                 'namapenjual' => 'nullable|string',
                 'hargabeli' => 'nullable|numeric',
+                'tglbeli' => 'nullable|string',
                 'namapembeli' => 'nullable|string',
                 'hargajual' => 'nullable|numeric',
+                'tgljual' => 'nullable|string',
+                'nop' => 'nullable|string',
+                'nilaipajak' => 'nullable|numeric',
                 'img' => 'nullable|image|max:1024',
             ]);
         if(empty($this->hargabeli)){
@@ -349,8 +369,12 @@ class Sawahs extends Component
             'b_selatan' => $this->b_selatan,
             'namapenjual' => $this->namapenjual,
             'hargabeli' => $this->hargabeli,
+            'tglbeli' => $this->tglbeli,
             'namapembeli' => $this->namapembeli,
             'hargajual' => $this->hargajual,
+            'tgljual' => $this->tgljual,
+            'nop' => $this->nop,
+            'nilaipajak' => $this->nilaipajak,
             'img' => $this->newpath,
             'user_id' => Auth::user()->id
         ]);

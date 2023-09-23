@@ -12,5 +12,7 @@
 <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 <!-- toastr -->
 <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
-<!-- toastr -->
+<!-- bs-datepicker -->
+<link rel="stylesheet" href="{{ asset('plugins/bs-datepicker/bs-datepicker.min.css') }}">
+<!-- custom css -->
 <link rel="stylesheet" href="{{ asset('css/custom-esawah.css') }}">

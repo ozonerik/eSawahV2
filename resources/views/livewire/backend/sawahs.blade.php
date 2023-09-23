@@ -49,6 +49,7 @@
                 <x-input_form disabled="false" ids="b_selatan" label="Batas Selatan/Kidul" types="text" name="b_selatan" placeholder="Type Batas Selatan Sawah" />
                 <x-input_form disabled="false" ids="namapenjual" label="Nama Penjual" types="text" name="namapenjual" placeholder="Type Penjual Sawah" />
                 <x-input_form disabled="false" ids="hargabeli" label="Harga Beli" types="text" name="hargabeli" placeholder="Type Harga Beli Sawah" />
+                <x-datepicker_form wajib="" disabled="" ids="tglbeli" label="Tanggal Beli" types="text" name="tglbeli" placeholder="Tanggal Beli" formatdate="mm/dd/yyyy"/>
                 <x-input_form disabled="false" ids="namapembeli" label="Nama Pembeli" types="text" name="namapembeli" placeholder="Type Pembeli Sawah" />
                 <x-input_form disabled="false" ids="hargajual" label="Harga Jual" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
                 <x-file_form2 ids="img" label="Photo Sawah" name="img" :placeholder="$filename" capture="environment"/>

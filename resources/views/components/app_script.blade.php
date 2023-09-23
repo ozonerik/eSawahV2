@@ -13,6 +13,9 @@
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- toastr -->
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+<!-- bs-datepicker -->
+<script src="{{ asset('plugins/bs-datepicker/bs-datepicker.min.js') }}"></script>
+<script src="{{ asset('plugins/bs-datepicker/bs-datepicker-ID.min.js') }}"></script>
 <!-- sweetalert2 -->
 <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> 
 <x-livewire-alert::flash />

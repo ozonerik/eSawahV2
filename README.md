@@ -17,6 +17,7 @@
 <li><b>New</b> Admin LTE v3.2.0</li>
 <li><b>New</b> startbootstrap.com</li>
 <li><b>New</b> jantinnerezo/livewire-alert</li>
+<li><b>New</b> uxsolutions/bootstrap-datepicker</li>
 </ul>
 
 ## Packages
@@ -30,6 +31,7 @@
 - **[Admin LTE 3](https://github.com/ColorlibHQ/AdminLTE)**
 - **[Grayscale Template](https://startbootstrap.com/theme/grayscale)**
 - **[jantinnerezo/livewire-alert](https://github.com/jantinnerezo/livewire-alert)**
+- **[uxsolutions/bootstrap-datepicker](https://github.com/uxsolutions/bootstrap-datepicker)**
 
 
 ## License

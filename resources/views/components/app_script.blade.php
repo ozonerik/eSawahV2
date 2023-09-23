@@ -16,15 +16,6 @@
 <!-- bs-datepicker -->
 <script src="{{ asset('plugins/bs-datepicker/bs-datepicker.min.js') }}"></script>
 <script src="{{ asset('plugins/bs-datepicker/bs-datepicker-ID.min.js') }}"></script>
-<!-- sweetalert2 -->
-<script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> 
-<x-livewire-alert::flash />
-<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-<script>
-$(function () {
-  bsCustomFileInput.init();
-});
-</script>
 <script>
     // Make the dashboard widgets sortable Using jquery UI
     $('.connectedSortable').sortable({

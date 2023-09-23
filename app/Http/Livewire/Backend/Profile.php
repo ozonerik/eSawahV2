@@ -10,10 +10,12 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Profile extends Component
 {
     use WithFileUploads;
+    use LivewireAlert;
     public $user,$name,$email,$current_password,$password,$password_confirmation,$photo,$oldpath,$newpath;
     public $filename="Choose File";
 

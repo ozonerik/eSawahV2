@@ -18,6 +18,7 @@ class Users extends Component
 {
     use WithPagination;
     use LivewireAlert;
+    
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
         'deluser',

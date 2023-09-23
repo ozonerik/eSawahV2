@@ -399,7 +399,7 @@ class Sawahs extends Component
 
     public function getRestoresawahProperty()
     {
-        return Sawah::onlyTrashed()->where('user_id',Auth::user()->id)->paginate($this->perPage,['*'], 'sawahtrashPage');
+        return Sawah::onlyTrashed()->where('user_id',Auth::user()->id)->orderBy('deleted_at', 'DESC')->paginate($this->perPage,['*'], 'sawahtrashPage');
     }
     public function onTrashed(){
         $this->mode='trashed';

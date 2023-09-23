@@ -57,7 +57,8 @@ class Profile extends Component
             'email' => $this->email,
         ]);
         //flash message
-        session()->flash('success', 'Profile Berhasil Diupdate.');
+        $this->alert('success', 'Profil berhasil diupdate');
+        //session()->flash('success', 'Profile Berhasil Diupdate.');
         //redirect
         return redirect()->route('profile');
     }
@@ -94,7 +95,8 @@ class Profile extends Component
         }
         //$this->photo->store('photos');
         //flash message
-        session()->flash('success', 'Photo Berhasil Diubah.');
+        $this->alert('success', 'Photo berhasil diganti');
+        //session()->flash('success', 'Photo Berhasil Diubah.');
         //redirect
         return redirect()->route('profile');
     }
@@ -111,7 +113,8 @@ class Profile extends Component
             'password' => Hash::make($this->password)
         ]);
         //flash message
-        session()->flash('success', 'Password Berhasil Diganti.');
+        $this->alert('success', 'Password berhasil diubah');
+       //session()->flash('success', 'Password Berhasil Diganti.');
         //redirect
         return redirect()->route('profile');
     }

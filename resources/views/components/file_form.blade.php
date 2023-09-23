@@ -3,7 +3,7 @@
     <label for="{{ $ids }}">{{ $label }}</label>
     @endif
     <div class="custom-file" wire:ignore>
-        <input type="file" wire:model="{{ $name }}" wire:target="{{ $name }}" wire:loading.attr="disabled" class="custom-file-input @if ($message = Session::get($name)) is-invalid @endif" id="{{ $ids }}" aria-describedby="{{ $ids }}">
+        <input type="file" wire:model="{{ $name }}" wire:target="{{ $name }}" wire:loading.attr="disabled" class="custom-file-input @if ($message = Session::get($name)) is-invalid @endif" id="{{ $ids }}" aria-describedby="{{ $ids }}" @if(!empty($capture)) capture="{{$capture}}" @endif>
         <label class="custom-file-label" for="{{ $ids }}">Choose file</label>
         @if ($message = Session::get($name))
             <span class="invalid-feedback" role="alert">

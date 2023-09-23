@@ -296,7 +296,8 @@ class Sawahs extends Component
             'user_id' => Auth::user()->id
         ]);
         //flash message
-        session()->flash('success', 'Sawah berhasil diupdate');
+        $this->alert('success', 'Sawah berhasil diupdate');
+        //session()->flash('success', 'Sawah berhasil diupdate');
         //redirect
         return redirect()->route('sawahs');
     }
@@ -354,7 +355,8 @@ class Sawahs extends Component
             'user_id' => Auth::user()->id
         ]);
         //flash message
-        session()->flash('success', 'Sawah berhasil ditambahkan');
+        $this->alert('success', 'Sawah berhasil ditambahkan');
+        //session()->flash('success', 'Sawah berhasil ditambahkan');
         //redirect
         return redirect()->route('sawahs');
     }
@@ -365,7 +367,8 @@ class Sawahs extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'Sawah berhasil dihapus');
+        $this->alert('success', 'Sawah berhasil dihapus');
+        //session()->flash('success', 'Sawah berhasil dihapus');
         //redirect
         return redirect()->route('sawahs');
     }
@@ -408,9 +411,9 @@ class Sawahs extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'Sawah berhasil direstore');
-        //redirect
-        return redirect()->route('sawahs');
+        //session()->now('success', 'Sawah berhasil direstore');
+        $this->alert('success', 'Sawah berhasil direstore');
+        //return redirect()->route('sawahs');
     }
     
     
@@ -431,9 +434,18 @@ class Sawahs extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'Sawah berhasil dihapus permanen');
-        //redirect
+        //session()->flash('success', 'Sawah berhasil dihapus permanen');
+        $this->alert('success', 'Sawah berhasil dihapus permanen');
+        //return redirect()->route('sawahs');
+    }
+
+    public function onDelSelect(){
+        Sawah::whereIn('id',$this->checked)->delete();
+        $this->resetForm();
+        $this->alert('success', 'Sawah berhasil dihapus');
+        //session()->flash('success', 'Sawah berhasil dihapus');
         return redirect()->route('sawahs');
     }
+
 
 }

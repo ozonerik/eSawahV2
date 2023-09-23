@@ -5,7 +5,7 @@
     <div class="row mx-1 pb-3">
         <x-card_profile name="Profile Picture" width="3" order="1" smallorder="1">
             <form wire:submit.prevent="updatephoto" enctype="multipart/form-data">
-                <x-file_form2 ids="photo" label="" name="photo" :placeholder="$filename"/>
+                <x-file_form2 ids="photo" label="" name="photo" :placeholder="$filename" capture="user"/>
                 <div class="form-group text-md-right text-center">
                 <button class="btn btn-primary" type="submit" wire:target="photo" wire:loading.attr="disabled">
                     <span wire:target="photo" wire:loading.class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

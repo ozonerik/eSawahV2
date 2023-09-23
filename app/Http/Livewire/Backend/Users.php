@@ -66,7 +66,8 @@ class Users extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'User berhasil dihapus');
+        $this->alert('success', 'User berhasil dihapus');
+        //session()->flash('success', 'User berhasil dihapus');
         //redirect
         return redirect()->route('users');
     }
@@ -78,7 +79,8 @@ class Users extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'User berhasil dihapus');
+        $this->alert('success', 'User berhasil dihapus');
+        //session()->flash('success', 'User berhasil dihapus');
         //redirect
         return redirect()->route('users');
     }
@@ -160,7 +162,8 @@ class Users extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'User berhasil diupdate');
+        $this->alert('success', 'User berhasil diupdate');
+        //session()->flash('success', 'User berhasil diupdate');
         //redirect
         return redirect()->route('users');
     }
@@ -207,7 +210,8 @@ class Users extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'User berhasil diupdate');
+        $this->alert('success', 'User berhasil diupdate');
+        //session()->flash('success', 'User berhasil diupdate');
         //redirect
         return redirect()->route('users');
     }
@@ -237,7 +241,8 @@ class Users extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'User berhasil ditambahkan');
+        $this->alert('success', 'User berhasil ditambahkan');
+        //session()->flash('success', 'User berhasil ditambahkan');
         //redirect
         return redirect()->route('users');
     }

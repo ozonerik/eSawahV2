@@ -148,7 +148,8 @@ class Infos extends Component
         }  
 
         //flash message
-        session()->flash('success', 'Info terbaru berhasil ditambahkan');
+        $this->alert('success', 'Info berhasil ditambahkan');
+        //session()->flash('success', 'Info terbaru berhasil ditambahkan');
         //redirect
         return redirect()->route('infos');
     }
@@ -169,7 +170,8 @@ class Infos extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'Info berhasil dihapus');
+        $this->alert('success', 'Info berhasil dihapus');
+        //session()->flash('success', 'Info berhasil dihapus');
         //redirect
         return redirect()->route('infos');
     }
@@ -189,7 +191,8 @@ class Infos extends Component
         //reset form
         $this->resetForm();
         //flash message
-        session()->flash('success', 'User berhasil dihapus');
+        $this->alert('success', 'Info berhasil dihapus');
+        //session()->flash('success', 'User berhasil dihapus');
         //redirect
         return redirect()->route('infos');
     }
@@ -227,7 +230,8 @@ class Infos extends Component
         ]);
 
         //flash message
-        session()->flash('success', 'Info berhasil diupdate');
+        $this->alert('success', 'Info berhasil diupdate');
+        //session()->flash('success', 'Info berhasil diupdate');
         //redirect
         return redirect()->route('infos');
     }

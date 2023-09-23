@@ -11,9 +11,9 @@ class Input_form extends Component
      *
      * @return void
      */
-    public $ids, $types, $name, $placeholder, $label, $disabled;
+    public $ids, $types, $name, $placeholder, $label, $disabled, $wajib;
 
-    public function __construct($ids, $types, $name, $placeholder, $label, $disabled)
+    public function __construct($ids, $types, $name, $placeholder, $label, $disabled,$wajib)
     {
         $this->ids = $ids;
         $this->types = $types; 
@@ -21,6 +21,7 @@ class Input_form extends Component
         $this->placeholder = $placeholder;
         $this->label = $label;
         $this->disabled = $disabled;
+        $this->wajib = $wajib;
     }
 
     /**

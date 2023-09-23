@@ -38,10 +38,10 @@
             <h4>Add Sawah Selected</h4>
             <x-slot:footer>
             <form wire:submit.prevent="addsawah">
-                <x-input_form disabled="false" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
-                <x-input_form disabled="false" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
-                <x-input_form disabled="false" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
-                <x-input_form disabled="false" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
+                <x-input_form wajib="true" disabled="false" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
+                <x-input_form wajib="true" disabled="false" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
+                <x-input_form wajib="true" disabled="false" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
+                <x-input_form wajib="true" disabled="false" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
                 <x-input_form disabled="false" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Type Kordinat Sawah" />
                 <x-input_form disabled="false" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
                 <x-input_form disabled="false" ids="b_utara" label="Batas Utara/Lor" types="text" name="b_utara" placeholder="Type Batas Utara Sawah" />
@@ -51,11 +51,7 @@
                 <x-input_form disabled="false" ids="hargabeli" label="Harga Beli" types="text" name="hargabeli" placeholder="Type Harga Beli Sawah" />
                 <x-input_form disabled="false" ids="namapembeli" label="Nama Pembeli" types="text" name="namapembeli" placeholder="Type Pembeli Sawah" />
                 <x-input_form disabled="false" ids="hargajual" label="Harga Jual" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
-                <div class="form-group">
-                    <div class="font-weight-bold mb-2">Photo Sawah</div>
-                    <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded float-left mb-3" style="max-width:300px"/>
-                </div>
-                <x-file_form2 ids="img" label="" name="img" :placeholder="$filename" capture="environment"/>
+                <x-file_form2 ids="img" label="Photo Sawah" name="img" :placeholder="$filename" capture="environment"/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>
@@ -66,10 +62,10 @@
             <h4>Edit Sawah</h4>
             <x-slot:footer>
             <form wire:submit.prevent="editsawah">
-                <x-input_form disabled="false" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
-                <x-input_form disabled="false" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
-                <x-input_form disabled="false" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
-                <x-input_form disabled="false" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
+                <x-input_form wajib="true" disabled="false" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
+                <x-input_form wajib="true" disabled="false" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
+                <x-input_form wajib="true" disabled="false" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
+                <x-input_form wajib="true" disabled="false" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
                 <x-input_form disabled="false" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Type Kordinat Sawah" />
                 <x-input_form disabled="false" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
                 <x-input_form disabled="false" ids="b_utara" label="Batas Utara/Lor" types="text" name="b_utara" placeholder="Type Batas Utara Sawah" />

@@ -1,7 +1,9 @@
 @push('css')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4&language=id&libraries=geometry&callback=initMap" async></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&language=id&libraries=geometry&callback=initMap" async></script>
 <script>
     let map,coord,vlat,vlong;
+    let def1Lat=-6.521115;
+	let def1Long=108.491568;
 
     const successCallback = (position) => {
         vlat=position.coords.latitude;
@@ -18,18 +20,38 @@
 
     /* ----------------------------- Initialize Map ----------------------------- */
     function initMap() {
+        let defLatLng = {lat:def1Lat,lng:def1Long};
+        vlat = vlat?vlat:def1Lat;
+        vlong = vlong?vlong:def1Long;
+        var latlng = new google.maps.LatLng(vlat, vlong);
         map = new google.maps.Map(document.getElementById("googleMap"), {
-            center: {
-                        lat: vlat,
-                        lng: vlong,
-                    },
-            zoom: 16,
+            center:latlng,
+            zoom: 20,
             mapTypeId: 'hybrid'
         });
 
-        map.addListener("click", function(event) {
-            mapClicked(event);
+        // map.addListener("click", function(event) {
+        //     mapClicked(event);
+        // });
+
+        geocoder = new google.maps.Geocoder();
+
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: true,
+            position: latlng
         });
+
+        google.maps.event.addListener(marker, "dragend", function () {
+        var point = marker.getPosition();
+        geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log(marker.getPosition().lat());
+                console.log(marker.getPosition().lng());
+            }
+        });
+    });
+
     }
 
     /* ------------------------- Handle Map Click Event ------------------------- */

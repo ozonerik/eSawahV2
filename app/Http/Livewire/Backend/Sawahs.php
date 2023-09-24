@@ -32,6 +32,7 @@ class Sawahs extends Component
     public $conhgpadi="750000";
     public $conlanja="5";
     public $modecal="htluas";
+    public $testloc;
     protected $listeners = [
         'delsawahselect',
         'onDelForceProses',
@@ -44,12 +45,15 @@ class Sawahs extends Component
     public function getLatlangInput($value)
     {
         //dd($value);
+        //$this->dispatchBrowserEvent('loadMaps',['LatlangVal' => $value]);
         $this->latlang=$value;
+        $this->testloc=$value;
     }
 
     public function onGetlokasi(){
         //dd('Dapatkan Lokasi');
         $this->dispatchBrowserEvent('getLocation');
+        
     }
     //akhir get lokasi
 

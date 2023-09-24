@@ -1,9 +1,52 @@
+@push('css')
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4&language=id&libraries=geometry&callback=initMap" async></script>
+<script>
+    let map,coord,vlat,vlong;
+
+    const successCallback = (position) => {
+        vlat=position.coords.latitude;
+        vlong=position.coords.longitude;
+    };
+    const errorCallback = (error) => {
+        Console.log('Geolocation is not supported by this browser.');
+    };
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+    };
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+
+    /* ----------------------------- Initialize Map ----------------------------- */
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("googleMap"), {
+            center: {
+                        lat: vlat,
+                        lng: vlong,
+                    },
+            zoom: 16,
+            mapTypeId: 'hybrid'
+        });
+
+        map.addListener("click", function(event) {
+            mapClicked(event);
+        });
+    }
+
+    /* ------------------------- Handle Map Click Event ------------------------- */
+    function mapClicked(event) {
+        console.log(map);
+        console.log(event.latLng.lat()+','+event.latLng.lng());
+        console.log(vlat);
+    }
+</script>
+@endpush
 <div>
     <x-content_header name="Sawah" >
         <li class="breadcrumb-item active">Sawah</li>
         <li class="breadcrumb-item active">Daftar Sawah</li>
     </x-content_header>
     <div class="row mx-1">
+    <div id="googleMap" style="width:100%;height:380px;"></div>
         <x-card_section name="Kalkulator Sawah" type="primary" width="3" order="2" smallorder="2">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">

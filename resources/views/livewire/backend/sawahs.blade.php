@@ -1,31 +1,74 @@
 @push('css')
 <!-- leaflet_map -->
-<link rel="stylesheet" href="{{ asset('plugins/leaflet-maps/leaflet.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
 <link rel="stylesheet" href="{{ asset('plugins/leaflet-maps/leaflet-measure.css') }}">
 @endpush
 @push('js')
-<script src="{{ asset('plugins/leaflet-maps/leaflet.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <script src="{{ asset('plugins/leaflet-maps/leaflet-measure.js') }}"></script>
+
 <script>
  document.addEventListener('livewire:load', function () {
-      var map = L.map('map', {
+    showMaps();
+    function showMaps(){
+        var map_init = L.map('map', {
         center: [29.749817, -95.080757],
         zoom: 16,
         measureControl: true
-      });
-      L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        });
+
+        var osm = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         minZoom: 14,
-        maxZoom: 18,
+        maxZoom: 50,
         attribution: '&copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community'
-      }).addTo(map);
-
-      map.on('measurefinish', function(evt) {
+        }).addTo(map_init);
+      
+        map_init.on('measurefinish', function(evt) {
         writeResults(evt);
-      });
+        });
+    
+        //L.Control.geocoder().addTo(map_init);
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 10000,
+        };
+        const errorCallback = (error) => {
+            console.log('Geolocation is not supported by this browser.');
+        };
+        if (!navigator.geolocation) {
+            console.log("Your browser doesn't support geolocation feature!")
+        } else {
+            setInterval(() => {
+                navigator.geolocation.getCurrentPosition(getPosition,errorCallback,options)
+            }, 5000);
+        };
 
-      function writeResults(results) {
+        var marker, circle, lat, long, accuracy;
+
+        function getPosition(position) {
+            // console.log(position)
+            lat = position.coords.latitude
+            long = position.coords.longitude
+            accuracy = position.coords.accuracy
+            if (marker) {
+                map_init.removeLayer(marker)
+            }
+            if (circle) {
+                map_init.removeLayer(circle)
+            }
+            marker = L.marker([lat, long])
+            circle = L.circle([lat, long], { radius: accuracy })
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+            map_init.fitBounds(featureGroup.getBounds())
+            console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+        }
+    }
+
+      //fungsi measure
+    function writeResults(results) {
         document.getElementById('eventoutput').innerHTML = JSON.stringify(
-          {
+        {
             area: results.area,
             areaDisplay: results.areaDisplay,
             lastCoord: results.lastCoord,
@@ -33,11 +76,10 @@
             lengthDisplay: results.lengthDisplay,
             pointCount: results.pointCount,
             points: results.points
-          },
-          null,
-          2
-        );
+        },null,2);
       }
+      //.end fungsi measure
+
     })
   </script>
 @endpush

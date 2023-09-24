@@ -1,11 +1,13 @@
 @push('css')
 <!-- leaflet_map -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.css">
 <link rel="stylesheet" href="{{ asset('plugins/leaflet-maps/leaflet-measure.css') }}">
 @endpush
 @push('js')
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.js"></script>
 <script src="{{ asset('plugins/leaflet-maps/leaflet-measure.js') }}"></script>
 
 <script>
@@ -13,13 +15,13 @@
     showMaps();
     function showMaps(){
         var map_init = L.map('map', {
-        center: [29.749817, -95.080757],
-        zoom: 16,
+        center: [-6.731105, 108.540205],
+        zoom: 20,
         measureControl: true
         });
 
         var osm = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        minZoom: 14,
+        minZoom: 0,
         maxZoom: 50,
         attribution: '&copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community'
         }).addTo(map_init);
@@ -39,9 +41,7 @@
         if (!navigator.geolocation) {
             console.log("Your browser doesn't support geolocation feature!")
         } else {
-            setInterval(() => {
-                navigator.geolocation.getCurrentPosition(getPosition,errorCallback,options)
-            }, 5000);
+                navigator.geolocation.getCurrentPosition(getPosition,errorCallback,options);
         };
 
         var marker, circle, lat, long, accuracy;

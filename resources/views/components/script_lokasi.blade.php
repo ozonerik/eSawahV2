@@ -2,11 +2,12 @@
 window.addEventListener('getLocation', event => {
     
     const successCallback = (position) => {
-        let coord=position.coords.latitude+','+position.coords.longitude
-        Livewire.emit('getLatlangInput', coord);
+        let lt=position.coords.latitude;
+        let lg=position.coords.longitude;
+        Livewire.emit('getLatlangInput', {'lat':lt,'long':lg});
     };
     const errorCallback = (error) => {
-        Livewire.emit('getLatlangInput', 'Geolocation is not supported by this browser.');
+        alert('Geolocation is not supported by this browser.');
     };
     const options = {
         enableHighAccuracy: true,

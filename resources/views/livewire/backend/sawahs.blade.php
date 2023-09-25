@@ -1,97 +1,9 @@
-@push('css')
-<!-- leaflet_map -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.css">
-<link rel="stylesheet" href="{{ asset('plugins/leaflet-maps/leaflet-measure.css') }}">
-@endpush
-@push('js')
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.js"></script>
-<script src="{{ asset('plugins/leaflet-maps/leaflet-measure.js') }}"></script>
-
-<script>
- document.addEventListener('livewire:load', function () {
-    showMaps();
-    function showMaps(){
-        var map_init = L.map('map', {
-        center: [-6.731105, 108.540205],
-        zoom: 20,
-        measureControl: true
-        });
-
-        var osm = L.tileLayer('//server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        minZoom: 0,
-        maxZoom: 50,
-        attribution: '&copy; Esri &mdash; Sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community'
-        }).addTo(map_init);
-      
-        map_init.on('measurefinish', function(evt) {
-        writeResults(evt);
-        });
-    
-        //L.Control.geocoder().addTo(map_init);
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 10000,
-        };
-        const errorCallback = (error) => {
-            console.log('Geolocation is not supported by this browser.');
-        };
-        if (!navigator.geolocation) {
-            console.log("Your browser doesn't support geolocation feature!")
-        } else {
-                navigator.geolocation.getCurrentPosition(getPosition,errorCallback,options);
-        };
-
-        var marker, circle, lat, long, accuracy;
-
-        function getPosition(position) {
-            // console.log(position)
-            lat = position.coords.latitude
-            long = position.coords.longitude
-            accuracy = position.coords.accuracy
-            if (marker) {
-                map_init.removeLayer(marker)
-            }
-            if (circle) {
-                map_init.removeLayer(circle)
-            }
-            marker = L.marker([lat, long])
-            circle = L.circle([lat, long], { radius: accuracy })
-            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
-            map_init.fitBounds(featureGroup.getBounds())
-            console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
-        }
-    }
-
-      //fungsi measure
-    function writeResults(results) {
-        document.getElementById('eventoutput').innerHTML = JSON.stringify(
-        {
-            area: results.area,
-            areaDisplay: results.areaDisplay,
-            lastCoord: results.lastCoord,
-            length: results.length,
-            lengthDisplay: results.lengthDisplay,
-            pointCount: results.pointCount,
-            points: results.points
-        },null,2);
-      }
-      //.end fungsi measure
-
-    })
-  </script>
-@endpush
 <div>
     <x-content_header name="Sawah" >
         <li class="breadcrumb-item active">Sawah</li>
         <li class="breadcrumb-item active">Daftar Sawah</li>
     </x-content_header>
     <div class="row mx-1">
-    <div id="map" style="width: 600px; height: 400px;"></div>
-    <h2><code>measurefinish</code> event data:</h2>
-  <pre id="eventoutput">...</pre>
         <x-card_section name="Kalkulator Sawah" type="primary" width="3" order="2" smallorder="2">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -110,8 +22,14 @@
                 </div>
             </div>
         </x-card-section> 
-        
-        @if($mode=='read')
+
+        @if($mode=='notread')
+        <x-card_section2 name="GIS - Sawah" type="primary" width="9" order="1" smallorder="1">
+        <div wire:ignore id="map" class="w-100 rounded" style="height: 400px;"></div>
+        <x-input_form wajib="" disabled="" ids="latitude" label="Latitude" types="text" name="latitude" placeholder="Latitude" />
+        <x-input_form wajib="" disabled="" ids="longitude" label="Longitude" types="text" name="longitude" placeholder="Longitude" />
+        </x-card-section2>
+        @elseif($mode=='read')
         <x-card_tablesawah type="primary" width="9" order="1" smallorder="1" title="Daftar Sawah" :data="$Sawah" :thead="['No Surat','Nama Sawah','Luas(m2)','Lokasi','Photo Sawah']" :tbody="['nosawah','namasawah','luas','lokasi','img']" :tbtn="['edit','del']" search="Search...">
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
@@ -130,6 +48,7 @@
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
+                <x-script_lokasi/>
                 <x-inputlokasi_form wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
                 <x-input_form disabled="" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
                 <x-input_form disabled="" ids="b_utara" label="Batas Utara/Lor" types="text" name="b_utara" placeholder="Type Batas Utara Sawah" />

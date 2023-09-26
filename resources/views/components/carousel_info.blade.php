@@ -26,7 +26,7 @@
                         @if(!empty($q->img))
                         <div class="carousel-bg rounded-top" style="background-image: url('{{ Storage::url($q->img) }}')">
                         @else
-                        <div class="carousel-bg rounded-top" style="background-image: url('{{ asset('img/image.png') }}')">
+                        <div class="carousel-bg rounded-top bg-blank">
                         @endif
                             <div class="carousel-caption d-block d-inline-block rounded-bottom">
                             <h5>{{ $q->title}}</h5>

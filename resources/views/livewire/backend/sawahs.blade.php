@@ -31,7 +31,7 @@
         </x-card-section> 
         @if($mode=='notread')
         <x-card_section2 name="GIS - Sawah" type="primary" width="9" order="1" smallorder="1">
-        <div id="map" class="w-100 rounded" style="height: 400px;"></div>
+        <div wire:ignore id="map" class="w-100 rounded" style="height: 400px;"></div>
         <x-input_form wajib="" disabled="" ids="latitude" label="Latitude" types="text" name="latitude" placeholder="Latitude" />
         <x-input_form wajib="" disabled="" ids="longitude" label="Longitude" types="text" name="longitude" placeholder="Longitude" />
         </x-card-section2>
@@ -54,7 +54,7 @@
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
-                <div wire:ignore id="mapsawah" class="w-100 rounded" style="height: 300px;"></div>
+                <div wire:ignore id="mapsawah" class="w-100 rounded bg-blank" style="height: 300px;"></div>
                 <x-inputlokasi_form wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
                 <x-input_form disabled="" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
                 <x-input_form disabled="" ids="b_utara" label="Batas Utara/Lor" types="text" name="b_utara" placeholder="Type Batas Utara Sawah" />

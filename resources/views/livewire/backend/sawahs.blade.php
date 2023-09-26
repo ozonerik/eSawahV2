@@ -4,9 +4,8 @@ window.addEventListener('getLocation', event => {
     function getPosition(position) {
         var lt=position.coords.latitude;
         var lg=position.coords.longitude;
-        var accuracy = position.coords.accuracy
         Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
-        showMaps(lt,lg,'mapsawah-'+event.detail.map_id) 
+        showMaps(lt,lg,'mapaddsawah-'+event.detail.map_id,'true') 
     }
     function errorCallback(error){
         alert('Geolocation is not supported by this browser.');
@@ -16,6 +15,31 @@ window.addEventListener('getLocation', event => {
         timeout: 10000;
     };
     navigator.geolocation.getCurrentPosition(getPosition, errorCallback, options);
+})
+</script>
+<script>
+window.addEventListener('editgetLocation', event => {
+    function getPosition(position) {
+        var lt=position.coords.latitude;
+        var lg=position.coords.longitude;
+        Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
+        showMaps(lt,lg,'mapeditsawah-'+event.detail.map_id,'true') 
+    }
+    function errorCallback(error){
+        alert('Geolocation is not supported by this browser.');
+    };
+    function options() {
+        enableHighAccuracy: true;
+        timeout: 10000;
+    };
+    navigator.geolocation.getCurrentPosition(getPosition, errorCallback, options);
+})
+</script>
+<script>
+window.addEventListener('showLocation', event => {
+        var lt=event.detail.nlat;
+        var lg=event.detail.nlong;
+        showMaps(lt,lg,'mapeditsawah-'+event.detail.map_id,'true');
 })
 </script>
 <x-script_lokasi/>
@@ -69,8 +93,8 @@ window.addEventListener('getLocation', event => {
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
-                <div wire:ignore id="mapsawah-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 300px;"></div>
-                <x-inputlokasi_form wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
+                <div wire:ignore id="mapaddsawah-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 300px;"></div>
+                <x-inputlokasi_form action="onGetlokasi" labelbtn="Get My Location" wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
                 <x-input_form disabled="" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
                 <x-input_form disabled="" ids="b_utara" label="Batas Utara/Lor" types="text" name="b_utara" placeholder="Type Batas Utara Sawah" />
                 <x-input_form disabled="" ids="b_timur" label="Batas Timur/Wetan" types="text" name="b_timur" placeholder="Type Batas Timur Sawah" />
@@ -98,7 +122,9 @@ window.addEventListener('getLocation', event => {
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
-                <x-input_form disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Type Kordinat Sawah" />
+                <div wire:ignore id="mapeditsawah-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 300px;"></div>
+                <!-- <x-input_form disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Type Kordinat Sawah" /> -->
+                <x-inputlokasi_form action="editGetlokasi" labelbtn="Get My Location" wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
                 <x-input_form disabled="" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
                 <x-input_form disabled="" ids="b_utara" label="Batas Utara/Lor" types="text" name="b_utara" placeholder="Type Batas Utara Sawah" />
                 <x-input_form disabled="" ids="b_timur" label="Batas Timur/Wetan" types="text" name="b_timur" placeholder="Type Batas Timur Sawah" />

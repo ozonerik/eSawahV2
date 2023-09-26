@@ -12,7 +12,7 @@ class inputlokasi_form extends Component
      * @return void
      */
 
-     public function __construct($ids, $types, $name, $placeholder, $label, $disabled,$wajib)
+     public function __construct($ids, $types, $name, $placeholder, $label, $disabled,$wajib, $action,$labelbtn)
      {
          $this->ids = $ids;
          $this->types = $types; 
@@ -21,6 +21,8 @@ class inputlokasi_form extends Component
          $this->label = $label;
          $this->disabled = $disabled;
          $this->wajib = $wajib;
+         $this->action = $action;
+         $this->labelbtn = $labelbtn;
      }
 
     /**

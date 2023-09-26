@@ -40,7 +40,6 @@ class Sawahs extends Component
     ];
 
     public $map_id = 0;
-    public $mluas;
     
     //jangan gunakan variabel dengan nama rules dan messages 
     
@@ -56,8 +55,10 @@ class Sawahs extends Component
         $this->dispatchBrowserEvent('getLocation',['map_id' => $this->map_id]);
     }
 
-    public function updatedMluas($value){
-        dd($value);
+    public function editGetlokasi(){
+        //dd('editgetlokasi');
+        $this->map_id++;
+        $this->dispatchBrowserEvent('editgetLocation',['map_id' => $this->map_id]);
     }
     //akhir get lokasi
 
@@ -240,6 +241,20 @@ class Sawahs extends Component
         $this->nilaipajak=$sawah->nilaipajak;
         $this->img=$sawah->img;
         $this->tmpimg=$sawah->img;
+        //location
+        if(!empty($this->latlang)){
+            $data=explode("," , $this->latlang);
+        }else{
+            $data[0]=-22.000100247214;
+            $data[1]=80.472656786442;
+        }
+        //dd($data[0]);
+        $this->map_id++;
+        $this->dispatchBrowserEvent('showLocation',[
+            'map_id' => $this->map_id,
+            'nlat' => $data[0],
+            'nlong' => $data[1],
+        ]);
         
 
     }

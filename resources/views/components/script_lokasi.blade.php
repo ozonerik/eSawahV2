@@ -3,7 +3,7 @@
 @endpush
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" ></script>
 <script>
-function showMaps($lat, $long, $iddiv){
+function showMaps($lat, $long, $iddiv, $dragable){
     var map_init=null;
     var marker,vlat,vlong;
     map_init = L.map($iddiv, {
@@ -21,15 +21,20 @@ function showMaps($lat, $long, $iddiv){
         map_init.removeLayer(marker)
     }
 
-    marker = new L.marker([$lat, $long], {
+    if($dragable!==''){
+        marker = new L.marker([$lat, $long], {
             draggable: 'true'
         }).addTo(map_init).bindPopup('Your Location').openPopup();
+    }else{
+        marker = new L.marker([$lat, $long], {
+        }).addTo(map_init).bindPopup('Your Location').openPopup();
+    }
     
     marker.on('dragend', function(event) {
         var position = marker.getLatLng();
         marker.setLatLng(position, {
         draggable: 'true'
-        }).bindPopup(position).update();
+        }).bindPopup(position.lat.toFixed(7)+","+position.lng.toFixed(7)).openPopup().update();
         Livewire.emit("getLatlangInput", {'lat': position.lat, 'long': position.lng});
     });
 }

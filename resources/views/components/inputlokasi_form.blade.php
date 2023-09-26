@@ -3,7 +3,7 @@
     <div class="input-group">
         <input @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}">
         <div class="input-group-append">
-            <button wire:click="onGetlokasi" class="btn btn-outline-secondary" type="button" id="button-{{ $ids }}">Get My Location</button>
+            <button wire:click="{{ $action }}" class="btn btn-outline-secondary" type="button" id="button-{{ $ids }}">{{$labelbtn}}</button>
         </div>
     </div>
     @if($errors->has( $name ))

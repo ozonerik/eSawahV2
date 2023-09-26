@@ -11,6 +11,7 @@ class script_lokasi extends Component
      *
      * @return void
      */
+    
     public function __construct()
     {
         //

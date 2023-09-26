@@ -1,25 +1,4 @@
 <script>
-window.addEventListener('getLocation', event => { 
-    function getPosition(position) {
-        var lt=position.coords.latitude;
-        var lg=position.coords.longitude;
-        var accuracy = position.coords.accuracy
-        var map_init = null;
-        showMaps(lt,lg,'mapsawah-'+event.detail.map_id)
-        Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
-        
-    };
-    function errorCallback(error){
-        alert('Geolocation is not supported by this browser.');
-    };
-    function options() {
-        enableHighAccuracy: true;
-        timeout: 10000;
-    };
-    navigator.geolocation.getCurrentPosition(getPosition, errorCallback, options);
-})
-
-
 function showMaps($lat, $long, $iddiv){
     var map_init=null;
     var marker;

@@ -3,6 +3,25 @@
 @endpush
 @push('js')
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" ></script>
+<script>
+window.addEventListener('getLocation', event => { 
+    function getPosition(position) {
+        var lt=position.coords.latitude;
+        var lg=position.coords.longitude;
+        var accuracy = position.coords.accuracy
+        Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
+        showMaps(lt,lg,'mapsawah-'+event.detail.map_id)  
+    };
+    function errorCallback(error){
+        alert('Geolocation is not supported by this browser.');
+    };
+    function options() {
+        enableHighAccuracy: true;
+        timeout: 10000;
+    };
+    navigator.geolocation.getCurrentPosition(getPosition, errorCallback, options);
+})
+</script>
 <x-script_lokasi/>
 @endpush
 <div>

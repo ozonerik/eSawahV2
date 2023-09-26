@@ -1,47 +1,11 @@
 @push('js')
-<script>
-window.addEventListener('getLocation', event => {
-    function getPosition(position) {
-        var lt=position.coords.latitude;
-        var lg=position.coords.longitude;
-        Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
-        showMaps(lt,lg,'mapaddsawah-'+event.detail.map_id,'true') 
-    }
-    function errorCallback(error){
-        alert('Geolocation is not supported by this browser.');
-    };
-    function options() {
-        enableHighAccuracy: true;
-        timeout: 10000;
-    };
-    navigator.geolocation.getCurrentPosition(getPosition, errorCallback, options);
-})
-</script>
-<script>
-window.addEventListener('editgetLocation', event => {
-    function getPosition(position) {
-        var lt=position.coords.latitude;
-        var lg=position.coords.longitude;
-        Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
-        showMaps(lt,lg,'mapeditsawah-'+event.detail.map_id,'true') 
-    }
-    function errorCallback(error){
-        alert('Geolocation is not supported by this browser.');
-    };
-    function options() {
-        enableHighAccuracy: true;
-        timeout: 10000;
-    };
-    navigator.geolocation.getCurrentPosition(getPosition, errorCallback, options);
-})
-</script>
-<script>
-window.addEventListener('showLocation', event => {
-        var lt=event.detail.nlat;
-        var lg=event.detail.nlong;
-        showMaps(lt,lg,'mapeditsawah-'+event.detail.map_id,'true');
-})
-</script>
+<!-- add -->
+<x-get_maplocation eventname="getLocation" emitname="mapaddsawah"/>
+<!-- edit -->
+<x-get_maplocation eventname="editgetLocation" emitname="mapeditsawah"/>
+<!-- show map by kordinat -->
+<x-show_maplocation name="mapeditsawah"/>
+<!-- init map -->
 <x-script_lokasi/>
 @endpush
 <div>

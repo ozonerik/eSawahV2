@@ -39,14 +39,15 @@ class Sawahs extends Component
         'getLatlangInput',
     ];
 
-    public $map_id = 0;
+    
     
     //jangan gunakan variabel dengan nama rules dan messages 
     
     //awal get lokasi
+    public $map_id = 0;
+
     public function getLatlangInput($data)
     {
-        //d($data);
         $this->latlang=$data['lat'].','.$data['long'];
     }
 
@@ -56,10 +57,27 @@ class Sawahs extends Component
     }
 
     public function editGetlokasi(){
-        //dd('editgetlokasi');
         $this->map_id++;
         $this->dispatchBrowserEvent('editgetLocation',['map_id' => $this->map_id]);
     }
+
+    private function show_location($kordinat){
+        //location
+        if(!empty($kordinat)){
+            $data=explode("," , $kordinat);
+        }else{
+            $data[0]=-22.000100247214;
+            $data[1]=80.472656786442;
+        }
+        //dd($data[0]);
+        $this->map_id++;
+        $this->dispatchBrowserEvent('showLocation',[
+            'map_id' => $this->map_id,
+            'nlat' => $data[0],
+            'nlong' => $data[1],
+        ]);
+    }
+
     //akhir get lokasi
 
      // Batas Awal Fungsi Tabel
@@ -241,23 +259,11 @@ class Sawahs extends Component
         $this->nilaipajak=$sawah->nilaipajak;
         $this->img=$sawah->img;
         $this->tmpimg=$sawah->img;
-        //location
-        if(!empty($this->latlang)){
-            $data=explode("," , $this->latlang);
-        }else{
-            $data[0]=-22.000100247214;
-            $data[1]=80.472656786442;
-        }
-        //dd($data[0]);
-        $this->map_id++;
-        $this->dispatchBrowserEvent('showLocation',[
-            'map_id' => $this->map_id,
-            'nlat' => $data[0],
-            'nlong' => $data[1],
-        ]);
+        $this->show_location($this->latlang);
         
-
     }
+
+
 
     private function resetForm(){
         $this->kordinat='';

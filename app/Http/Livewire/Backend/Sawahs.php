@@ -45,13 +45,13 @@ class Sawahs extends Component
     //awal get lokasi
     public function getLatlangInput($data)
     {
+        //d($data);
         $this->latlang=$data['lat'].','.$data['long'];
     }
 
     public function onGetlokasi(){
         $this->map_id++;
         $this->dispatchBrowserEvent('getLocation',['map_id' => $this->map_id]);
-        
     }
     //akhir get lokasi
 

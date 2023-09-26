@@ -1,17 +1,13 @@
-@push('css')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-@endpush
 @push('js')
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" ></script>
 <script>
-window.addEventListener('getLocation', event => { 
+window.addEventListener('getLocation', event => {
     function getPosition(position) {
         var lt=position.coords.latitude;
         var lg=position.coords.longitude;
         var accuracy = position.coords.accuracy
         Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
-        showMaps(lt,lg,'mapsawah-'+event.detail.map_id)  
-    };
+        showMaps(lt,lg,'mapsawah-'+event.detail.map_id) 
+    }
     function errorCallback(error){
         alert('Geolocation is not supported by this browser.');
     };
@@ -69,6 +65,7 @@ window.addEventListener('getLocation', event => {
             <h4>Add Sawah Selected</h4>
             <x-slot:footer>
             <form wire:submit.prevent="addsawah">
+            <pre id="eventoutput">...</pre>
                 <x-input_form wajib="true" disabled="" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />

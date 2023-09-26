@@ -9,6 +9,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class Sawahs extends Component
 {
@@ -39,6 +40,7 @@ class Sawahs extends Component
     ];
 
     public $map_id = 0;
+    public $mluas;
     
     //jangan gunakan variabel dengan nama rules dan messages 
     
@@ -52,6 +54,10 @@ class Sawahs extends Component
     public function onGetlokasi(){
         $this->map_id++;
         $this->dispatchBrowserEvent('getLocation',['map_id' => $this->map_id]);
+    }
+
+    public function updatedMluas($value){
+        dd($value);
     }
     //akhir get lokasi
 
@@ -81,7 +87,7 @@ class Sawahs extends Component
     }
     public function render()
     {
-        //dd($this->latitud);
+        //dd(Carbon::today()->toDateString());
         $data = [
             'Sawah'=>$this->Sawah,
             'Restoresawah'=>$this->Restoresawah,

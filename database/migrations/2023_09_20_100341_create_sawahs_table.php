@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 return new class extends Migration
 {
@@ -27,9 +28,9 @@ return new class extends Migration
             $table->string('namapenjual')->nullable();
             $table->integer('hargabeli')->unsigned()->nullable()->default(0);
             $table->string('namapembeli')->nullable();
-            $table->date('tglbeli')->nullable();
+            $table->string('tglbeli')->nullable();
             $table->integer('hargajual')->unsigned()->nullable()->default(0);
-            $table->date('tgljual')->nullable();
+            $table->string('tgljual')->nullable();
             $table->string('nop')->nullable();
             $table->integer('nilaipajak')->unsigned()->nullable()->default(0);
             $table->string('img')->nullable();

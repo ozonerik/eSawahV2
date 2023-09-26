@@ -65,7 +65,6 @@ window.addEventListener('getLocation', event => {
             <h4>Add Sawah Selected</h4>
             <x-slot:footer>
             <form wire:submit.prevent="addsawah">
-            <pre id="eventoutput">...</pre>
                 <x-input_form wajib="true" disabled="" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />

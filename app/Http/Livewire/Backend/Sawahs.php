@@ -37,6 +37,8 @@ class Sawahs extends Component
         'onDelForceProses',
         'getLatlangInput',
     ];
+
+    public $map_id = 0;
     
     //jangan gunakan variabel dengan nama rules dan messages 
     
@@ -47,7 +49,8 @@ class Sawahs extends Component
     }
 
     public function onGetlokasi(){
-        $this->dispatchBrowserEvent('getLocation');
+        $this->map_id++;
+        $this->dispatchBrowserEvent('getLocation',['map_id' => $this->map_id]);
         
     }
     //akhir get lokasi

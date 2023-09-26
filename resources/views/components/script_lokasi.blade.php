@@ -1,35 +1,33 @@
 <script>
 window.addEventListener('getLocation', event => { 
     function getPosition(position) {
-
         var lt=position.coords.latitude;
         var lg=position.coords.longitude;
         var accuracy = position.coords.accuracy
-        showMaps(lt,lg,'mapsawah')
+        var map_init = null;
+        showMaps(lt,lg,'mapsawah-'+event.detail.map_id)
         Livewire.emit("getLatlangInput", {'lat': lt, 'long': lg});
         
     };
-
-    const errorCallback = (error) => {
+    function errorCallback(error){
         alert('Geolocation is not supported by this browser.');
     };
-
-    const options = {
-        enableHighAccuracy: true,
-        timeout: 10000,
+    function options() {
+        enableHighAccuracy: true;
+        timeout: 10000;
     };
-
     navigator.geolocation.getCurrentPosition(getPosition, errorCallback, options);
 })
-function showMaps($lat, $long, $iddiv){
-    var map_init = null; //added
-    var marker;
 
-    if (map_init !== undefined && map_init !== null) { map_init.remove(); }
+
+function showMaps($lat, $long, $iddiv){
+    var map_init=null;
+    var marker;
     map_init = L.map($iddiv, {
         center: [$lat, $long],
         zoom: 18,
     });
+
     //https://stackoverflow.com/questions/9394190/leaflet-map-api-with-google-satellite-layer
     googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
     maxZoom: 20,
@@ -49,11 +47,7 @@ function showMaps($lat, $long, $iddiv){
         marker.setLatLng(position, {
         draggable: 'true'
         }).bindPopup(position).update();
-        console.log("lat= "+position.lat);
-        console.log("lat= "+position.lng);
         Livewire.emit("getLatlangInput", {'lat': position.lat, 'long': position.lng});
     });
-
-    map_init.invalidateSize();
 }
 </script>

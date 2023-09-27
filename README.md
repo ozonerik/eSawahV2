@@ -18,6 +18,9 @@
 <li><b>New</b> startbootstrap.com</li>
 <li><b>New</b> jantinnerezo/livewire-alert</li>
 <li><b>New</b> uxsolutions/bootstrap-datepicker</li>
+<li><b>New</b> leafletjs.com</li>
+<li><b>New</b> ljagis/leaflet-measure</li>
+<li><b>New</b> leaflet-googlemap</li>
 </ul>
 
 ## Packages
@@ -32,6 +35,10 @@
 - **[Grayscale Template](https://startbootstrap.com/theme/grayscale)**
 - **[jantinnerezo/livewire-alert](https://github.com/jantinnerezo/livewire-alert)**
 - **[uxsolutions/bootstrap-datepicker](https://github.com/uxsolutions/bootstrap-datepicker)**
+- **[leafletjs.com](https://leafletjs.com/)**
+- **[ljagis/leaflet-measure](https://github.com/ljagis/leaflet-measure/)**
+- **[leaflet-googlemap](https://stackoverflow.com/questions/9394190/leaflet-map-api-with-google-satellite-layer)**
+
 
 
 ## License

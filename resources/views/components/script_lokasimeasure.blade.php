@@ -1,14 +1,17 @@
 @push('css')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
+<link rel="stylesheet" href="{{ asset('plugins/leaflet-maps/leaflet-measure.css') }}">
 @endpush
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" ></script>
+<script src="{{ asset('plugins/leaflet-maps/leaflet-measure.js') }}"></script>
 <script>
-function showMaps($emitname, $lat, $long, $iddiv, $dragable){
+function showMeasureMaps($emitname, $lat, $long, $iddiv, $dragable){
     var map_init=null;
     var marker,vlat,vlong;
     map_init = L.map($iddiv, {
         center: [$lat, $long],
-        zoom: 18
+        zoom: 18,
+        measureControl: true
     });
 
     //https://stackoverflow.com/questions/9394190/leaflet-map-api-with-google-satellite-layer
@@ -37,5 +40,13 @@ function showMaps($emitname, $lat, $long, $iddiv, $dragable){
         }).bindPopup(position.lat.toFixed(7)+","+position.lng.toFixed(7)).openPopup().update();
         Livewire.emit($emitname, {'lat': position.lat, 'long': position.lng});
     });
+
+    map_init.on('measurefinish', function(evt) {
+        writeResults(evt);
+    });
+}
+function writeResults(results) {
+    document.getElementById('luas').value = results.area;
+    document.getElementById('keliling').value = results.length;
 }
 </script>

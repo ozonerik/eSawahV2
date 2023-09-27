@@ -11,10 +11,12 @@ class get_maplocation extends Component
      *
      * @return void
      */
-    public function __construct($eventname,$emitname)
+    public $eventname,$emitname,$mapname;
+    public function __construct($eventname,$emitname,$mapname)
     {
         $this->eventname = $eventname;
         $this->emitname = $emitname;
+        $this->mapname = $mapname;
     }
 
     /**

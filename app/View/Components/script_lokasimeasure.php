@@ -4,19 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class show_maplocation extends Component
+class script_lokasimeasure extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public $eventname, $mapname, $emitname;
-    public function __construct($eventname, $mapname, $emitname)
+    public function __construct()
     {
-        $this->eventname = $eventname;
-        $this->mapname = $mapname;
-        $this->emitname = $emitname;
+        //
     }
 
     /**
@@ -26,6 +23,6 @@ class show_maplocation extends Component
      */
     public function render()
     {
-        return view('components.show_maplocation');
+        return view('components.script_lokasimeasure');
     }
 }

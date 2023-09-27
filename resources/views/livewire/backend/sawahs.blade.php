@@ -1,10 +1,10 @@
 @push('js')
 <!-- add -->
-<x-get_maplocation eventname="getLocation" emitname="mapaddsawah"/>
+<x-get_maplocation eventname="getLocation" emitname="getLatlangInput" mapname="mapaddsawah"/>
 <!-- edit -->
-<x-get_maplocation eventname="editgetLocation" emitname="mapeditsawah"/>
+<x-get_maplocation eventname="editgetLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
 <!-- show map by kordinat -->
-<x-show_maplocation name="mapeditsawah"/>
+<x-show_maplocation eventname="showLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
 <!-- init map -->
 <x-script_lokasi/>
 @endpush

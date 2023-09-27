@@ -4,16 +4,19 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class script_leafletmapmeasure extends Component
+class get_mapmeasure extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public $eventname,$emitname,$mapname;
+    public function __construct($eventname,$emitname,$mapname)
     {
-        //
+        $this->eventname = $eventname;
+        $this->emitname = $emitname;
+        $this->mapname = $mapname;
     }
 
     /**
@@ -23,6 +26,6 @@ class script_leafletmapmeasure extends Component
      */
     public function render()
     {
-        return view('components.script_leafletmapmeasure');
+        return view('components.get_mapmeasure');
     }
 }

@@ -1,7 +1,7 @@
 <script>
-window.addEventListener('showLocation', event => {
+window.addEventListener(@js($eventname), event => {
         var lt=event.detail.nlat;
         var lg=event.detail.nlong;
-        showMaps(lt,lg,@js($name)+'-'+event.detail.map_id,'true');
+        showMaps(@js($emitname), lt,lg,@js($mapname)+'-'+event.detail.map_id,'true');
 })
 </script>

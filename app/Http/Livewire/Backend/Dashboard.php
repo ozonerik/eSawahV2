@@ -5,7 +5,9 @@ namespace App\Http\Livewire\Backend;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Info;
+use App\Models\Sawah;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Dashboard extends Component
@@ -15,14 +17,27 @@ class Dashboard extends Component
     protected $paginationTheme = 'bootstrap';
     public $perPage=10;
     public $infobanner;
+    public $map_id = 0;
 
     public function mount()
     {
         $this->infobanner=Info::orderBy('updated_at', 'DESC')->get();
     }
+
+    public function dehydrate(){
+        $this->map_id++;
+    }
+
+    public function getMapsawahProperty(){
+        return Sawah::select('namasawah','latlang')->where('user_id',Auth::user()->id)->get();
+    }
     
     public function render()
     {
-        return view('livewire.backend.dashboard')->extends('layouts.app');
+        //dd($this->Mapsawah->toArray());
+        $data = [
+            'mapsawah'=>$this->Mapsawah->toArray(),
+        ];
+        return view('livewire.backend.dashboard',$data)->extends('layouts.app');
     }
 }

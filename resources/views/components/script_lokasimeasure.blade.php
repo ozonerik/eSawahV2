@@ -41,9 +41,11 @@ function showMeasureMaps($emitname, $lat, $long, $ac, $iddiv, $dragable){
         Livewire.emit($emitname, {'lat': position.lat, 'long': position.lng});
     });
 
-    circle = L.circle([$lat, $long], { radius: $ac });
-    var featureGroup = L.featureGroup([marker, circle]).addTo(map_init);
-    map_init.fitBounds(featureGroup.getBounds());
+    if($ac!==''){
+        circle = L.circle([$lat, $long], { radius: $ac });
+        var featureGroup = L.featureGroup([marker, circle]).addTo(map_init);
+        map_init.fitBounds(featureGroup.getBounds());
+    }
 
     map_init.on('measurefinish', function(evt) {
         //Livewire.emitUp('postAdded');

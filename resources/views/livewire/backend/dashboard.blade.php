@@ -4,6 +4,7 @@
     <script src="{{ asset('plugins/chart.js/chartjs-plugin-datalabels.min.js') }}"></script>
     <x-chart_script name="barChart" target="barChart" type="bar" labelcolor="white" :label="['jan','feb','mar']" :data="[10,20,30]" :color="['blue']"/>
     <x-chart_script name="barChart2" target="barChart2" type="bar" labelcolor="white" :label="['2020','2021','2022']" :data="[10,20,30]" :color="['red']"/>
+    <x-map_dashboard mapname="dashmap" mapid="{{$map_id}}" :data="$mapsawah"/>
 @endpush
 <div>
     <x-content_header name="Dashboard" >
@@ -11,7 +12,12 @@
     </x-content_header>
     <div class="row mx-1">
         <x-carousel_info :data="$infobanner" />
-    </div>         
+    </div>
+    <div class="row mx-1">
+        <x-card_section2 name="Sebaran Lokasi Sawah" type="primary" width="12" order="1" smallorder="1">
+            <div wire:ignore id="dashmap-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 500px;"></div>
+        </x-card-section2>
+    </div>      
     <div class="row mx-1">
         <x-info_box icon="fas fa-seedling" message="Sawah" value="10" type="success"/>
         <x-info_box icon="fas fa-users" message="Pawongan" value="5" type="primary"/>

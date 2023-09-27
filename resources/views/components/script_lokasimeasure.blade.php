@@ -5,9 +5,9 @@
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" ></script>
 <script src="{{ asset('plugins/leaflet-maps/leaflet-measure.js') }}"></script>
 <script>
-function showMeasureMaps($emitname, $lat, $long, $iddiv, $dragable){
+function showMeasureMaps($emitname, $lat, $long, $ac, $iddiv, $dragable){
     var map_init=null;
-    var marker,vlat,vlong;
+    var marker,vlat,vlong,circle;
     map_init = L.map($iddiv, {
         center: [$lat, $long],
         zoom: 18,
@@ -40,6 +40,10 @@ function showMeasureMaps($emitname, $lat, $long, $iddiv, $dragable){
         }).bindPopup(position.lat.toFixed(7)+","+position.lng.toFixed(7)).openPopup().update();
         Livewire.emit($emitname, {'lat': position.lat, 'long': position.lng});
     });
+
+    circle = L.circle([$lat, $long], { radius: $ac });
+    var featureGroup = L.featureGroup([marker, circle]).addTo(map_init);
+    map_init.fitBounds(featureGroup.getBounds());
 
     map_init.on('measurefinish', function(evt) {
         //Livewire.emitUp('postAdded');

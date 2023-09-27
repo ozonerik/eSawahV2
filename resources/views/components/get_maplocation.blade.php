@@ -3,8 +3,9 @@ window.addEventListener(@js($eventname), event => {
     function getPosition(position) {
         var lt=position.coords.latitude;
         var lg=position.coords.longitude;
+        var ac = position.coords.accuracy
         Livewire.emit(@js($emitname), {'lat': lt, 'long': lg});
-        showMaps(@js($emitname),lt,lg,@js($mapname)+'-'+event.detail.map_id,'true') 
+        showMaps(@js($emitname),lt,lg,ac,@js($mapname)+'-'+event.detail.map_id,'true') 
     }
     function errorCallback(error){
         alert('Geolocation is not supported by this browser.');

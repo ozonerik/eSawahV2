@@ -32,13 +32,7 @@
                 </div>
             </div>
         </x-card-section> 
-        @if($mode=='notread')
-        <x-card_section2 name="GIS - Sawah" type="primary" width="9" order="1" smallorder="1">
-        <div wire:ignore id="map" class="w-100 rounded" style="height: 400px;"></div>
-        <x-input_form wajib="" disabled="" ids="latitude" label="Latitude" types="text" name="latitude" placeholder="Latitude" />
-        <x-input_form wajib="" disabled="" ids="longitude" label="Longitude" types="text" name="longitude" placeholder="Longitude" />
-        </x-card-section2>
-        @elseif($mode=='read')
+        @if($mode=='read')
         <x-card_tablesawah type="primary" width="9" order="1" smallorder="1" title="Daftar Sawah" :data="$Sawah" :thead="['No Surat','Nama Sawah','Luas(m2)','Lokasi','Photo Sawah']" :tbody="['nosawah','namasawah','luas','lokasi','img']" :tbtn="['edit','del']" search="Search...">
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>

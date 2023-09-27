@@ -40,7 +40,12 @@ class Sawahs extends Component
     ];
 
     
-    
+    public function mount(){
+        $this->resetKonversi();
+        $this->resetForm();
+        $this->resetKalkulator();
+    }
+
     //jangan gunakan variabel dengan nama rules dan messages 
     
     //awal get lokasi
@@ -104,6 +109,7 @@ class Sawahs extends Component
     public function is_checked($id){
         return in_array($id,$this->checked);
     }
+
     public function render()
     {
         //dd(Carbon::today()->toDateString());
@@ -143,6 +149,22 @@ class Sawahs extends Component
     }
     public function updatedLanja($value){
         $this->kalkulatorsawah();
+    }
+    public function resetKalkulator(){
+        $this->p1=0;
+        $this->l1=0;
+        $this->p2=0;
+        $this->l2=0;
+        $this->la=0;
+        $this->m=0;
+        $this->hgpadi=get_hargapadi();
+        $this->lanja=get_nilailanja();
+        $this->ls1=get_conluas(0);
+        $this->ls2=get_conluas(0);
+        $this->ls3=get_convtobata(0);
+        $this->ls4=get_convtobata(0);
+        $this->lanjakw= get_lanja(0,$this->lanja);
+        $this->lanjarp= get_nlanja(0,$this->lanja,$this->hgpadi);
     }
     public function kalkulatorsawah(){
         $this->validate(
@@ -196,6 +218,7 @@ class Sawahs extends Component
     }
     // Batas Akhir Fungsi Kalkulator Sawah
 
+    // Batas Awal Fungsi Konversi Sawah
     public function onCbata(){
         $this->modecal="htconv";
     }
@@ -215,7 +238,14 @@ class Sawahs extends Component
         //dd($value);
         $this->konversisawah();
     }
-    // Batas Awal Fungsi Konversi Sawah
+    public function resetKonversi(){
+        $this->cluas=0;
+        $this->cbata=0;
+        $this->conhgpadi=get_hargapadi();
+        $this->conlanja=get_nilailanja();
+        $this->clanjakw=get_lanja($this->cluas,$this->conlanja);
+        $this->clanjarp=get_nlanja($this->cluas,$this->conlanja,$this->conhgpadi);
+    } 
     public function konversisawah(){
         $this->validate(
             [ 

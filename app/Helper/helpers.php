@@ -5,6 +5,16 @@ function get_version(){
     return 'v2.0.0';
 }
 
+function get_hargapadi(){
+    $harga=700000;
+    return $harga;
+}
+
+function get_nilailanja(){
+    $lanja=5;
+    return $lanja;
+}
+
 function get_copyright(){
     return 'esawah.my.id';
 }

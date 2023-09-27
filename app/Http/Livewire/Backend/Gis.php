@@ -13,10 +13,14 @@ class Gis extends Component
     public $latlang,$luas,$luasbata,$keliling;
     public $mode='read';
     public $map_id = 0;
-    public $hgpadi="750000";
-    public $lanja="5";
-    public $lanjakw= '0 kw';
-    public $lanjarp= 'Rp 0';
+    public $hgpadi;
+    public $lanja;
+    public $lanjakw;
+    public $lanjarp;
+
+    public function mount(){
+        $this->resetForm();
+    }
 
     public function getLatlangInput($data)
     {
@@ -50,8 +54,10 @@ class Gis extends Component
         $this->luas=0;
         $this->luasbata=0;
         $this->keliling=0;
-        $this->lanjakw= '0 kw';
-        $this->lanjarp= 'Rp 0';
+        $this->hgpadi=get_hargapadi();
+        $this->lanja=get_nilailanja();
+        $this->lanjakw=get_lanja($this->luas,$this->lanja);
+        $this->lanjarp=get_nlanja($this->luas,$this->lanja,$this->hgpadi);
     }
 
     public function updatedLuas($value){

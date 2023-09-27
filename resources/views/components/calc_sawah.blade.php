@@ -15,8 +15,9 @@
         <x-input_form ids="ls4" label="Luas(rumus) (bata)" types="text" name="ls4" placeholder="Luas...." disabled="true"/>
         <x-input_form ids="lanjakw" label="Nilai Lanja/Thn (kw)" types="text" name="lanjakw" placeholder="Nilai Lanja (kw)" disabled="true"/>
         <x-input_form ids="lanjarp" label="Nilai Lanja/Thn (Rp)" types="text" name="lanjarp" placeholder="Nilai Lanja (Rp)" disabled="true"/>
-        <div class="form-group text-md-right text-center">
-            <button type="submit" class="btn btn-primary">Hitung</button>
+        <div class="form-group">
+            <button type="button" wire:click="resetKalkulator" class="btn btn-success float-left">Reset</button>
+            <button type="submit" class="btn btn-primary float-right">Hitung</button>
         </div>
     </form>
 </div>

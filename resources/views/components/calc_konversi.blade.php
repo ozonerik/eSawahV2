@@ -6,8 +6,9 @@
         <x-input_form ids="conlanja" label="Lanja/100 bata (kw)" types="text" name="conlanja" placeholder="Enter Kwintal Lanja" disabled="false"/>
         <x-input_form ids="clanjakw" label="Nilai Lanja/Thn (kw)" types="text" name="clanjakw" placeholder="Nilai Lanja (kw)" disabled="true"/>
         <x-input_form ids="clanjarp" label="Nilai Lanja/Thn (Rp)" types="text" name="clanjarp" placeholder="Nilai Lanja (Rp)" disabled="true"/>
-        <div class="form-group text-md-right text-center">
-            <button type="submit" class="btn btn-primary">Hitung</button>
+        <div class="form-group">
+            <button type="button" wire:click="resetKonversi" class="btn btn-success float-left">Reset</button>
+            <button type="submit" class="btn btn-primary float-right">Hitung</button>
         </div>
     </form>
 </div>

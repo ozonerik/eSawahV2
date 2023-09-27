@@ -42,11 +42,13 @@ function showMeasureMaps($emitname, $lat, $long, $iddiv, $dragable){
     });
 
     map_init.on('measurefinish', function(evt) {
+        //Livewire.emitUp('postAdded');
         writeResults(evt);
     });
 }
 function writeResults(results) {
-    document.getElementById('luas').value = results.area;
-    document.getElementById('keliling').value = results.length;
+    @this.set('luas', results.area.toFixed(2));
+    @this.set('luasbata', ((results.area)/14).toFixed(2));
+    @this.set('keliling', results.length.toFixed(2));
 }
 </script>

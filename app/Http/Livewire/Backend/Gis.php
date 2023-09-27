@@ -10,9 +10,11 @@ class Gis extends Component
         'getLatlangInput',
     ];
 
-    public $latlang,$luas,$keliling;
+    public $latlang,$luas,$luasbata,$keliling,$lanjakw,$lanjarp;
     public $mode='read';
     public $map_id = 0;
+    public $hgpadi="750000";
+    public $lanja="5";
 
     public function getLatlangInput($data)
     {
@@ -29,14 +31,31 @@ class Gis extends Component
         $this->resetForm();
     }
 
+    public function postAdded($value){
+        dd($value);
+    }
+
     private function resetForm(){
         $this->latlang='';
         $this->luas='0';
+        $this->luasbata='0';
         $this->keliling='0';
     }
 
     public function onHitung(){
-        dd($this->latlang.' - '.$this->luas);
+         $this->validate(
+             [ 
+                 'luas' => 'numeric|nullable',
+                 'luasbata' => 'numeric|nullable',
+                 'hgpadi' => 'required|numeric',
+                 'lanja' => 'required|numeric',
+             ]);
+            $luas=$this->luas;
+            $luasbata=$this->luasbata;
+            $hgpadi=$this->hgpadi;
+            $lanja=$this->lanja;
+            $this->lanjakw= get_lanja($luas,$lanja);
+            $this->lanjarp= get_nlanja($luas,$lanja,$hgpadi);
     }
 
     public function onReset(){

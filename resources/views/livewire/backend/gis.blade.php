@@ -6,7 +6,7 @@
 <x-script_lokasimeasure/>
 @endpush
 <div>
-    <x-content_header name="Sawah" >
+    <x-content_header name="GIS - Sawah" >
         <li class="breadcrumb-item active">Sawah</li>
         <li class="breadcrumb-item active">GIS</li>
     </x-content_header>

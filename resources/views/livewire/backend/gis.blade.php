@@ -1,5 +1,6 @@
 @push('js')
 <!-- edit -->
+<x-get_mapmeasure eventname="resetLocation" emitname="getResetlocation" mapname="resetmap"/>
 <x-get_mapmeasure eventname="getLocation" emitname="getLatlangInput" mapname="gismap"/>
 <!-- init map -->
 <x-script_lokasimeasure/>

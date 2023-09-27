@@ -10,11 +10,13 @@ class Gis extends Component
         'getLatlangInput',
     ];
 
-    public $latlang,$luas,$luasbata,$keliling,$lanjakw,$lanjarp;
+    public $latlang,$luas,$luasbata,$keliling;
     public $mode='read';
     public $map_id = 0;
     public $hgpadi="750000";
     public $lanja="5";
+    public $lanjakw= '0 kw';
+    public $lanjarp= 'Rp 0';
 
     public function getLatlangInput($data)
     {
@@ -26,6 +28,12 @@ class Gis extends Component
         $this->dispatchBrowserEvent('getLocation',['map_id' => $this->map_id]);
     }
 
+    public function getResetlocation($data)
+    {
+        $this->latlang='';
+    }
+
+
     public function onRead(){
         $this->mode='read';
         $this->resetForm();
@@ -36,10 +44,14 @@ class Gis extends Component
     }
 
     private function resetForm(){
+        $this->dispatchBrowserEvent('resetLocation',['map_id' => $this->map_id]);
         $this->latlang='';
-        $this->luas='0';
-        $this->luasbata='0';
-        $this->keliling='0';
+        $this->map_id=0;
+        $this->luas=0;
+        $this->luasbata=0;
+        $this->keliling=0;
+        $this->lanjakw= '0 kw';
+        $this->lanjarp= 'Rp 0';
     }
 
     public function updatedLuas($value){

@@ -42,6 +42,23 @@ class Gis extends Component
         $this->keliling='0';
     }
 
+    public function updatedLuas($value){
+        $this->luasbata= get_Nconvtobata($this->luas);
+        $this->onHitung();
+    }
+    public function updatedLuasbata($value){
+        $this->luas= get_NBatatoluas($this->luasbata);
+        $this->onHitung();
+    }
+    public function updatedHgpadi($value){
+        //dd($value);
+        $this->onHitung();
+    }
+    public function updatedLanja($value){
+        //dd($value);
+        $this->onHitung();
+    }
+
     public function onHitung(){
          $this->validate(
              [ 

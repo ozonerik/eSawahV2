@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend;
 
 use Livewire\Component;
+use Spatie\Geocoder\Geocoder;
 
 class Gis extends Component
 {
@@ -10,7 +11,7 @@ class Gis extends Component
         'getLatlangInput',
     ];
 
-    public $latlang,$luas,$luasbata,$keliling;
+    public $latlang,$luas,$luasbata,$keliling,$lokasi;
     public $mode='read';
     public $map_id = 0;
     public $hgpadi;
@@ -25,6 +26,7 @@ class Gis extends Component
     public function getLatlangInput($data)
     {
         $this->latlang=$data['lat'].','.$data['long'];
+        $this->lokasi=$this->onGetGeocoder($data['lat'],$data['long']);
     }
 
     public function onGetlokasi(){
@@ -97,6 +99,15 @@ class Gis extends Component
         $this->resetForm();
     }
 
+    public function onGetGeocoder($lat,$lng){
+        $client = new \GuzzleHttp\Client();
+        $geocoder = new Geocoder($client);
+        $geocoder->setApiKey(config('geocoder.key'));
+        $g=collect($geocoder->getAddressForCoordinates($lat,$lng));
+        $lokasi= $g->get('formatted_address');
+        return $lokasi;
+    }
+    
     public function render()
     {
         return view('livewire.backend.gis')->extends('layouts.app');

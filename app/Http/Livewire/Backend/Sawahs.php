@@ -10,6 +10,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Spatie\Geocoder\Geocoder;
 
 class Sawahs extends Component
 {
@@ -54,6 +55,7 @@ class Sawahs extends Component
     public function getLatlangInput($data)
     {
         $this->latlang=$data['lat'].','.$data['long'];
+        $this->lokasi=$this->onGetGeocoder($data['lat'],$data['long']);
     }
 
     public function onGetlokasi(){
@@ -81,6 +83,15 @@ class Sawahs extends Component
             'nlat' => $data[0],
             'nlong' => $data[1],
         ]);
+    }
+
+    public function onGetGeocoder($lat,$lng){
+        $client = new \GuzzleHttp\Client();
+        $geocoder = new Geocoder($client);
+        $geocoder->setApiKey(config('geocoder.key'));
+        $g=collect($geocoder->getAddressForCoordinates($lat,$lng));
+        $lokasi= $g->get('formatted_address');
+        return $lokasi;
     }
 
     //akhir get lokasi

@@ -6,7 +6,7 @@ function get_version(){
 }
 
 function get_hargapadi(){
-    $harga=700000;
+    $harga=750000;
     return $harga;
 }
 

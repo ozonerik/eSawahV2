@@ -52,6 +52,7 @@ class Gis extends Component
     private function resetForm(){
         $this->dispatchBrowserEvent('resetLocation',['map_id' => $this->map_id]);
         $this->latlang='';
+        $this->lokasi='';
         $this->map_id=0;
         $this->luas=0;
         $this->luasbata=0;

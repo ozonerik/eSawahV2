@@ -13,7 +13,7 @@ function showMaps($emitname, $lat, $long, $ac, $iddiv, $dragable){
 
     //https://stackoverflow.com/questions/9394190/leaflet-map-api-with-google-satellite-layer
     googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
-    maxZoom: 20,
+    maxZoom: 22,
     subdomains:['mt0','mt1','mt2','mt3']
     }).addTo(map_init);
     

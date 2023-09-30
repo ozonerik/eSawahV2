@@ -34,6 +34,7 @@ class Sawahs extends Component
     public $conhgpadi="750000";
     public $conlanja="5";
     public $modecal="htluas";
+    public $autocomplate;
     protected $listeners = [
         'delsawahselect',
         'onDelForceProses',
@@ -405,6 +406,7 @@ class Sawahs extends Component
     public function onAdd(){
         //dd($this->kordinat);
         $this->mode='add';
+        $this->dispatchBrowserEvent('getaddress');
         $this->resetForm();
     }
 

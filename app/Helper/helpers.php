@@ -5,6 +5,10 @@ function get_version(){
     return 'v2.0.0';
 }
 
+function get_googleapikey(){
+    return 'AIzaSyBqwQN7X6S8XBouI2elWqNMTGZfCyxzU1g';
+}
+
 function get_hargapadi(){
     $harga=750000;
     return $harga;

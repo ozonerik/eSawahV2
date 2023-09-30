@@ -1,5 +1,7 @@
 @push('js')
 <!-- add -->
+<x-get_gmapsadress eventname="getAdress" emitname="getLatlangInput" name="autocomplete"/>
+<!-- add -->
 <x-get_maplocation eventname="getLocation" emitname="getLatlangInput" mapname="mapaddsawah"/>
 <!-- edit -->
 <x-get_maplocation eventname="editgetLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
@@ -33,6 +35,7 @@
             </div>
         </x-card-section> 
         @if($mode=='read')
+        <input type="text" name="lokasi" id="autocomplete" class="form-control mb-3" placeholder="Choose Location">
         <x-card_tablesawah type="primary" width="9" order="1" smallorder="1" title="Daftar Sawah" :data="$Sawah" :thead="['No Surat','Nama Sawah','Luas(m2)','Lokasi','Photo Sawah']" :tbody="['nosawah','namasawah','luas','lokasi','img']" :tbtn="['edit','del']" search="Search...">
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>

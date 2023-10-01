@@ -91,8 +91,8 @@ class Sawahs extends Component
         if(!empty($kordinat)){
             $data=explode("," , $kordinat);
         }else{
-            $data[0]=-22.000100247214;
-            $data[1]=80.472656786442;
+            $data[0]=0;
+            $data[1]=0;
         }
         //dd($data[0]);
         $this->map_id++;

@@ -5,10 +5,13 @@
 document.addEventListener('getaddress', event => {
     initAutocomplete();
     var ac=90;
-    if(event.detail.lt === undefined){
-        
-    }else{
-        showMaps('getLatlangInput',event.detail.lt,event.detail.lg,ac,'mapaddsawah'+'-'+event.detail.map_id,'true',event.detail.kordinat);
+    var lt=event.detail.lt;
+    var lg=event.detail.lg;
+    var map_id=event.detail.map_id;
+    var kordinat=event.detail.kordinat;
+
+    if (!(lt === undefined || lg === undefined)){
+        showMaps('getLatlangInput',lt,lg,ac,'mapaddsawah'+'-'+map_id,'true',kordinat);
     }
 });
 

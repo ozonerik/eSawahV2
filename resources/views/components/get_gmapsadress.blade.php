@@ -3,11 +3,12 @@
 </script>
 <script>
 document.addEventListener('getaddress', event => {
-    initAutocomplete();
+    initAutocomplete(event.detail.map_id);
 });
 
-async function initAutocomplete() {
-        var input = document.getElementById('autocomplate');
+async function initAutocomplete($mapid) {
+        console.log($mapid)
+        var input = document.getElementById(@js($name));
         const options = {
             componentRestrictions: { country: "id" },
             fields: ["formatted_address", "geometry", "name"],
@@ -17,12 +18,18 @@ async function initAutocomplete() {
             var place = autocomplete.getPlace();
             if(!place.geometry){
                 //@this.set(@js($name), document.getElementById(@js($name)).value);
-                console.log('sdas');
+                console.log(document.getElementById(@js($name)).value);
             }else{
                 //Livewire.emit(@js($emitname), {'lat': place.geometry['location'].lat(), 'long': place.geometry['location'].lng()});
                 console.log(place.geometry['location'].lat());
                 console.log(place.geometry['location'].lng());
                 console.log(place.formatted_address);
+                var lt=place.geometry['location'].lat();
+                var lg=place.geometry['location'].lng();
+                var lokasi=document.getElementById(@js($name)).value;
+                var ac=90;
+                Livewire.emit('getLatlangInput', {'lat': lt, 'long': lg, 'lokasi':lokasi});
+                showMaps('getLatlangInput',lt,lg,ac,'mapaddsawah'+'-'+$mapid,'true')
             }
         }); 
 }

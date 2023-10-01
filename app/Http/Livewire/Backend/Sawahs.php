@@ -40,8 +40,7 @@ class Sawahs extends Component
         'onDelForceProses',
         'getLatlangInput',
     ];
-
-    
+    public $lt,$lg;
     public function mount(){
         $this->resetKonversi();
         $this->resetForm();
@@ -56,12 +55,21 @@ class Sawahs extends Component
     public function getLatlangInput($data)
     {
         $this->latlang=$data['lat'].','.$data['long'];
-        $this->lokasi=$this->onGetGeocoder($data['lat'],$data['long']);
+        if(empty($data['lokasi'])){
+            $this->lokasi=$this->onGetGeocoder($data['lat'],$data['long']);
+        }else{
+            $this->lokasi=$data['lokasi'];
+        }
     }
 
     public function onGetlokasi(){
         $this->map_id++;
         $this->dispatchBrowserEvent('getLocation',['map_id' => $this->map_id]);
+    }
+
+    public function onGetAdress(){
+        $this->map_id++;
+        $this->dispatchBrowserEvent('getaddress',['map_id' => $this->map_id]);
     }
 
     public function editGetlokasi(){
@@ -406,7 +414,7 @@ class Sawahs extends Component
     public function onAdd(){
         //dd($this->kordinat);
         $this->mode='add';
-        $this->dispatchBrowserEvent('getaddress');
+        $this->onGetAdress();
         $this->resetForm();
     }
 

@@ -81,12 +81,12 @@
                             @endforeach
                             <td>
                                 @if( in_array('edit',$tbtn) &&  in_array('del',$tbtn) )
-                                <button wire:click.prevent="onEdit({{ $row->id }})" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit" ><i class="fas fa-edit"></i></button>         
-                                <button wire:click.prevent="onDelete({{ $row->id }})" class="btn btn-sm btn-danger mt-1 mt-md-0" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></button>
+                                <button wire:click.prevent="onEdit({{ $row->id }})" class="btn btn-sm btn-success w-100" data-toggle="tooltip" title="Edit" ><i class="fas fa-edit"></i></button>         
+                                <button wire:click.prevent="onDelete({{ $row->id }})" class="btn btn-sm btn-danger mt-1 w-100" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></button>
                                 @elseif(in_array('edit',$tbtn))
-                                <button wire:click.prevent="onEdit({{ $row->id }})" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit" ><i class="fas fa-edit"></i></button>
+                                <button wire:click.prevent="onEdit({{ $row->id }})" class="btn btn-sm btn-success w-100" data-toggle="tooltip" title="Edit" ><i class="fas fa-edit"></i></button>
                                 @elseif(in_array('del',$tbtn))
-                                <button wire:click.prevent="onDelete({{ $row->id }})" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></button>
+                                <button wire:click.prevent="onDelete({{ $row->id }})" class="btn btn-sm btn-danger w-100" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></button>
                                 @endif
                             </td>
                         </tr>

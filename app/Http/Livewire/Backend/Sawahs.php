@@ -76,7 +76,6 @@ class Sawahs extends Component
                     'lg' => 0,
                     'kordinat' => '',
                 ]);
-                dd('dsas');
             }    
         }else{
             $this->lokasi=$data['lokasi'];
@@ -95,9 +94,14 @@ class Sawahs extends Component
         $this->dispatchBrowserEvent('getLocation',['map_id' => $this->map_id]);
     }
 
-    public function onGetAdress(){
+    public function onGetAdress($q){
         $this->map_id++;
-        $this->dispatchBrowserEvent('getaddress',['map_id' => $this->map_id]);
+        if($q=='add'){
+            $this->dispatchBrowserEvent('getaddress',['map_id' => $this->map_id]);
+        }else{
+            $this->dispatchBrowserEvent('editgetaddress',['map_id' => $this->map_id]);
+        }
+        
     }
 
     public function editGetlokasi(){
@@ -315,6 +319,7 @@ class Sawahs extends Component
         $this->resetForm();
     }
     public function onEdit($id){
+        $this->onGetAdress('edit');
         $this->mode='edit';
         $this->ids=$id;
         $sawah = Sawah::findOrFail($id);
@@ -442,7 +447,7 @@ class Sawahs extends Component
     public function onAdd(){
         //dd($this->kordinat);
         $this->mode='add';
-        $this->onGetAdress();
+        $this->onGetAdress('add');
         $this->resetForm();
     }
 

@@ -2,7 +2,7 @@
     src="https://maps.googleapis.com/maps/api/js?key={{get_googleapikey()}}&language=id&libraries=places">
 </script>
 <script>
-document.addEventListener('getaddress', event => {
+document.addEventListener(@js($eventname), event => {
     initAutocomplete();
     var ac=90;
     var lt=event.detail.lt;
@@ -10,9 +10,9 @@ document.addEventListener('getaddress', event => {
     var map_id=event.detail.map_id;
     var kordinat=event.detail.kordinat;
     if (!(lt === undefined || lg === undefined || lt === 0 || lg === 0)){
-        showMaps('getLatlangInput',lt,lg,ac,'mapaddsawah'+'-'+map_id,'true',kordinat);
+        showMaps(@js($emitname),lt,lg,ac,@js($mapname)+'-'+map_id,'true',kordinat);
     }else{
-        showMaps('getLatlangInput',lt,lg,ac,'nomap'+'-'+map_id,'true','NoMap');
+        showMaps(@js($emitname),lt,lg,ac,'nomap'+'-'+map_id,'true','NoMap');
     }
 });
 
@@ -29,14 +29,14 @@ async function initAutocomplete() {
                 var lokasi=document.getElementById(@js($name)).value;
                 @this.set(@js($name), lokasi);
                 @this.set('latlang','');
-                Livewire.emit('getLatlangInput', {'lat': 0, 'long': 0, 'lokasi':lokasi});
+                Livewire.emit(@js($emitname), {'lat': 0, 'long': 0, 'lokasi':lokasi});
             }else{
                 var lt=place.geometry['location'].lat();
                 var lg=place.geometry['location'].lng();
                 var lokasi=document.getElementById(@js($name)).value;
                 @this.set(@js($name), lokasi);
                 var ac=90;
-                Livewire.emit('getLatlangInput', {'lat': lt, 'long': lg, 'lokasi':lokasi});
+                Livewire.emit(@js($emitname), {'lat': lt, 'long': lg, 'lokasi':lokasi});
             }
         }); 
 }

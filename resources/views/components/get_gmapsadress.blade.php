@@ -1,6 +1,7 @@
 <script>
 document.addEventListener(@js($eventname), event => {
-    initAutocomplete();
+    var mode=event.detail.mode;
+    initAutocomplete(mode);
     var ac=90;
     var lt=event.detail.lt;
     var lg=event.detail.lg;
@@ -14,8 +15,9 @@ document.addEventListener(@js($eventname), event => {
     }
 });
 
-async function initAutocomplete() {
+async function initAutocomplete($mode) {
         var input = document.getElementById(@js($inputname));
+        console.log($mode);
         const options = {
             componentRestrictions: { country: "id" },
             fields: ["formatted_address", "geometry", "name"],
@@ -27,14 +29,14 @@ async function initAutocomplete() {
                 var lokasi=document.getElementById(@js($inputname)).value;
                 @this.set(@js($inputname), lokasi);
                 @this.set(@js($kordinatname),'');
-                Livewire.emit(@js($emitname), {'lat': 0, 'long': 0, 'lokasi':lokasi, 'eventname':@js($eventname)});
+                Livewire.emit(@js($emitname), {'lat': 0, 'long': 0, 'lokasi':lokasi});
             }else{
                 var lt=place.geometry['location'].lat();
                 var lg=place.geometry['location'].lng();
                 var lokasi=document.getElementById(@js($inputname)).value;
                 @this.set(@js($inputname), lokasi);
                 var ac=90;
-                Livewire.emit(@js($emitname), {'lat': lt, 'long': lg, 'lokasi':lokasi, 'eventname':@js($eventname)});
+                Livewire.emit(@js($emitname), {'lat': lt, 'long': lg, 'lokasi':lokasi});
             }
         }); 
 }

@@ -11,12 +11,13 @@ class get_gmapsadress extends Component
      *
      * @return void
      */
-    public $eventname,$emitname,$name;
-    public function __construct($eventname,$emitname,$name)
+    public $eventname,$emitname,$name,$mapname;
+    public function __construct($eventname,$emitname,$name,$mapname)
     {
         $this->eventname = $eventname;
         $this->emitname = $emitname;
         $this->name = $name;
+        $this->mapname = $mapname;
     }
 
     /**

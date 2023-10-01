@@ -5,7 +5,7 @@
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" ></script>
 <script src="{{ asset('plugins/leaflet-maps/leaflet-measure.js') }}"></script>
 <script>
-function showMeasureMaps($emitname, $lat, $long, $ac, $iddiv, $dragable){
+function showMeasureMaps($emitname, $lat, $long, $ac, $iddiv, $dragable,$popup){
     var map_init=null;
     var marker,vlat,vlong,circle;
     map_init = L.map($iddiv, {
@@ -27,10 +27,10 @@ function showMeasureMaps($emitname, $lat, $long, $ac, $iddiv, $dragable){
     if($dragable!==''){
         marker = new L.marker([$lat, $long], {
             draggable: 'true'
-        }).addTo(map_init).bindPopup('Your Location').openPopup();
+        }).addTo(map_init).bindPopup($popup).openPopup();
     }else{
         marker = new L.marker([$lat, $long], {
-        }).addTo(map_init).bindPopup('Your Location').openPopup();
+        }).addTo(map_init).bindPopup($popup).openPopup();
     }
     
     marker.on('dragend', function(event) {

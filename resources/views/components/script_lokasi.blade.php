@@ -3,7 +3,7 @@
 @endpush
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" ></script>
 <script>
-function showMaps($emitname, $lat, $long, $ac, $iddiv, $dragable){
+function showMaps($emitname, $lat, $long, $ac, $iddiv, $dragable,$popup){
     var map_init=null;
     var marker,vlat,vlong,circle;
     map_init = L.map($iddiv, {
@@ -24,10 +24,10 @@ function showMaps($emitname, $lat, $long, $ac, $iddiv, $dragable){
     if($dragable!==''){
         marker = new L.marker([$lat, $long], {
             draggable: 'true'
-        }).addTo(map_init).bindPopup('Your Location').openPopup();
+        }).addTo(map_init).bindPopup($popup).openPopup();
     }else{
         marker = new L.marker([$lat, $long], {
-        }).addTo(map_init).bindPopup('Your Location').openPopup();
+        }).addTo(map_init).bindPopup($popup).openPopup();
     }
     
     marker.on('dragend', function(event) {

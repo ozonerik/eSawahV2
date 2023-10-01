@@ -9,7 +9,7 @@ document.addEventListener('getaddress', event => {
     if(event.detail.lt === undefined){
         
     }else{
-        showMaps('getLatlangInput',event.detail.lt,event.detail.lg,ac,'mapaddsawah'+'-'+event.detail.map_id,'true');
+        showMaps('getLatlangInput',event.detail.lt,event.detail.lg,ac,'mapaddsawah'+'-'+event.detail.map_id,'true',event.detail.kordinat);
     }
 });
 

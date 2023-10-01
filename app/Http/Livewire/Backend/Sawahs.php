@@ -66,6 +66,7 @@ class Sawahs extends Component
                 'map_id' => $this->map_id,
                 'lt' => $data['lat'],
                 'lg' => $data['long'],
+                'kordinat' => $this->latlang,
             ]);
         }
     }

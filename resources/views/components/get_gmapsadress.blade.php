@@ -6,8 +6,10 @@ document.addEventListener(@js($eventname), event => {
     var lg=event.detail.lg;
     var map_id=event.detail.map_id;
     var kordinat=event.detail.kordinat;
+    var mapname=@js($mapname)+'-'+map_id;
+    console.log(mapname);
     if (!(lt === undefined || lg === undefined || lt === 0 || lg === 0)){
-        showMaps(@js($emitname),lt,lg,ac,@js($mapname)+'-'+map_id,'true',kordinat);
+        showMaps(@js($emitname),lt,lg,ac,mapname,'true',kordinat);
     }else{
         showMaps(@js($emitname),lt,lg,ac,'nomap'+'-'+map_id,'true','NoMap');
     }

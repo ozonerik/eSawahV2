@@ -117,8 +117,6 @@ class Sawahs extends Component
             $data[0]=0;
             $data[1]=0;
         }
-        //dd($data[0]);
-        $this->map_id++;
         $this->dispatchBrowserEvent('showLocation',[
             'map_id' => $this->map_id,
             'nlat' => $data[0],

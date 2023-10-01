@@ -4,6 +4,7 @@
 <!-- add -->
 <x-get_maplocation eventname="getLocation" emitname="getLatlangInput" mapname="mapaddsawah"/>
 <!-- edit -->
+<x-get_gmapsadress eventname="editgetaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapeditsawah" kordinatname="latlang"/>
 <x-get_maplocation eventname="editgetLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
 <!-- show map by kordinat -->
 <x-show_maplocation eventname="showLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
@@ -53,6 +54,7 @@
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
+                <h2>mapaddsawah-{{$map_id}}</h2>
                 <div wire:ignore id="mapaddsawah-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 300px;"></div>
                 <x-inputlokasi_form action="onGetlokasi" labelbtn="Get My Location" wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
                 <x-input_form disabled="" ids="b_barat" label="Batas Barat/Kulon" types="text" name="b_barat" placeholder="Type Batas Barat Sawah" />
@@ -82,6 +84,7 @@
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
                 <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
+                <h2>mapeditsawah-{{$map_id}}</h2>
                 <div wire:ignore id="mapeditsawah-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 300px;"></div>
                 <!-- <x-input_form disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Type Kordinat Sawah" /> -->
                 <x-inputlokasi_form action="editGetlokasi" labelbtn="Get My Location" wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />

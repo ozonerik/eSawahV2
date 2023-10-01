@@ -1,6 +1,6 @@
 @push('js')
 <!-- add -->
-<x-get_gmapsadress eventname="getaddress" emitname="getLatlangInput" name="lokasi" mapname="mapaddsawah"/>
+<x-get_gmapsadress eventname="getaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapaddsawah" kordinatname="latlang"/>
 <!-- add -->
 <x-get_maplocation eventname="getLocation" emitname="getLatlangInput" mapname="mapaddsawah"/>
 <!-- edit -->

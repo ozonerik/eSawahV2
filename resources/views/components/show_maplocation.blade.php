@@ -5,7 +5,7 @@ window.addEventListener(@js($eventname), event => {
         if (!(lt===0)){
                 showMaps(@js($emitname), lt,lg,'',@js($mapname)+'-'+event.detail.map_id,'true','Sawah Location');
         }else{
-                showMaps(@js($emitname), lt,lg,'','nomap'+'-'+event.detail.map_id,'true','Sawah Location');
+                showMaps(@js($emitname), lt,lg,'','nomap'+'-'+event.detail.map_id,'true','NoMap');
         }
 })
 </script>

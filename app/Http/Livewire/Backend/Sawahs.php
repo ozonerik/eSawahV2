@@ -54,9 +54,17 @@ class Sawahs extends Component
 
     public function getLatlangInput($data)
     {
-        $this->latlang=$data['lat'].','.$data['long'];
-        $this->lt=$data['lat'];
-        $this->lg=$data['long'];
+        if($data['lat']==0 || $data['long']==0){
+            $this->latlang='';
+            $this->lt=0;
+            $this->lg=0;
+        }else{
+            $this->latlang=$data['lat'].','.$data['long'];
+            $this->lt=$data['lat'];
+            $this->lg=$data['long'];
+        }
+   
+        
         if(empty($data['lokasi'])){
             $this->lokasi=$this->onGetGeocoder($data['lat'],$data['long']);
         }else{

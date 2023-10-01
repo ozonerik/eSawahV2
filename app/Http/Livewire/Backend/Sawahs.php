@@ -121,6 +121,7 @@ class Sawahs extends Component
             'map_id' => $this->map_id,
             'nlat' => $data[0],
             'nlong' => $data[1],
+            'kordinat' => $kordinat,
         ]);
     }
 

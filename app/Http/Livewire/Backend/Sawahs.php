@@ -70,6 +70,13 @@ class Sawahs extends Component
                 $this->lokasi=  $geocoder ;
             }else{
                 $this->lokasi=  '' ;
+                $this->dispatchBrowserEvent('getaddress',[
+                    'map_id' => $this->map_id,
+                    'lt' => 0,
+                    'lg' => 0,
+                    'kordinat' => '',
+                ]);
+                dd('dsas');
             }    
         }else{
             $this->lokasi=$data['lokasi'];

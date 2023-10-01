@@ -1,6 +1,3 @@
-<script
-    src="https://maps.googleapis.com/maps/api/js?key={{get_googleapikey()}}&language=id&libraries=places">
-</script>
 <script>
 document.addEventListener(@js($eventname), event => {
     initAutocomplete();

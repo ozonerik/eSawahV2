@@ -16,6 +16,7 @@
 <!-- bs-datepicker -->
 <script src="{{ asset('plugins/bs-datepicker/bs-datepicker.min.js') }}"></script>
 <script src="{{ asset('plugins/bs-datepicker/bs-datepicker-ID.min.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{get_googleapikey()}}&language=id&libraries=places"></script>
 <script>
     // Make the dashboard widgets sortable Using jquery UI
     $('.connectedSortable').sortable({

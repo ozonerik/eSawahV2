@@ -70,7 +70,7 @@ class Sawahs extends Component
                 $this->lokasi=  $geocoder ;
             }else{
                 $this->lokasi=  '' ;
-                $this->dispatchBrowserEvent('getaddress',[
+                $this->dispatchBrowserEvent($data['eventname'],[
                     'map_id' => $this->map_id,
                     'lt' => 0,
                     'lg' => 0,
@@ -80,7 +80,7 @@ class Sawahs extends Component
         }else{
             $this->lokasi=$data['lokasi'];
             $this->map_id++;
-            $this->dispatchBrowserEvent('getaddress',[
+            $this->dispatchBrowserEvent($data['eventname'],[
                 'map_id' => $this->map_id,
                 'lt' => $data['lat'],
                 'lg' => $data['long'],

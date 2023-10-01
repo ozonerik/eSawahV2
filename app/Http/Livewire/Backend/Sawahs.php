@@ -61,10 +61,11 @@ class Sawahs extends Component
             $this->lokasi=$this->onGetGeocoder($data['lat'],$data['long']);
         }else{
             $this->lokasi=$data['lokasi'];
+            $this->map_id++;
             $this->dispatchBrowserEvent('getaddress',[
                 'map_id' => $this->map_id,
-                'lt' => $this->lt,
-                'lg' => $this->lg,
+                'lt' => $data['lat'],
+                'lg' => $data['long'],
             ]);
         }
     }

@@ -9,6 +9,7 @@ class Gis extends Component
 {
     protected $listeners = [
         'getLatlangInput',
+        'onGetAdress'
     ];
 
     public $latlang,$luas,$luasbata,$keliling,$lokasi;
@@ -19,14 +20,54 @@ class Gis extends Component
     public $lanjakw;
     public $lanjarp;
 
+    //autocomplete address
+
+    public function onGetAdress(){
+        $this->map_id++;
+        $this->dispatchBrowserEvent('getaddress',['map_id' => $this->map_id]);    
+    }
+    //end autocomplete address
+    
     public function mount(){
+        $this->emit('postAdded', 'hallo');
         $this->resetForm();
     }
 
     public function getLatlangInput($data)
     {
-        $this->latlang=$data['lat'].','.$data['long'];
-        $this->lokasi=$this->onGetGeocoder($data['lat'],$data['long']);
+        if($data['lat']==0 || $data['long']==0){
+            $this->latlang='';
+            $this->lt=0;
+            $this->lg=0;
+        }else{
+            $this->latlang=$data['lat'].','.$data['long'];
+            $this->lt=$data['lat'];
+            $this->lg=$data['long'];
+        }
+   
+        if(empty($data['lokasi'])){
+            $geocoder=$this->onGetGeocoder($data['lat'],$data['long']);
+            if($geocoder !== 'result_not_found'){
+                $this->lokasi=  $geocoder ;
+            }else{
+                $this->lokasi=  '' ;
+                $this->dispatchBrowserEvent('getaddress',[
+                    'map_id' => $this->map_id,
+                    'lt' => 0,
+                    'lg' => 0,
+                    'kordinat' => '',
+                ]);   
+            }    
+        }else{
+            $this->lokasi=$data['lokasi'];
+            $this->map_id++;
+            $this->dispatchBrowserEvent('getaddress',[
+                'map_id' => $this->map_id,
+                'lt' => $data['lat'],
+                'lg' => $data['long'],
+                'kordinat' => $this->latlang,
+            ]);
+        }
     }
 
     public function onGetlokasi(){
@@ -43,10 +84,6 @@ class Gis extends Component
     public function onRead(){
         $this->mode='read';
         $this->resetForm();
-    }
-
-    public function postAdded($value){
-        dd($value);
     }
 
     private function resetForm(){

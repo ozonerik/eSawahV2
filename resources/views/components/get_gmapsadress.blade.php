@@ -1,7 +1,6 @@
 <script>
 document.addEventListener(@js($eventname), event => {
-    var mode=event.detail.mode;
-    initAutocomplete(mode);
+    initAutocomplete();
     var ac=90;
     var lt=event.detail.lt;
     var lg=event.detail.lg;
@@ -15,9 +14,8 @@ document.addEventListener(@js($eventname), event => {
     }
 });
 
-async function initAutocomplete($mode) {
+async function initAutocomplete() {
         var input = document.getElementById(@js($inputname));
-        console.log($mode);
         const options = {
             componentRestrictions: { country: "id" },
             fields: ["formatted_address", "geometry", "name"],

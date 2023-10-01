@@ -70,22 +70,41 @@ class Sawahs extends Component
                 $this->lokasi=  $geocoder ;
             }else{
                 $this->lokasi=  '' ;
-                $this->dispatchBrowserEvent('editgetaddress',[
-                    'map_id' => $this->map_id,
-                    'lt' => 0,
-                    'lg' => 0,
-                    'kordinat' => '',
-                ]);
+                if($this->mode=='edit'){
+                    $this->dispatchBrowserEvent('editgetaddress',[
+                        'map_id' => $this->map_id,
+                        'lt' => 0,
+                        'lg' => 0,
+                        'kordinat' => '',
+                    ]);
+                }else{
+                    $this->dispatchBrowserEvent('getaddress',[
+                        'map_id' => $this->map_id,
+                        'lt' => 0,
+                        'lg' => 0,
+                        'kordinat' => '',
+                    ]);
+                }
+ 
             }    
         }else{
             $this->lokasi=$data['lokasi'];
             $this->map_id++;
-            $this->dispatchBrowserEvent('editgetaddress',[
-                'map_id' => $this->map_id,
-                'lt' => $data['lat'],
-                'lg' => $data['long'],
-                'kordinat' => $this->latlang,
-            ]);
+            if($this->mode=='edit'){
+                $this->dispatchBrowserEvent('editgetaddress',[
+                    'map_id' => $this->map_id,
+                    'lt' => $data['lat'],
+                    'lg' => $data['long'],
+                    'kordinat' => $this->latlang,
+                ]);
+            }else{
+                $this->dispatchBrowserEvent('getaddress',[
+                    'map_id' => $this->map_id,
+                    'lt' => $data['lat'],
+                    'lg' => $data['long'],
+                    'kordinat' => $this->latlang,
+                ]);
+            }
         }
     }
 

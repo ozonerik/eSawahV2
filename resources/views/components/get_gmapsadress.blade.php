@@ -25,14 +25,14 @@ async function initAutocomplete() {
             var place = autocomplete.getPlace();
             if(!place.geometry){
                 var lokasi=document.getElementById(@js($inputname)).value;
-                @this.set(@js($inputname), lokasi);
-                @this.set(@js($kordinatname),'');
+                //@this.set(@js($inputname), lokasi);
+                //@this.set(@js($kordinatname),'');
                 Livewire.emit(@js($emitname), {'lat': 0, 'long': 0, 'lokasi':lokasi});
             }else{
                 var lt=place.geometry['location'].lat();
                 var lg=place.geometry['location'].lng();
                 var lokasi=document.getElementById(@js($inputname)).value;
-                @this.set(@js($inputname), lokasi);
+                //@this.set(@js($inputname), lokasi);
                 var ac=90;
                 Livewire.emit(@js($emitname), {'lat': lt, 'long': lg, 'lokasi':lokasi});
             }

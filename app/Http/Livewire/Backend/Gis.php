@@ -23,7 +23,6 @@ class Gis extends Component
     //autocomplete address
 
     public function onGetAdress(){
-        $this->map_id++;
         $this->dispatchBrowserEvent('getaddress',['map_id' => $this->map_id]);    
     }
     //end autocomplete address

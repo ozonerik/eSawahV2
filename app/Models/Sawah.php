@@ -36,4 +36,8 @@ class Sawah extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function pawongans()
+    {
+        return $this->belongsToMany(Pawongan::class,'pawongan_sawah')->withTimestamps();
+    }
 }

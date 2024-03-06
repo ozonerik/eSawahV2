@@ -17,10 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nik');
             $table->string('nama');
-            $table->string('lokasi')->nullable();
-            $table->string('latlang')->nullable();
-            $table->text('alamat');
-            $table->string('telp');
+            $table->text('alamat')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('photo')->nullable();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

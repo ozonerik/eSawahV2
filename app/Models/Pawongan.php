@@ -12,10 +12,9 @@ class Pawongan extends Model
     protected $fillable = [
         'nik',
         'nama',
-        'telp',
-        'lokasi',
-        'latlang',
         'alamat',
+        'telp',
+        'photo',
         'user_id',
     ];
 

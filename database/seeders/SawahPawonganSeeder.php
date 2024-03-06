@@ -21,7 +21,7 @@ class SawahPawonganSeeder extends Seeder
         $sawah = ['1' => ['tahun' => '2021'] ,'2' => ['tahun' => '2024']];
         $pawongan->sawahs()->sync($sawah);
 
-        $pawongan = Pawongan::find(2);
+        $pawongan = Pawongan::find(3);
         $sawah = ['3' => ['tahun' => '2022']];
         $pawongan->sawahs()->sync($sawah);
     }

@@ -1,0 +1,58 @@
+<div>
+    <x-content_header name="Pawongan" >
+        <li class="breadcrumb-item active">Pawongan</li>
+        <li class="breadcrumb-item active">Daftar Pawongan</li>
+    </x-content_header>
+    <div class="row mx-1">
+        @if($mode=='read')
+        <x-card_table type="primary" width="12" order="1" smallorder="1" title="Slide Banner Info" :data="$Pawongan" :thead="['NIK','Nama','Telp','Photo']" :tbody="['nik','nama','telp','photo']" :tbtn="['edit','del']" search="Search...">
+        <x-slot:menu>
+            <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+            <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
+        </x-slot>    
+        </x-card_table>
+        @elseif($mode=='add')
+        <x-card_form name="Add Pawongan" width="12" order="1" smallorder="1" closeto="onRead">
+            <h4>Add Pawongan</h4>
+            <x-slot:footer>
+            <form wire:submit.prevent="addpawongan">
+                <x-input_form disabled="false" ids="nik" label="NIK" types="text" name="nik" placeholder="Type NIK" />
+                <x-input_form disabled="false" ids="nama" label="Nama" types="text" name="nama" placeholder="Type Nama" />
+                <x-input_form disabled="false" ids="alamat" label="Alamat" types="text" name="alamat" placeholder="Type Alamat" />
+                <x-input_form disabled="false" ids="telp" label="Telp" types="text" name="telp" placeholder="Type Telp" />
+                <div class="form-group">
+                    <div class="font-weight-bold mb-2">Photo</div>
+                    <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded" style="max-height:150px"/> 
+                </div>
+                <x-file_form2 ids="photo" label="Photo" name="photo" :placeholder="$filename" capture="environment"/>
+                <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
+                <button type="submit" class="btn btn-primary float-right" wire:target="photo" wire:loading.attr="disabled">Save</button>
+            </form>
+            </x-slot>
+        </x-card_form>
+        @elseif($mode=='edit')
+        <x-card_form name="Edit Pawongan" width="12" order="1" smallorder="1" closeto="onRead">
+            <h4>Edit Pawongan</h4>
+            <x-slot:footer>
+            <form wire:submit.prevent="editpawongan">
+                <x-input_form disabled="false" ids="nik" label="NIK" types="text" name="nik" placeholder="Type NIK" />
+                <x-input_form disabled="false" ids="nama" label="Nama" types="text" name="nama" placeholder="Type Nama" />
+                <x-input_form disabled="false" ids="alamat" label="Alamat" types="text" name="alamat" placeholder="Type Alamat" />
+                <x-input_form disabled="false" ids="telp" label="Telp" types="text" name="telp" placeholder="Type Telp" />
+                <div class="form-group">
+                    <div class="font-weight-bold mb-2">Photo</div>
+                    @if(!empty($tmpphoto))
+                    <img alt="images" src="{{ asset('storage/'. $tmpphoto) }}" class="img-thumbnail rounded" style="max-height:150px"/> 
+                    @else
+                    <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded" style="max-height:150px"/> 
+                    @endif
+                </div>
+                <x-file_form2 ids="photo" label="" name="photo" :placeholder="$filename" capture="environment"/>
+                <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
+                <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
+            </form>
+            </x-slot>
+        </x-card_form>
+        @endif
+    </div>
+</div>

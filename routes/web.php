@@ -8,6 +8,7 @@ use App\Http\Livewire\Backend\Result;
 use App\Http\Livewire\Backend\Users;
 use App\Http\Livewire\Backend\Infos;
 use App\Http\Livewire\Backend\Sawahs;
+use App\Http\Livewire\Backend\Pawongans;
 use App\Http\Livewire\Backend\Gis;
 
 
@@ -32,6 +33,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/result', Result::class)->name('result');
     Route::get('/sawahs', Sawahs::class)->name('sawahs');
     Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/pawongans', Pawongans::class)->name('pawongans');
+    Route::group(['middleware' => ['role:pro']], function () {
+        Route::get('/giss', Gis::class)->name('giss');
+    });
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/users', Users::class)->name('users');
         Route::get('/infos', Infos::class)->name('infos');

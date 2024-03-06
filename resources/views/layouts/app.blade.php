@@ -18,6 +18,9 @@
                 @endhasanyrole
                 <x-navitem_menu name="Daftar Sawah" routename="sawahs" icon="fas fa-map" />
             </x-navitem_tree>
+            <x-navitem_tree icon="fas fa-user-tie" name="Pawongan" :open="cek_currentroute(['pawongans'])">
+                <x-navitem_menu name="Daftar Pawongan" routename="pawongans" icon="fas fa-user-tie" />
+            </x-navitem_tree>
             <x-navitem_menu name="Profile" routename="profile" icon="fas fa-user" />
             @hasanyrole('admin')
             <x-navitem_tree icon="fas fa-tools" name="Settings" :open="cek_currentroute(['users','infos'])">

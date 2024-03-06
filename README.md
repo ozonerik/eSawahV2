@@ -4,6 +4,16 @@
 
 <b>esawah</b> adalah aplikasi manajemen penyewaan sawah berbasis web.
 
+## Next Fitures
+
+<b><i>Fitur For 2.0.1</i></b>
+<ul>
+<li>CRUD Pawongan</li>
+<li>CRUD Lanja</li>
+<li>CRUD Pajak</li>
+<li>CRUD Zakat</li>
+</ul>
+
 ## Changelogs
 
 <b><i>v2.0.0</i></b>

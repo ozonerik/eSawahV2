@@ -5,12 +5,15 @@
     </x-content_header>
     <div class="row mx-1">
         @if($mode=='read')
-        <x-card_table type="primary" width="12" order="1" smallorder="1" title="Slide Banner Info" :data="$Pawongan" :thead="['NIK','Nama','Telp','Photo']" :tbody="['nik','nama','telp','photo']" :tbtn="['edit','del']" search="Search...">
+        <x-card_table type="primary" width="12" order="1" smallorder="1" title="Daftar Pawongan" :data="$Pawongan" :thead="['NIK','Nama','Telp','Photo']" :tbody="['nik','nama','telp','photo']" :tbtn="['edit','del']" search="Search...">
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
             <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
+            <button wire:click="onTrashed" class="btn btn-sm btn-success" data-toggle="tooltip" title="Trash" @if(empty($Restorepawongan->total())) disabled @endif><i class="fa fa-archive mr-2"></i>Trash</button>
         </x-slot>    
         </x-card_table>
+        @elseif($mode=='trashed')
+        <x-card_tabletrash type="danger" width="9" order="1" smallorder="1" title="Restore Pawongan" :data="$Restorepawongan" :thead="['NIK','Nama','Telp','Photo']" :tbody="['nik','nama','telp','photo']" :tbtn="['restore','del']" search="Search..."/>
         @elseif($mode=='add')
         <x-card_form name="Add Pawongan" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Add Pawongan</h4>

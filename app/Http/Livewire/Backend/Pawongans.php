@@ -28,7 +28,8 @@ class Pawongans extends Component
     public $filename="Choose File";
     protected $listeners = [
         'delpawongan',
-        'delpawonganselect'
+        'delpawonganselect',
+        'onDelForceProses',
     ];
 
     //jangan gunakan variabel dengan nama rules dan messages 
@@ -37,13 +38,50 @@ class Pawongans extends Component
     // Batas Awal Fungsi Tabel
     public function getPawonganProperty(){
         $searchQuery = trim($this->search);
-        $requestData = ['nik', 'nama', 'alamat','lokasi'];
+        $requestData = ['nik', 'nama', 'alamat'];
         return Pawongan::where(function($q) use($requestData, $searchQuery) {
             foreach ($requestData as $field)
             $q->orWhere($field, 'like', "%{$searchQuery}%");
         })->orderBy('updated_at', 'DESC')->where('user_id',Auth::user()->id)->paginate($this->perPage,['*'], 'pawonganPage');
 
         //return Info::where('title','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'infoPage');
+    }
+    public function getRestorepawonganProperty()
+    {
+        return Pawongan::onlyTrashed()->where('user_id',Auth::user()->id)->orderBy('deleted_at', 'DESC')->paginate($this->perPage,['*'], 'pawongantrashPage');
+    }
+    public function onTrashed(){
+        $this->mode='trashed';
+    }
+    public function onResDel($id){
+        //dd('restore= '.$id);
+        Pawongan::where('id',$id)->withTrashed()->restore();
+        //reset form
+        $this->resetForm();
+        //flash message
+        //session()->now('success', 'Sawah berhasil direstore');
+        $this->alert('success', 'Pawongan berhasil direstore');
+        //return redirect()->route('sawahs');
+    }
+    public function onDelForce($id){
+        $this->ids=$id;
+        $pawongan = Pawongan::whereIn('id',[$id]);
+        $this->confirm("Apakah anda yakin ingin hapus permanen ?<p class='text-danger font-weight-bold'>".$pawongan->pluck('nama')->implode(',<br>')."</p>", 
+        [
+            'onConfirmed' => 'onDelForceProses'
+        ]);
+    }
+    public function onDelForceProses(){
+        //dd('delforce= '.$id);
+        //dd($this->ids);
+        $this->hapusfileDel($this->ids);
+        Pawongan::where('id',$this->ids)->withTrashed()->forceDelete();
+        //reset form
+        $this->resetForm();
+        //flash message
+        //session()->flash('success', 'Sawah berhasil dihapus permanen');
+        $this->alert('success', 'Pawongan berhasil dihapus permanen');
+        //return redirect()->route('sawahs');
     }
     public function updatedSelectPage($value){
         if($value){
@@ -61,7 +99,10 @@ class Pawongans extends Component
     public function render()
     {
         //dd($this->Info);
-        $data['Pawongan'] = $this->Pawongan;
+        $data = [
+            'Pawongan'=>$this->Pawongan,
+            'Restorepawongan'=>$this->Restorepawongan,
+        ];
         return view('livewire.backend.pawongans',$data)->extends('layouts.app');
     }
     // Batas Akhir Fungsi Tabel
@@ -72,8 +113,8 @@ class Pawongans extends Component
         }
     }
 
-    private function hapusfile($id){
-        $this->oldpath = Pawongan::findOrFail($id)->photo;
+    private function hapusfileDel($id){
+        $this->oldpath = Pawongan::onlyTrashed()->findOrFail($id)->photo;
         //dd($this->oldpath);
         $dir='pawongan'; 
         if(!empty($this->oldpath)){
@@ -174,7 +215,7 @@ class Pawongans extends Component
 
     public function delpawongan()
     {
-        $this->hapusfile($this->ids);
+        //$this->hapusfile($this->ids);
         Pawongan::findOrFail($this->ids)->delete();
         //reset form
         $this->resetForm();
@@ -195,7 +236,7 @@ class Pawongans extends Component
 
     public function delpawonganselect()
     {
-        $this->hapusfileselect();
+        //$this->hapusfileselect();
         Pawongan::whereIn('id',$this->checked)->delete();
         //reset form
         $this->resetForm();

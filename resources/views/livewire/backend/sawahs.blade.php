@@ -51,7 +51,7 @@
             <form wire:submit.prevent="addsawah">
                 <x-input_form wajib="true" disabled="" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
-                <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
+                <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah (m2)" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
                 <div wire:ignore id="mapaddsawah-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 300px;"></div>
                 <x-inputlokasi_form action="onGetlokasi" labelbtn="Get My Location" wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />
@@ -80,7 +80,7 @@
             <form wire:submit.prevent="editsawah">
                 <x-input_form wajib="true" disabled="" ids="nosawah" label="No Surat" types="text" name="nosawah" placeholder="Enter No Surat" />
                 <x-input_form wajib="true" disabled="" ids="namasawah" label="Nama Sawah" types="text" name="namasawah" placeholder="Type Nama Sawah" />
-                <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah" types="text" name="luas" placeholder="Type Luas Sawah" />
+                <x-input_form wajib="true" disabled="" ids="luas" label="Luas Sawah (m2)" types="text" name="luas" placeholder="Type Luas Sawah" />
                 <x-input_form wajib="true" disabled="" ids="lokasi" label="Lokasi Sawah" types="text" name="lokasi" placeholder="Type Lokasi Sawah" />
                 <div wire:ignore id="mapeditsawah-{{$map_id}}" class="w-100 rounded bg-blank" style="height: 300px;"></div>
                 <x-inputlokasi_form action="editGetlokasi" labelbtn="Get My Location" wajib="" disabled="" ids="latlang" label="Koordinat Sawah" types="text" name="latlang" placeholder="Get Koordinat Sawah" />

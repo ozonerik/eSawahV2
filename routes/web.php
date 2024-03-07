@@ -10,6 +10,7 @@ use App\Http\Livewire\Backend\Infos;
 use App\Http\Livewire\Backend\Sawahs;
 use App\Http\Livewire\Backend\Pawongans;
 use App\Http\Livewire\Backend\Gis;
+use App\Http\Livewire\Backend\Appconfigs;
 
 
 /*
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/giss', Gis::class)->name('giss');
     });
     Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/referensi', Appconfigs::class)->name('referensi');
         Route::get('/users', Users::class)->name('users');
         Route::get('/infos', Infos::class)->name('infos');
         Route::get('/giss', Gis::class)->name('giss');

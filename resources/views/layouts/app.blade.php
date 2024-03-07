@@ -23,7 +23,8 @@
             </x-navitem_tree>
             <x-navitem_menu name="Profile" routename="profile" icon="fas fa-user" />
             @hasanyrole('admin')
-            <x-navitem_tree icon="fas fa-tools" name="Settings" :open="cek_currentroute(['users','infos'])">
+            <x-navitem_tree icon="fas fa-tools" name="Settings" :open="cek_currentroute(['referensi','users','infos'])">
+                <x-navitem_menu name="Referensi" routename="referensi" icon="fas fa-asterisk" />
                 <x-navitem_menu name="Users" routename="users" icon="fas fa-users" />
                 <x-navitem_menu name="Info" routename="infos" icon="fas fa-bullhorn" />
             </x-navitem_tree>

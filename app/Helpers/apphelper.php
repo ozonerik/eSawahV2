@@ -1,6 +1,7 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
-use App\Models\Info;
+use App\Models\Appconfig;
 
 if (!function_exists('get_version')) {
     function get_version(){
@@ -10,22 +11,22 @@ if (!function_exists('get_version')) {
 
 if (!function_exists('get_googleapikey')) {
     function get_googleapikey(){
-        //$users = Info::get();
-        //$apikey=$config->mapapikey;
         return 'AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4';
     }
 }
 
 if (!function_exists('get_hargapadi')) {
     function get_hargapadi(){
-        $harga=750000;
+        //$harga=750000;
+        $harga=Appconfig::find(1)->hargapadi;
         return $harga;
     }
 }
 
 if (!function_exists('get_nilailanja')) {
     function get_nilailanja(){
-        $lanja=5;
+        //$lanja=5;
+        $lanja=Appconfig::find(1)->nilailanja;
         return $lanja;
     }
 }

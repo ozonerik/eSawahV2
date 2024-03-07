@@ -27,7 +27,7 @@
                     <div class="font-weight-bold mb-2">Photo</div>
                     <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded" style="max-height:150px"/> 
                 </div>
-                <x-file_form2 ids="photo" label="Photo" name="photo" :placeholder="$filename" capture="environment"/>
+                <x-file_form2 ids="photo" label="Photo" name="photo" :placeholder="$filename" capture=""/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right" wire:target="photo" wire:loading.attr="disabled">Save</button>
             </form>
@@ -50,7 +50,7 @@
                     <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded" style="max-height:150px"/> 
                     @endif
                 </div>
-                <x-file_form2 ids="photo" label="" name="photo" :placeholder="$filename" capture="environment"/>
+                <x-file_form2 ids="photo" label="" name="photo" :placeholder="$filename" capture=""/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>

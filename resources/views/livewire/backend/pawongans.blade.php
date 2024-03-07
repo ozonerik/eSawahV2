@@ -13,7 +13,7 @@
         </x-slot>    
         </x-card_table>
         @elseif($mode=='trashed')
-        <x-card_tabletrash type="danger" width="9" order="1" smallorder="1" title="Restore Pawongan" :data="$Restorepawongan" :thead="['NIK','Nama','Telp','Photo']" :tbody="['nik','nama','telp','photo']" :tbtn="['restore','del']" search="Search..."/>
+        <x-card_tabletrash type="danger" width="12" order="1" smallorder="1" title="Restore Pawongan" :data="$Restorepawongan" :thead="['NIK','Nama','Telp','Photo']" :tbody="['nik','nama','telp','photo']" :tbtn="['restore','del']" search="Search..."/>
         @elseif($mode=='add')
         <x-card_form name="Add Pawongan" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Add Pawongan</h4>

@@ -22,7 +22,8 @@ class Users extends Component
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
         'deluser',
-        'deluserselect'
+        'deluserselect',
+        'onDelForceProses',
     ];
 
     public $perPage=5;
@@ -41,6 +42,53 @@ class Users extends Component
                $q->orWhere($field, 'like', "%{$searchQuery}%");
         })->paginate($this->perPage,['*'], 'userPage');
         //return User::where('name','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'userPage');
+    }
+
+    public function getRestoreuserProperty()
+    {
+        return User::onlyTrashed()->orderBy('deleted_at', 'DESC')->paginate($this->perPage,['*'], 'infotrashPage');
+    }
+    public function onTrashed(){
+        $this->mode='trashed';
+    }
+    public function onResDel($id){
+        //dd('restore= '.$id);
+        User::where('id',$id)->withTrashed()->restore();
+        //reset form
+        $this->resetForm();
+        //flash message
+        //session()->now('success', 'Sawah berhasil direstore');
+        $this->alert('success', 'User berhasil direstore');
+        //return redirect()->route('sawahs');
+    }
+    public function onDelForce($id){
+        $this->ids=$id;
+        $user = User::whereIn('id',[$id]);
+        $this->confirm("Apakah anda yakin ingin hapus permanen ?<p class='text-danger font-weight-bold'>".$user->pluck('name')->implode(',<br>')."</p>", 
+        [
+            'onConfirmed' => 'onDelForceProses'
+        ]);
+    }
+    public function onDelForceProses(){
+        //dd('delforce= '.$id);
+        //dd($this->ids);
+        $this->hapusfileDel($this->ids);
+        User::where('id',$this->ids)->withTrashed()->forceDelete();
+        //reset form
+        $this->resetForm();
+        //flash message
+        //session()->flash('success', 'Sawah berhasil dihapus permanen');
+        $this->alert('success', 'User berhasil dihapus permanen');
+        //return redirect()->route('sawahs');
+    }
+
+    private function hapusfileDel($id){
+        $this->oldpath = User::onlyTrashed()->findOrFail($id)->photo;
+        //dd($this->oldpath);
+        $dir='photos'; 
+        if(!empty($this->oldpath)){
+            $this->deletefile($this->oldpath);
+        }
     }
 
     public function updatedSelectPage($value){
@@ -299,7 +347,11 @@ class Users extends Component
 
     public function render()
     {
-        $data['user'] = $this->User;
+        //$data['user'] = $this->User;
+        $data = [
+            'user'=>$this->User,
+            'Restoreuser'=>$this->Restoreuser,
+        ];
         return view('livewire.backend.users',$data)->extends('layouts.app');
     }
     

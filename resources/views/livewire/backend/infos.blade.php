@@ -9,8 +9,11 @@
         <x-slot:menu>
             <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
             <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
+            <button wire:click="onTrashed" class="btn btn-sm btn-success" data-toggle="tooltip" title="Trash" @if(empty($Restoreinfo->total())) disabled @endif><i class="fa fa-archive mr-2"></i>Trash</button>
         </x-slot>    
         </x-card_table>
+        @elseif($mode=='trashed')
+        <x-card_tabletrash type="danger" width="12" order="1" smallorder="1" title="Restore Info" :data="$Restoreinfo" :thead="['Title','Message','Image']" :tbody="['title','message','img']" :tbtn="['restore','del']" search="Search..."/>
         @elseif($mode=='add')
         <x-card_form name="Add Info" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Add Info</h4>

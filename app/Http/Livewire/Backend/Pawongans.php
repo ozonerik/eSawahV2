@@ -122,6 +122,15 @@ class Pawongans extends Component
         }
     }
 
+    private function hapusfile($id){
+        $this->oldpath = Pawongan::findOrFail($id)->photo;
+        //dd($this->oldpath);
+        $dir='pawongan'; 
+        if(!empty($this->oldpath)){
+            $this->deletefile($this->oldpath);
+        }
+    }
+
     public function hapusfileselect()
     {
         $pawongan = Pawongan::whereIn('id', $this->checked)->get();

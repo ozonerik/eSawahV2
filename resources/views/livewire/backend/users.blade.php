@@ -10,10 +10,13 @@
                 <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                 <button wire:click="onEditSelect" class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit" @if(empty($checked)) disabled @endif><i class="fas fa-edit"></i></button>
                 <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
+                <button wire:click="onTrashed" class="btn btn-sm btn-success" data-toggle="tooltip" title="Trash" @if(empty($Restoreuser->total())) disabled @endif><i class="fa fa-archive mr-2"></i>Trash</button>
                 <!-- <button class="btn btn-sm btn-success" data-toggle="tooltip" title="Download" @if(empty($checked)) disabled @endif><i class="fas fa-download"></i></button>
                 <button class="btn btn-sm btn-info" data-toggle="tooltip" title="Upload" @if(empty($checked)) disabled @endif><i class="fas fa-upload"></i></button> -->
             </x-slot>
         </x-card_table>
+        @elseif($mode=='trashed')
+        <x-card_tabletrash type="danger" width="12" order="1" smallorder="1" title="Restore User" :data="$Restoreuser" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['restore','del']" search="Search..."/>
         @elseif($mode=='add')
         <x-card_form name="Add User" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Add User</h4>

@@ -9,12 +9,13 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class Appconfigs extends Component
 {
     use LivewireAlert;
-    public $hargapadi,$nilailanja;
+    public $mapapikey,$hargapadi,$nilailanja;
 
     public function mount()
     {
         $config=Appconfig::find(1);
 
+        $this->mapapikey= $config->mapapikey;
         $this->hargapadi= $config->hargapadi;
         $this->nilailanja= $config->nilailanja;
     }
@@ -22,11 +23,13 @@ class Appconfigs extends Component
     public function editreferensi(){
         $this->validate(
             [ 
+                'mapapikey' => 'required',
                 'hargapadi' => 'required',
                 'nilailanja' => 'required',
             ]);
         
         $config=Appconfig::updateOrCreate(['id' => '1'], [
+            'mapapikey' => $this->mapapikey,
             'hargapadi' => $this->hargapadi,
             'nilailanja' => $this->nilailanja,
         ]);

@@ -1,14 +1,12 @@
 <?php
 
-use App\Models\Appconfig;
-
 return [
 
     /*
      * The api key used when sending Geocoding requests to Google.
      */
-    'key' => get_googleapikey(),
-    //'key' => env('GMAP_API_KEY', 'AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4'),
+    //'key' => get_googleapikey(),
+    'key' => env('GMAP_API_KEY', get_googleapikey()),
 
     /*
      * The language param used to set response translations for textual data.

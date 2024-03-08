@@ -7,7 +7,7 @@
         <x-input_form ids="l2" label="L2 (m)" types="text" name="l2" placeholder="Enter L2" disabled="false"/>
         <x-input_form ids="la" label="LA (deg)" types="text" name="la" placeholder="Enter LA" disabled="false"/>
         <x-input_form ids="m" label="M (m)" types="text" name="m" placeholder="Enter M" disabled="false"/>
-        <x-input_form ids="hgpadi" label="Harga 1kw Gabah Kering (Rp)" types="text" name="hgpadi" placeholder="Enter Harga 1kw Gabah Kering" disabled="false"/>
+        <x-input_currency ids="hgpadi" label="Harga 1kw Gabah Kering (Rp)" types="text" name="hgpadi" placeholder="Enter Harga 1kw Gabah Kering" disabled="false"/>
         <x-input_form ids="lanja" label="Lanja/100 bata (kw)" types="text" name="lanja" placeholder="Enter Kwintal Lanja" disabled="false"/>
         <x-input_form ids="ls1" label="Luas(umum) (m2) " types="text" name="ls1" placeholder="Luas...." disabled="true"/>
         <x-input_form ids="ls3" label="Luas(umum) (bata)" types="text" name="ls3" placeholder="Luas...." disabled="true"/>

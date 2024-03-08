@@ -199,16 +199,18 @@ if (!function_exists('get_nlanja')) {
 if (!function_exists('get_floatttorp')) {
     function get_floatttorp($val){
         $val = floatval($val);
-        $a = new \NumberFormatter("id-ID", \NumberFormatter::CURRENCY);
-        $result=$a->format($val);
+        $a = new NumberFormatter("id-ID", NumberFormatter::CURRENCY);
+        $a->setAttribute( $a::FRACTION_DIGITS, 0 );
+        $result=$a->formatCurrency($val,"IDR");
         return $result;
     }
 }
 
 if (!function_exists('get_rptofloat')) {
     function get_rptofloat($val){
-        $a = new \NumberFormatter("id-ID", \NumberFormatter::CURRENCY);
-        $result=$a->parseCurrency($$val);
+        $a = new NumberFormatter("id-ID", NumberFormatter::CURRENCY);
+        $a->setAttribute( $a::FRACTION_DIGITS, 0 );
+        $result=$a->parseCurrency($val);
         return $result;
     }
 }

@@ -55,4 +55,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Pawongan::class);
     }
 
+    public function lanjas()
+    {
+        return $this->hasMany(Lanja::class);
+    }
+
 }

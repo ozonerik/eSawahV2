@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Spatie\Geocoder\Geocoder;
+use Manny;
 
 class Sawahs extends Component
 {
@@ -227,7 +228,7 @@ class Sawahs extends Component
         $this->l2=0;
         $this->la=0;
         $this->m=0;
-        $this->hgpadi=get_hargapadi();
+        $this->hgpadi=get_floatttorp(get_hargapadi());
         $this->lanja=get_nilailanja();
         $this->ls1=get_conluas(0);
         $this->ls2=get_conluas(0);
@@ -245,7 +246,7 @@ class Sawahs extends Component
             'l2' => 'numeric|nullable',
             'la' => 'numeric|nullable',
             'm' => 'numeric|nullable',
-            'hgpadi' => 'required|numeric',
+            'hgpadi' => 'required',
             'lanja' => 'required|numeric',
         ]);
         $p1=$this->p1;
@@ -254,7 +255,7 @@ class Sawahs extends Component
         $l2=$this->l2;
         $la=$this->la;
         $m=$this->m;
-        $hgpadi=$this->hgpadi;
+        $hgpadi=Manny::stripper($this->hgpadi,['num']);
         $lanja=$this->lanja;
         if(empty($p2)||empty($l2)){
             $p1=floatval($p1);
@@ -311,7 +312,7 @@ class Sawahs extends Component
     public function resetKonversi(){
         $this->cluas=0;
         $this->cbata=0;
-        $this->conhgpadi=get_hargapadi();
+        $this->conhgpadi=get_floatttorp(get_hargapadi());
         $this->conlanja=get_nilailanja();
         $this->clanjakw=get_lanja($this->cluas,$this->conlanja);
         $this->clanjarp=get_nlanja($this->cluas,$this->conlanja,$this->conhgpadi);
@@ -321,12 +322,13 @@ class Sawahs extends Component
             [ 
                 'cluas' => 'numeric|nullable',
                 'cbata' => 'numeric|nullable',
-                'conhgpadi' => 'required|numeric',
+                'conhgpadi' => 'required',
                 'conlanja' => 'required|numeric',
             ]);
+        
         $cluas=$this->cluas;
         $cbata=$this->cbata;
-        $conhgpadi=$this->conhgpadi;
+        $conhgpadi=Manny::stripper($this->conhgpadi,['num']);
         $conlanja=$this->conlanja;
         $this->clanjakw= get_lanja($cluas,$conlanja);
         $this->clanjarp= get_nlanja($cluas,$conlanja,$conhgpadi);
@@ -336,6 +338,7 @@ class Sawahs extends Component
         $this->mode='read';
         $this->resetForm();
     }
+
     public function onEdit($id){
         $this->onGetAdress('edit');
         $this->mode='edit';
@@ -352,10 +355,10 @@ class Sawahs extends Component
         $this->b_selatan=$sawah->b_selatan;
         $this->namapenjual=$sawah->namapenjual;
         $this->hargabeli=$sawah->hargabeli;
-        $this->tglbeli=$sawah->tglbeli;
+        $this->tglbeli=Carbon::parse($sawah->tglbeli)->format("d-m-Y");
         $this->namapembeli=$sawah->namapembeli;
         $this->hargajual=$sawah->hargajual;
-        $this->tgljual=$sawah->tgljual;
+        $this->tgljual=Carbon::parse($sawah->tgljual)->format("d-m-Y");
         $this->nop=$sawah->nop;
         $this->nilaipajak=$sawah->nilaipajak;
         $this->img=$sawah->img;
@@ -413,10 +416,10 @@ class Sawahs extends Component
                 'b_selatan' => 'nullable|string',
                 'namapenjual' => 'nullable|string',
                 'hargabeli' => 'nullable|numeric',
-                'tglbeli' => 'nullable|string',
+                'tglbeli' => 'nullable|date',
                 'namapembeli' => 'nullable|string',
                 'hargajual' => 'nullable|numeric',
-                'tgljual' => 'nullable|string',
+                'tgljual' => 'nullable|date',
                 'nop' => 'nullable|string',
                 'nilaipajak' => 'nullable|numeric',
                 'img' => 'nullable|image|max:1024',
@@ -446,10 +449,10 @@ class Sawahs extends Component
             'b_selatan' => $this->b_selatan,
             'namapenjual' => $this->namapenjual,
             'hargabeli' => $this->hargabeli,
-            'tglbeli' => $this->tglbeli,
+            'tglbeli' => Carbon::parse($this->tglbeli)->format("Y-m-d"),
             'namapembeli' => $this->namapembeli,
             'hargajual' => $this->hargajual,
-            'tgljual' => $this->tgljual,
+            'tgljual' => Carbon::parse($this->tgljual)->format("Y-m-d"),
             'nop' => $this->nop,
             'nilaipajak' => $this->nilaipajak,
             'img' => $this->newpath,
@@ -483,10 +486,10 @@ class Sawahs extends Component
                 'b_selatan' => 'nullable|string',
                 'namapenjual' => 'nullable|string',
                 'hargabeli' => 'nullable|numeric',
-                'tglbeli' => 'nullable|string',
+                'tglbeli' => 'nullable|date',
                 'namapembeli' => 'nullable|string',
                 'hargajual' => 'nullable|numeric',
-                'tgljual' => 'nullable|string',
+                'tgljual' => 'nullable|date',
                 'nop' => 'nullable|string',
                 'nilaipajak' => 'nullable|numeric',
                 'img' => 'nullable|image|max:1024',
@@ -515,10 +518,10 @@ class Sawahs extends Component
             'b_selatan' => $this->b_selatan,
             'namapenjual' => $this->namapenjual,
             'hargabeli' => $this->hargabeli,
-            'tglbeli' => $this->tglbeli,
+            'tglbeli' => Carbon::parse($this->tglbeli)->format("Y-m-d"),
             'namapembeli' => $this->namapembeli,
             'hargajual' => $this->hargajual,
-            'tgljual' => $this->tgljual,
+            'tgljual' => Carbon::parse($this->tgljual)->format("Y-m-d"),
             'nop' => $this->nop,
             'nilaipajak' => $this->nilaipajak,
             'img' => $this->newpath,

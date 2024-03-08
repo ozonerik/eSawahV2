@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(InfoSeeder::class);
         $this->call(SawahSeeder::class);
         $this->call(PawonganSeeder::class);
-        $this->call(SawahPawonganSeeder::class);
+        //$this->call(SawahPawonganSeeder::class);
+        $this->call(LanjaSeeder::class);
         $this->call(AppconfigSeeder::class);
     }
 }

@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Pawongan extends Model
+class Lanja extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $fillable = [
-        'nik',
-        'nama',
-        'alamat',
-        'telp',
-        'photo',
+        'tahun',
+        'nilailanja',
+        'sawah_id',
+        'pawongan_id',
         'user_id',
     ];
 
@@ -23,14 +23,14 @@ class Pawongan extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function lanjas()
+    public function pawongans()
     {
-        return $this->hasMany(Lanja::class);
+        return $this->belongsTo(Pawongan::class);
     }
 
-/*     public function sawahs()
+    public function sawahs()
     {
-        return $this->belongsToMany(Sawah::class,'pawongan_sawah')->withTimestamps();
-    } */
+        return $this->belongsTo(Sawah::class);
+    }
 
 }

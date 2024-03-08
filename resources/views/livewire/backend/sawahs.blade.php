@@ -1,14 +1,26 @@
 @push('js')
 <!-- add -->
-<x-get_gmapsadress eventname="getaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapaddsawah" kordinatname="latlang"/>
-<x-get_maplocation eventname="getLocation" emitname="getLatlangInput" mapname="mapaddsawah"/>
+<!-- <x-get_gmapsadress eventname="getaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapaddsawah" kordinatname="latlang"/>
+<x-get_maplocation eventname="getLocation" emitname="getLatlangInput" mapname="mapaddsawah"/> -->
+
+<x-get_measureaddress eventname="getaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapaddsawah" kordinatname="latlang"/>
+<x-get_mapmeasure eventname="getLocation" emitname="getLatlangInput" mapname="mapaddsawah"/>
+
 <!-- edit -->
-<x-get_gmapsadress eventname="editgetaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapeditsawah" kordinatname="latlang"/>
-<x-get_maplocation eventname="editgetLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
+<!-- <x-get_gmapsadress eventname="editgetaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapeditsawah" kordinatname="latlang"/>
+<x-get_maplocation eventname="editgetLocation" emitname="getLatlangInput" mapname="mapeditsawah"/> -->
+
+<x-get_measureaddress eventname="editgetaddress" emitname="getLatlangInput" inputname="lokasi" mapname="mapeditsawah" kordinatname="latlang"/>
+<x-get_mapmeasure eventname="editgetLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
+
 <!-- show map by kordinat -->
 <x-show_maplocation eventname="showLocation" emitname="getLatlangInput" mapname="mapeditsawah"/>
+
 <!-- init map -->
-<x-script_lokasi/>
+<!-- <x-script_lokasi/> -->
+
+<x-script_lokasimeasure/>
+
 @endpush
 <div>
     <x-content_header name="Daftar Sawah" >

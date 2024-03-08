@@ -25,6 +25,7 @@ class Sawahs extends Component
     public $checked = [];
     public $search='';
     public $mode='read';
+    public $luasbata,$keliling;
     public $ids,$nosawah,$namasawah,$luas,$lokasi,$latlang,$b_barat,$b_utara,$b_timur,$b_selatan,$namapenjual,$hargabeli,$tglbeli,$namapembeli,$hargajual,$tgljual,$nop,$nilaipajak,$img,$user_id;
     public $oldpath,$newpath,$tmpimg;
     public $filename="Choose File";

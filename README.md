@@ -12,8 +12,8 @@
 <li>CRUD Lanja</li>
 <li>CRUD Pajak</li>
 <li>CRUD Zakat</li>
-~~<li>API Harga Emas untuk Zakat</li>~~
-~~<li>Harga Pasaran Sawah Per Bata untuk Nilai Aset</li>~~  
+<li>~~API Harga Emas untuk Zakat~~</li>
+<li>~~Harga Pasaran Sawah Per Bata untuk Nilai Aset~~</li>
 </ul>
 
 ## Changelogs

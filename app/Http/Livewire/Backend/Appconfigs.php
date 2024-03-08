@@ -10,15 +10,16 @@ use Manny;
 class Appconfigs extends Component
 {
     use LivewireAlert;
-    public $mapapikey,$hargapadi,$nilailanja;
+    public $mapapikey,$hargapadi,$nilailanja,$hargaemas,$hargabata;
 
     public function mount()
     {
         $config=Appconfig::find(1);
-
         $this->mapapikey= $config->mapapikey;
         $this->hargapadi= get_floatttorp($config->hargapadi);
         $this->nilailanja= $config->nilailanja;
+        $this->hargaemas=get_floatttorp(get_hargaemas());
+        $this->hargabata=get_floatttorp($config->hargabata);
     }
 
     public function onReset(){
@@ -26,6 +27,8 @@ class Appconfigs extends Component
         $this->mapapikey= $config->mapapikey;
         $this->hargapadi= get_floatttorp($config->hargapadi);
         $this->nilailanja= $config->nilailanja;
+        $this->hargaemas=get_floatttorp(get_hargaemas());
+        $this->hargabata=get_floatttorp($config->hargabata);
     }
 
     public function editreferensi(){
@@ -34,12 +37,14 @@ class Appconfigs extends Component
                 'mapapikey' => 'required',
                 'hargapadi' => 'required',
                 'nilailanja' => 'required',
+                'hargabata' => 'required',
             ]);
         
         $config=Appconfig::updateOrCreate(['id' => '1'], [
             'mapapikey' => $this->mapapikey,
             'hargapadi' => Manny::stripper($this->hargapadi,['num']),
             'nilailanja' => $this->nilailanja,
+            'hargabata' => Manny::stripper($this->hargabata,['num']),
         ]);
 
         //flash message

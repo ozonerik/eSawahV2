@@ -2,6 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Appconfig;
+use Illuminate\Support\Facades\Http;
+
+if (!function_exists('get_hargabata')) {
+    function get_hargabata(){
+        //$harga=1100000;
+        $harga=Appconfig::find(1)->hargabata;
+        return $harga;
+    }
+}
+
+if (!function_exists('get_hargaemas')) {
+    function get_hargaemas(){
+        $response = Http::get( 'https://logam-mulia-api.vercel.app/prices/hargaemas-com' );
+        if($response->successful()){
+            $data = $response->json();
+            $hargabeli=$data['data'][0]['buy'];
+        }else{
+            $hargabeli=900000;
+        }   
+        return $hargabeli;
+    }
+}
 
 if (!function_exists('get_version')) {
     function get_version(){

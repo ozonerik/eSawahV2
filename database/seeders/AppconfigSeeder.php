@@ -20,6 +20,7 @@ class AppconfigSeeder extends Seeder
                 'mapapikey' => 'AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4',
                 'hargapadi' => 750000,
                 'nilailanja' => 5,
+                'hargabata' => 1100000,
             ]);
     }
 }

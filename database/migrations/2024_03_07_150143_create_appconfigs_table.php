@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('mapapikey');
             $table->bigInteger('hargapadi');
             $table->integer('nilailanja');
+            $table->bigInteger('hargabata');
             $table->timestamps();
         });
     }

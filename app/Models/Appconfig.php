@@ -12,5 +12,6 @@ class Appconfig extends Model
         'mapapikey',
         'hargapadi',
         'nilailanja',
+        'hargabata',
     ];
 }

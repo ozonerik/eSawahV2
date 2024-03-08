@@ -184,6 +184,7 @@ class Sawahs extends Component
     public function render()
     {
         //dd(Carbon::today()->toDateString());
+        $this->dispatchBrowserEvent('run_maskcurrency');
         $data = [
             'Sawah'=>$this->Sawah,
             'Restoresawah'=>$this->Restoresawah,
@@ -340,7 +341,7 @@ class Sawahs extends Component
     }
 
     public function onEdit($id){
-        $this->dispatchBrowserEvent('runCurrencyScript');
+        $this->dispatchBrowserEvent('run_maskcurrency');
         $this->onGetAdress('edit');
         $this->mode='edit';
         $this->ids=$id;
@@ -468,7 +469,7 @@ class Sawahs extends Component
 
     public function onAdd(){
         //dd($this->kordinat);
-        $this->dispatchBrowserEvent('runCurrencyScript');
+        $this->dispatchBrowserEvent('run_maskcurrency');
         $this->mode='add';
         $this->onGetAdress('add');
         $this->resetForm();

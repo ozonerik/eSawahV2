@@ -48,6 +48,7 @@ class Appconfigs extends Component
 
     public function render()
     {
+        $this->dispatchBrowserEvent('run_maskcurrency');
         return view('livewire.backend.appconfigs')->extends('layouts.app');
     }
 }

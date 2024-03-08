@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('bayarlanjas', function (Blueprint $table) {
             $table->id();
+            $table->date('tglbayar');
+            $table->bigInteger('bayarlanja');
+            $table->string('ket')->nullable();
             $table->foreignId('lanja_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

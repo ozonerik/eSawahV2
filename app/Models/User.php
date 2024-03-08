@@ -60,4 +60,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Lanja::class);
     }
 
+    public function bayarlanjas()
+    {
+        return $this->hasMany(Bayarlanja::class);
+    }
+
 }

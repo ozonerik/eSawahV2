@@ -18,8 +18,12 @@
                 @endhasanyrole
                 <x-navitem_menu name="Daftar Sawah" routename="sawahs" icon="fas fa-map" />
             </x-navitem_tree>
-            <x-navitem_tree icon="fas fa-tractor" name="Pawongan" :open="cek_currentroute(['pawongans'])">
-                <x-navitem_menu name="Daftar Pawongan" routename="pawongans" icon="fas fa-user-tie" />
+            <x-navitem_tree icon="fas fa-users" name="Pawongan" :open="cek_currentroute(['pawongans'])">
+                <x-navitem_menu name="Daftar Pawongan" routename="pawongans" icon="fas fa-users" />
+            </x-navitem_tree>
+            <x-navitem_tree icon="fas fa-coins" name="Lanja" :open="cek_currentroute(['lanjas','bayarlanjas'])">
+                <x-navitem_menu name="Daftar Lanja" routename="lanjas" icon="fas fa-coins" />
+                <x-navitem_menu name="Bayar Lanja" routename="bayarlanjas" icon="fas fa-wallet" />
             </x-navitem_tree>
             <x-navitem_menu name="Profile" routename="profile" icon="fas fa-user" />
             @hasanyrole('admin')

@@ -11,6 +11,8 @@ use App\Http\Livewire\Backend\Sawahs;
 use App\Http\Livewire\Backend\Pawongans;
 use App\Http\Livewire\Backend\Gis;
 use App\Http\Livewire\Backend\Appconfigs;
+use App\Http\Livewire\Backend\Lanjas;
+use App\Http\Livewire\Backend\Bayarlanjas;
 
 
 /*
@@ -35,6 +37,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/sawahs', Sawahs::class)->name('sawahs');
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/pawongans', Pawongans::class)->name('pawongans');
+    Route::get('/lanjas', Lanjas::class)->name('lanjas');
+    Route::get('/bayarlanjas', Bayarlanjas::class)->name('bayarlanjas');
     Route::group(['middleware' => ['role:pro']], function () {
         Route::get('/giss', Gis::class)->name('giss');
     });

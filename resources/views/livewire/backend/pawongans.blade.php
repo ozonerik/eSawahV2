@@ -1,5 +1,5 @@
 <div>
-    <x-content_header name="Pawongan" >
+    <x-content_header name="Daftar Pawongan" >
         <li class="breadcrumb-item active">Pawongan</li>
         <li class="breadcrumb-item active">Daftar Pawongan</li>
     </x-content_header>

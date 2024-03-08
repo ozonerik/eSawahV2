@@ -11,7 +11,7 @@
 <x-script_lokasi/>
 @endpush
 <div>
-    <x-content_header name="Sawah" >
+    <x-content_header name="Daftar Sawah" >
         <li class="breadcrumb-item active">Sawah</li>
         <li class="breadcrumb-item active">Daftar Sawah</li>
     </x-content_header>

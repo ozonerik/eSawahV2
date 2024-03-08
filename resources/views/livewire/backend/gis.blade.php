@@ -21,7 +21,7 @@
                 <x-input_form wajib="" disabled="" ids="luas" label="Luas (m2)" types="text" name="luas" placeholder="Get Luas (m2)" />
                 <x-input_form wajib="" disabled="" ids="luasbata" label="Luas (bata)" types="text" name="luasbata" placeholder="Get Luas (bata)" />
                 <x-input_form wajib="" disabled="" ids="keliling" label="Keliling (m)" types="text" name="keliling" placeholder="Get Keliling (m)" />
-                <x-input_form wajib="true" ids="hgpadi" label="Harga 1kw Gabah Kering (Rp)" types="text" name="hgpadi" placeholder="Enter Harga 1kw Gabah Kering" disabled="false"/>
+                <x-input_currency wajib="true" ids="hgpadi" label="Harga 1kw Gabah Kering (Rp)" types="text" name="hgpadi" placeholder="Enter Harga 1kw Gabah Kering" disabled="false"/>
                 <x-input_form wajib="true" ids="lanja" label="Lanja/100 bata (kw)" types="text" name="lanja" placeholder="Enter Kwintal Lanja" disabled="false"/>
                 <x-input_form ids="lanjakw" label="Nilai Lanja/Thn (kw)" types="text" name="lanjakw" placeholder="Nilai Lanja (kw)" disabled="true"/>
                 <x-input_form ids="lanjarp" label="Nilai Lanja/Thn (Rp)" types="text" name="lanjarp" placeholder="Nilai Lanja (Rp)" disabled="true"/>

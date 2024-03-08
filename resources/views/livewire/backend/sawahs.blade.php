@@ -60,10 +60,10 @@
                 <x-input_form disabled="" ids="b_timur" label="Batas Timur/Wetan" types="text" name="b_timur" placeholder="Type Batas Timur Sawah" />
                 <x-input_form disabled="" ids="b_selatan" label="Batas Selatan/Kidul" types="text" name="b_selatan" placeholder="Type Batas Selatan Sawah" />
                 <x-input_form disabled="" ids="namapenjual" label="Nama Penjual" types="text" name="namapenjual" placeholder="Type Penjual Sawah" />
-                <x-input_form disabled="" ids="hargabeli" label="Harga Beli (Rp)" types="text" name="hargabeli" placeholder="Type Harga Beli Sawah" />
+                <x-input_currency disabled="" ids="hargabeli" label="Harga Beli (Rp)" types="text" name="hargabeli" placeholder="Type Harga Beli Sawah" />
                 <x-datepicker_form wajib="" disabled="" ids="tglbeli" label="Tanggal Beli" types="text" name="tglbeli" placeholder="Tanggal Beli" formatdate="dd-mm-yyyy"/>
                 <x-input_form disabled="" ids="namapembeli" label="Nama Pembeli" types="text" name="namapembeli" placeholder="Type Pembeli Sawah" />
-                <x-input_form disabled="" ids="hargajual" label="Harga Jual (Rp)" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
+                <x-input_currency disabled="" ids="hargajual" label="Harga Jual (Rp)" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
                 <x-datepicker_form wajib="" disabled="" ids="tgljual" label="Tanggal Jual" types="text" name="tgljual" placeholder="Tanggal Jual" formatdate="dd-mm-yyyy"/>
                 <x-input_form disabled="" ids="nop" label="NOP" types="text" name="nop" placeholder="Type Nomor Objek Pajak" />
                 <x-input_form disabled="" ids="nilaipajak" label="Nilai Pajak (Rp)" types="text" name="nilaipajak" placeholder="Type Nilai Pajak Sawah" />
@@ -89,10 +89,10 @@
                 <x-input_form disabled="" ids="b_timur" label="Batas Timur/Wetan" types="text" name="b_timur" placeholder="Type Batas Timur Sawah" />
                 <x-input_form disabled="" ids="b_selatan" label="Batas Selatan/Kidul" types="text" name="b_selatan" placeholder="Type Batas Selatan Sawah" />
                 <x-input_form disabled="" ids="namapenjual" label="Nama Penjual" types="text" name="namapenjual" placeholder="Type Penjual Sawah" />
-                <x-input_form disabled="" ids="hargabeli" label="Harga Beli (Rp)" types="text" name="hargabeli" placeholder="Type Harga Beli Sawah" />
+                <x-input_currency disabled="" ids="hargabeli" label="Harga Beli (Rp)" types="text" name="hargabeli" placeholder="Type Harga Beli Sawah" />
                 <x-datepicker_form wajib="" disabled="" ids="tglbeli" label="Tanggal Beli" types="text" name="tglbeli" placeholder="Tanggal Beli" formatdate="dd-mm-yyyy"/>
                 <x-input_form disabled="" ids="namapembeli" label="Nama Pembeli" types="text" name="namapembeli" placeholder="Type Pembeli Sawah" />
-                <x-input_form disabled="" ids="hargajual" label="Harga Jual (Rp)" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
+                <x-input_currency disabled="" ids="hargajual" label="Harga Jual (Rp)" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
                 <x-datepicker_form wajib="" disabled="" ids="tgljual" label="Tanggal Jual" types="text" name="tgljual" placeholder="Tanggal Jual" formatdate="dd-mm-yyyy"/>
                 <x-input_form disabled="" ids="nop" label="NOP" types="text" name="nop" placeholder="Type Nomor Objek Pajak" />
                 <x-input_form disabled="" ids="nilaipajak" label="Nilai Pajak (Rp)" types="text" name="nilaipajak" placeholder="Type Nilai Pajak Sawah" />

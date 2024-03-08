@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend;
 
 use Livewire\Component;
 use Spatie\Geocoder\Geocoder;
+use Manny;
 
 class Gis extends Component
 {
@@ -93,7 +94,7 @@ class Gis extends Component
         $this->luas=0;
         $this->luasbata=0;
         $this->keliling=0;
-        $this->hgpadi=get_hargapadi();
+        $this->hgpadi=get_floatttorp(get_hargapadi());
         $this->lanja=get_nilailanja();
         $this->lanjakw=get_lanja($this->luas,$this->lanja);
         $this->lanjarp=get_nlanja($this->luas,$this->lanja,$this->hgpadi);
@@ -121,12 +122,12 @@ class Gis extends Component
              [ 
                  'luas' => 'numeric|nullable',
                  'luasbata' => 'numeric|nullable',
-                 'hgpadi' => 'required|numeric',
+                 'hgpadi' => 'required',
                  'lanja' => 'required|numeric',
              ]);
             $luas=$this->luas;
             $luasbata=$this->luasbata;
-            $hgpadi=$this->hgpadi;
+            $hgpadi=Manny::stripper($this->hgpadi,['num']);
             $lanja=$this->lanja;
             $this->lanjakw= get_lanja($luas,$lanja);
             $this->lanjarp= get_nlanja($luas,$lanja,$hgpadi);

@@ -340,6 +340,7 @@ class Sawahs extends Component
     }
 
     public function onEdit($id){
+        $this->dispatchBrowserEvent('runCurrencyScript');
         $this->onGetAdress('edit');
         $this->mode='edit';
         $this->ids=$id;
@@ -354,10 +355,10 @@ class Sawahs extends Component
         $this->b_timur=$sawah->b_timur;
         $this->b_selatan=$sawah->b_selatan;
         $this->namapenjual=$sawah->namapenjual;
-        $this->hargabeli=$sawah->hargabeli;
+        $this->hargabeli=get_floatttorp($sawah->hargabeli);
         $this->tglbeli=Carbon::parse($sawah->tglbeli)->format("d-m-Y");
         $this->namapembeli=$sawah->namapembeli;
-        $this->hargajual=$sawah->hargajual;
+        $this->hargajual=get_floatttorp($sawah->hargajual);
         $this->tgljual=Carbon::parse($sawah->tgljual)->format("d-m-Y");
         $this->nop=$sawah->nop;
         $this->nilaipajak=$sawah->nilaipajak;
@@ -415,10 +416,10 @@ class Sawahs extends Component
                 'b_timur' => 'nullable|string',
                 'b_selatan' => 'nullable|string',
                 'namapenjual' => 'nullable|string',
-                'hargabeli' => 'nullable|numeric',
+                'hargabeli' => 'nullable',
                 'tglbeli' => 'nullable|date',
                 'namapembeli' => 'nullable|string',
-                'hargajual' => 'nullable|numeric',
+                'hargajual' => 'nullable',
                 'tgljual' => 'nullable|date',
                 'nop' => 'nullable|string',
                 'nilaipajak' => 'nullable|numeric',
@@ -448,10 +449,10 @@ class Sawahs extends Component
             'b_timur' => $this->b_timur,
             'b_selatan' => $this->b_selatan,
             'namapenjual' => $this->namapenjual,
-            'hargabeli' => $this->hargabeli,
+            'hargabeli' => Manny::stripper($this->hargabeli,['num']),
             'tglbeli' => Carbon::parse($this->tglbeli)->format("Y-m-d"),
             'namapembeli' => $this->namapembeli,
-            'hargajual' => $this->hargajual,
+            'hargajual' => Manny::stripper($this->hargajual,['num']),
             'tgljual' => Carbon::parse($this->tgljual)->format("Y-m-d"),
             'nop' => $this->nop,
             'nilaipajak' => $this->nilaipajak,
@@ -467,6 +468,7 @@ class Sawahs extends Component
 
     public function onAdd(){
         //dd($this->kordinat);
+        $this->dispatchBrowserEvent('runCurrencyScript');
         $this->mode='add';
         $this->onGetAdress('add');
         $this->resetForm();
@@ -485,10 +487,10 @@ class Sawahs extends Component
                 'b_timur' => 'nullable|string',
                 'b_selatan' => 'nullable|string',
                 'namapenjual' => 'nullable|string',
-                'hargabeli' => 'nullable|numeric',
+                'hargabeli' => 'nullable',
                 'tglbeli' => 'nullable|date',
                 'namapembeli' => 'nullable|string',
-                'hargajual' => 'nullable|numeric',
+                'hargajual' => 'nullable',
                 'tgljual' => 'nullable|date',
                 'nop' => 'nullable|string',
                 'nilaipajak' => 'nullable|numeric',
@@ -517,10 +519,10 @@ class Sawahs extends Component
             'b_timur' => $this->b_timur,
             'b_selatan' => $this->b_selatan,
             'namapenjual' => $this->namapenjual,
-            'hargabeli' => $this->hargabeli,
+            'hargabeli' => Manny::stripper($this->hargabeli,['num']),
             'tglbeli' => Carbon::parse($this->tglbeli)->format("Y-m-d"),
             'namapembeli' => $this->namapembeli,
-            'hargajual' => $this->hargajual,
+            'hargajual' => Manny::stripper($this->hargajual,['num']),
             'tgljual' => Carbon::parse($this->tgljual)->format("Y-m-d"),
             'nop' => $this->nop,
             'nilaipajak' => $this->nilaipajak,

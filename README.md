@@ -48,6 +48,7 @@
 - **[leafletjs.com](https://leafletjs.com/)**
 - **[ljagis/leaflet-measure](https://github.com/ljagis/leaflet-measure/)**
 - **[leaflet-googlemap](https://stackoverflow.com/questions/9394190/leaflet-map-api-with-google-satellite-layer)**
+- **[hallindavid/manny](https://github.com/hallindavid/manny)**
 
 
 

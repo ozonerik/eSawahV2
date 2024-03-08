@@ -88,7 +88,7 @@
                 <x-input_currency disabled="" ids="hargajual" label="Harga Jual (Rp)" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
                 <x-datepicker_form wajib="" disabled="" ids="tgljual" label="Tanggal Jual" types="text" name="tgljual" placeholder="Tanggal Jual" formatdate="dd-mm-yyyy"/>
                 <x-input_form disabled="" ids="nop" label="NOP" types="text" name="nop" placeholder="Type Nomor Objek Pajak" />
-                <x-input_form disabled="" ids="nilaipajak" label="Nilai Pajak (Rp)" types="text" name="nilaipajak" placeholder="Type Nilai Pajak Sawah" />
+                <x-input_currency disabled="" ids="nilaipajak" label="Nilai Pajak (Rp)" types="text" name="nilaipajak" placeholder="Type Nilai Pajak Sawah" />
                 <x-file_form2 ids="img" label="Photo Sawah" name="img" :placeholder="$filename" capture=""/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
@@ -117,7 +117,7 @@
                 <x-input_currency disabled="" ids="hargajual" label="Harga Jual (Rp)" types="text" name="hargajual" placeholder="Type Harga Jual Sawah" />
                 <x-datepicker_form wajib="" disabled="" ids="tgljual" label="Tanggal Jual" types="text" name="tgljual" placeholder="Tanggal Jual" formatdate="dd-mm-yyyy"/>
                 <x-input_form disabled="" ids="nop" label="NOP" types="text" name="nop" placeholder="Type Nomor Objek Pajak" />
-                <x-input_form disabled="" ids="nilaipajak" label="Nilai Pajak (Rp)" types="text" name="nilaipajak" placeholder="Type Nilai Pajak Sawah" />
+                <x-input_currency disabled="" ids="nilaipajak" label="Nilai Pajak (Rp)" types="text" name="nilaipajak" placeholder="Type Nilai Pajak Sawah" />
                 <div class="form-group">
                     <div class="font-weight-bold mb-2">Photo Sawah</div>
                     @if(!empty($tmpimg))

@@ -361,7 +361,7 @@ class Sawahs extends Component
         $this->hargajual=get_floatttorp($sawah->hargajual);
         $this->tgljual=Carbon::parse($sawah->tgljual)->format("d-m-Y");
         $this->nop=$sawah->nop;
-        $this->nilaipajak=$sawah->nilaipajak;
+        $this->nilaipajak=get_floatttorp($sawah->nilaipajak);
         $this->img=$sawah->img;
         $this->tmpimg=$sawah->img;
         $this->show_location($this->latlang);
@@ -383,13 +383,13 @@ class Sawahs extends Component
         $this->b_timur='';
         $this->b_selatan='';
         $this->namapenjual='';
-        $this->hargabeli='0';
+        $this->hargabeli=get_floatttorp(0);
         $this->tglbeli='';
         $this->namapembeli='';
-        $this->hargajual='0';
+        $this->hargajual=get_floatttorp(0);
         $this->tgljual='';
         $this->nop='';
-        $this->nilaipajak='0';
+        $this->nilaipajak=get_floatttorp(0);
         $this->img=null;
         $this->resetErrorBag();
         $this->resetValidation();
@@ -422,7 +422,7 @@ class Sawahs extends Component
                 'hargajual' => 'nullable',
                 'tgljual' => 'nullable|date',
                 'nop' => 'nullable|string',
-                'nilaipajak' => 'nullable|numeric',
+                'nilaipajak' => 'nullable',
                 'img' => 'nullable|image|max:1024',
             ]);
         if(empty($this->hargabeli)){
@@ -455,7 +455,7 @@ class Sawahs extends Component
             'hargajual' => Manny::stripper($this->hargajual,['num']),
             'tgljual' => Carbon::parse($this->tgljual)->format("Y-m-d"),
             'nop' => $this->nop,
-            'nilaipajak' => $this->nilaipajak,
+            'nilaipajak' => Manny::stripper($this->nilaipajak,['num']),
             'img' => $this->newpath,
             'user_id' => Auth::user()->id
         ]);
@@ -493,7 +493,7 @@ class Sawahs extends Component
                 'hargajual' => 'nullable',
                 'tgljual' => 'nullable|date',
                 'nop' => 'nullable|string',
-                'nilaipajak' => 'nullable|numeric',
+                'nilaipajak' => 'nullable',
                 'img' => 'nullable|image|max:1024',
             ]);
         if(empty($this->hargabeli)){
@@ -525,7 +525,7 @@ class Sawahs extends Component
             'hargajual' => Manny::stripper($this->hargajual,['num']),
             'tgljual' => Carbon::parse($this->tgljual)->format("Y-m-d"),
             'nop' => $this->nop,
-            'nilaipajak' => $this->nilaipajak,
+            'nilaipajak' => Manny::stripper($this->nilaipajak,['num']),
             'img' => $this->newpath,
             'user_id' => Auth::user()->id
         ]);

@@ -1,18 +1,3 @@
-@push('js')
-<script>
-document.addEventListener('livewire:load', function () {
-    $('.select2bs4_multi').select2({
-        theme: 'bootstrap4',
-        placeholder: "Please Choose...",
-        allowClear: 'true'
-    })
-});
-$('.select2bs4_multi').on('change', function() {
-    let data = $(this).val();
-    @this.set('opsipawonganmulti', data);
-});
-</script>
-@endpush
 <div>
     <x-content_header name="Daftar Lanja" >
         <li class="breadcrumb-item active">Lanja</li>

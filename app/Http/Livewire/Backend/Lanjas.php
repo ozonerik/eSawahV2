@@ -9,6 +9,7 @@ class Lanjas extends Component
 {
     public $pawongan,$opsipawongan,$opsipawonganbs4;
     public $opsipawonganmulti=[];
+
     public function addLanja(){
         dd($this->opsipawonganmulti);
     }

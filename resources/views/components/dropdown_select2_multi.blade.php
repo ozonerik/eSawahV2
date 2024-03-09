@@ -10,3 +10,17 @@
     </div>
     @if($errors->has( $name ))<div class="invalid-feedback">{{ $errors->first($name) }}</div>@endif
 </div>
+<script>
+document.addEventListener('livewire:load', function () {
+    $('#{{$ids}}').select2({
+        theme: 'bootstrap4',
+        placeholder: "Please Choose...",
+        allowClear: 'true'
+    })
+    $('#{{$ids}}').on('change', function() {
+        let data = $(this).val();
+        console.log(data);
+        @this.set('{{$name}}', data);
+    });
+});
+</script>

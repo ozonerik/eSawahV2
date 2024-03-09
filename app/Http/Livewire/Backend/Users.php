@@ -38,8 +38,8 @@ class Users extends Component
         $searchQuery = trim($this->search);
         $requestData = ['users.name', 'users.email', 'roles.name'];
         return User::select(['users.*','roles.name as hakakses'])
-        ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-        ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+        ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+        ->leftjoin('roles', 'roles.id', '=', 'model_has_roles.role_id')
         ->where(function($q) use($requestData, $searchQuery) {
             foreach ($requestData as $field)
                $q->orWhere($field, 'like', "%{$searchQuery}%");

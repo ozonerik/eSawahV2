@@ -12,17 +12,14 @@ class dropdown_select2_multi extends Component
      * @return void
      */
     public $ids, $name, $label, $data, $values;
-    public $pilih;
 
-    public function __construct($ids, $name, $labe, $data, $values, $pilih )
+    public function __construct($ids, $name, $labe, $data, $values )
     {
         $this->id=$ids;
         $this->name=$name; 
         $this->label=$label;
         $this->data=$data;
         $this->values=$values;
-        $this->pilih=$pilih;
-
 
     }
 

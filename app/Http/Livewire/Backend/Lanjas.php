@@ -7,9 +7,10 @@ use App\Models\Pawongan;
 
 class Lanjas extends Component
 {
-    public $pawongan,$opsipawongan,$opsipawonganmulti,$opsipawonganbs4;
+    public $pawongan,$opsipawongan,$opsipawonganbs4;
+    public $opsipawonganmulti=[];
     public function addLanja(){
-        dd($this->opsipawonganbs4);
+        dd($this->opsipawonganmulti);
     }
     public function mount(){
         $this->dispatchBrowserEvent('run_select2');

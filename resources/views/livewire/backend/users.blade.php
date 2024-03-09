@@ -5,18 +5,16 @@
     </x-content_header>
     <div class="row mx-1">
         @if($mode=='read')
-        <x-card_table type="primary" width="12" order="1" smallorder="1" title="Daftar Users" :data="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','del']" search="Search...">
+        <x-card_table type="primary" width="12" order="1" smallorder="1" title="Daftar Users" :data="$user" :thead="['Nama','Email','Hak Akses']" :tbody="['name','email','hakakses']" :tbtn="['edit','del']" search="Search...">
             <x-slot:menu>
                 <button wire:click="onAdd" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                 <button wire:click="onEditSelect" class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit" @if(empty($checked)) disabled @endif><i class="fas fa-edit"></i></button>
                 <button wire:click="onDelSelect" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus" @if(empty($checked)) disabled @endif><i class="fas fa-trash"></i></button>
                 <button wire:click="onTrashed" class="btn btn-sm btn-success" data-toggle="tooltip" title="Trash" @if(empty($Restoreuser->total())) disabled @endif><i class="fa fa-archive mr-2"></i>Trash</button>
-                <!-- <button class="btn btn-sm btn-success" data-toggle="tooltip" title="Download" @if(empty($checked)) disabled @endif><i class="fas fa-download"></i></button>
-                <button class="btn btn-sm btn-info" data-toggle="tooltip" title="Upload" @if(empty($checked)) disabled @endif><i class="fas fa-upload"></i></button> -->
             </x-slot>
         </x-card_table>
         @elseif($mode=='trashed')
-        <x-card_tabletrash type="danger" width="12" order="1" smallorder="1" title="Restore User" :data="$Restoreuser" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['restore','del']" search="Search..."/>
+        <x-card_tabletrash type="danger" width="12" order="1" smallorder="1" title="Restore User" :data="$Restoreuser" :thead="['Nama','Email','Hak Akses']" :tbody="['name','email','hakakses']" :tbtn="['restore','del']" search="Search..."/>
         @elseif($mode=='add')
         <x-card_form name="Add User" width="12" order="1" smallorder="1" closeto="onRead">
             <h4>Add User</h4>
@@ -26,7 +24,7 @@
                 <x-input_form disabled="false" ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
                 <x-input_form disabled="false" ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
                 <x-input_form disabled="false" ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
-                <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih=""/>
+                <x-dropdown_select2 ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" showval="name"/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>
             </form>
@@ -41,7 +39,7 @@
                 <x-input_form disabled="false" ids="email" label="Email address" types="email" name="email" placeholder="Enter email" />
                 <x-input_form disabled="false" ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
                 <x-input_form disabled="false" ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
-                <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih="{{$user_roles}}"/>
+                <x-dropdown_select2 ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" showval="name"/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>
             </form>
@@ -54,7 +52,7 @@
             <form wire:submit.prevent="edituserselected">
                 <x-input_form disabled="false" ids="newpassword" label="New password" types="password" name="password" placeholder="New Password" />
                 <x-input_form disabled="false" ids="confirmpassword" label="Retype new password" types="password" name="password_confirmation" placeholder="Retype new password" />
-                <x-dropdown_form ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" pilih=""/>
+                <x-dropdown_select2 ids="opsiroles" label="Hak Akses" name="opsiroles" :data="$roles" values="name" showval="name"/>
                 <button type="button" wire:click="onRead"class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right">Save</button>
             </form>

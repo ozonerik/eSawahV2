@@ -22,5 +22,17 @@ document.addEventListener('livewire:load', function () {
         let data = $(this).val();
         @this.set('{{$name}}', data);
     });
-})
+});
+
+window.addEventListener('run_select2', event => {
+    $('#{{$ids}}').select2({
+        theme: 'bootstrap4',
+        placeholder: "Please Choose...",
+        allowClear: 'true'
+    })
+    $('#{{$ids}}').change(function (e) {
+        let data = $(this).val();
+        @this.set('{{$name}}', data);
+    });
+});
 </script>

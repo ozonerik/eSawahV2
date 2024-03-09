@@ -36,11 +36,20 @@ class Users extends Component
     
     public function getUserProperty(){
         $searchQuery = trim($this->search);
-        $requestData = ['name', 'email'];
-        return User::where(function($q) use($requestData, $searchQuery) {
+        $requestData = ['users.name', 'users.email', 'roles.name'];
+        return User::select(['users.*','roles.name as hakakses'])
+        ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+        ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+        ->where(function($q) use($requestData, $searchQuery) {
             foreach ($requestData as $field)
                $q->orWhere($field, 'like', "%{$searchQuery}%");
         })->paginate($this->perPage,['*'], 'userPage');
+
+
+/*         return User::where(function($q) use($requestData, $searchQuery) {
+            foreach ($requestData as $field)
+               $q->orWhere($field, 'like', "%{$searchQuery}%");
+        })->paginate($this->perPage,['*'], 'userPage'); */
         //return User::where('name','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'userPage');
     }
 
@@ -298,6 +307,7 @@ class Users extends Component
 
     public function onAdd(){
         $this->mode='add';
+        $this->dispatchBrowserEvent('run_select2');
         $this->roles=Role::get();
         $this->resetForm();
     }
@@ -318,6 +328,7 @@ class Users extends Component
     }
 
     public function onEdit($id){
+        $this->dispatchBrowserEvent('run_select2');
         $this->roles=Role::get();
         $this->user_roles = User::findOrFail($id)->getRoleNames()->implode(',');
         $this->opsiroles = $this->user_roles;
@@ -331,6 +342,7 @@ class Users extends Component
 
     public function onEditSelect(){
         //dd($this->checked);
+        $this->dispatchBrowserEvent('run_select2');
         $this->mode='editselect';
         $this->roles=Role::get();
     }
@@ -347,7 +359,6 @@ class Users extends Component
 
     public function render()
     {
-        //$data['user'] = $this->User;
         $data = [
             'user'=>$this->User,
             'Restoreuser'=>$this->Restoreuser,

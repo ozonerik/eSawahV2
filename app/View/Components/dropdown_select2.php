@@ -11,15 +11,16 @@ class dropdown_select2 extends Component
      *
      * @return void
      */
-    public $ids, $name, $label, $data, $values;
+    public $ids, $name, $label, $data, $values, $showval;
 
-    public function __construct($ids, $name, $labe, $data, $values)
+    public function __construct($ids, $name, $labe, $data, $values, $showval)
     {
         $this->id=$ids;
         $this->name=$name; 
         $this->label=$label;
         $this->data=$data;
         $this->values=$values;
+        $this->showval=$showval;
 
     }
 

@@ -8,8 +8,8 @@
             <form wire:submit.prevent="addLanja">
                 <x-input_form disabled="false" ids="mapapikey" label="Google Map API Key" types="text" name="mapapikey" placeholder="Type Google Map API Key" />
                 <x-dropdown_form ids="opsipawongan" label="Pawongan Select" name="opsipawongan" :data="$pawongan" values="nama" pilih=""/>
-                <x-dropdown_select2 ids="opsipawonganbs4" label="Pawongan Select2bs4" name="opsipawonganbs4" :data="$pawongan" values="nama"/>
-                <x-dropdown_select2_multi ids="opsipawonganmulti" label="Pawongan Select2bs4 multi" name="opsipawonganmulti" :data="$pawongan" values="nama"/>
+                <x-dropdown_select2 ids="opsipawonganbs4" label="Pawongan Select2bs4" name="opsipawonganbs4" :data="$pawongan" values="id" showval="nama"/>
+                <x-dropdown_select2_multi ids="opsipawonganmulti" label="Pawongan Select2bs4 multi" name="opsipawonganmulti" :data="$pawongan" values="id" showval="nama"/>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>
         </x-card_form>

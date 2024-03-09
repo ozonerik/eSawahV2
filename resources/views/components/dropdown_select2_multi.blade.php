@@ -4,7 +4,7 @@
         <select wire:model="{{$name}}" multiple="multiple" id="{{$ids}}" style="width:100%" data-dropdown-css-class="select2bs4-blue" class="form-control select2bs4_multi @if($errors->has( $name )) is-invalid @endif" >
             <option value="">Please Choose...</option> 
             @foreach ($data as $row)
-            <option value="{{$row->$values}}" > {{$row->$values}}</option>
+            <option value="{{$row->$values}}" > {{$row->$showval}}</option>
             @endforeach
         </select>
     </div>
@@ -19,7 +19,6 @@ document.addEventListener('livewire:load', function () {
     })
     $('#{{$ids}}').on('change', function() {
         let data = $(this).val();
-        console.log(data);
         @this.set('{{$name}}', data);
     });
 });

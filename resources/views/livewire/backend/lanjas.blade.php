@@ -1,5 +1,4 @@
 @push('js')
-<x-script_select2/>
 <script>
 document.addEventListener('livewire:load', function () {
     $('.select2bs4_multi').select2({
@@ -7,7 +6,11 @@ document.addEventListener('livewire:load', function () {
         placeholder: "Please Choose...",
         allowClear: 'true'
     })
-})
+});
+$('.select2bs4_multi').on('change', function() {
+    let data = $(this).val();
+    @this.set('opsipawonganmulti', data);
+});
 </script>
 @endpush
 <div>

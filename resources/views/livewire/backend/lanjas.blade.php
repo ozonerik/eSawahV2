@@ -14,9 +14,24 @@
                 
                 
                 <div class="form-group">
-                  <label>Multiple (.select2-purple)</label>
+                  <label>Select2bs4</label>
+                  <div class="select2bs4-blue">
+                    <select class="select2bs4 form-control" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2bs4-blue" style="width: 100%;">
+                      <option>Alabama</option>
+                      <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Select2bs4</label>
                   <div class="select2-blue">
-                    <select class="select2" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-blue" style="width: 100%;">
+                    <select class="select2 form-control" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-blue" style="width: 100%;">
                       <option>Alabama</option>
                       <option>Alaska</option>
                       <option>California</option>
@@ -30,15 +45,17 @@
 
                 <div class="form-group">
                   <label>Minimal</label>
-                  <select class="form-control select2bs4" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
+                  <div id="myModal">
+                    <select class="form-control select2bs4" style="width:100%">
+                      <option selected="selected">Alabama</option>
+                      <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option>
+                    </select>
+                  </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>

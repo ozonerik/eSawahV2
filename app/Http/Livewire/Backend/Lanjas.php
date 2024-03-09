@@ -12,6 +12,7 @@ class Lanjas extends Component
         dd($this->opsipawongan);
     }
     public function mount(){
+        $this->dispatchBrowserEvent('run_select2');
         $this->pawongan=Pawongan::get();
         //dd($pawongan);
     }

@@ -11,53 +11,8 @@
             <form wire:submit.prevent="addLanja">
                 <x-input_form disabled="false" ids="mapapikey" label="Google Map API Key" types="text" name="mapapikey" placeholder="Type Google Map API Key" />
                 <x-dropdown_form ids="opsipawongan" label="Pawongan" name="opsipawongan" :data="$pawongan" values="nama" pilih=""/>
-                
-                
-                <div class="form-group">
-                  <label>Select2bs4</label>
-                  <div class="select2bs4-blue">
-                    <select class="select2bs4 form-control" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2bs4-blue" style="width: 100%;">
-                      <option>Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>Select2bs4</label>
-                  <div class="select2-blue">
-                    <select class="select2 form-control" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-blue" style="width: 100%;">
-                      <option>Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>Minimal</label>
-                  <div id="myModal">
-                    <select class="form-control select2bs4" style="width:100%">
-                      <option selected="selected">Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
-                    </select>
-                  </div>
-                </div>
-
+                <x-dropdown_select2 ids="opsipawongan" label="Pawongan Selec2bs4" name="opsipawongan" :data="$pawongan" values="nama" pilih=""/>
+                <x-dropdown_select2_multi ids="opsipawonganmulti" label="Pawongan Selec2bs4 multi" name="opsipawonganmulti" :data="$pawongan" values="nama" pilih=""/>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>
         </x-card_form>

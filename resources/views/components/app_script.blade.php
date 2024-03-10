@@ -24,15 +24,6 @@
 <script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
 
 <script>
-document.addEventListener('livewire:load', function () {
-    $('[data-mask]').inputmask()
-})
-window.addEventListener('run_inputmask', event => {
-    $('[data-mask]').inputmask()
-})
-</script>
-
-<script>
     // Make the dashboard widgets sortable Using jquery UI
     $('.connectedSortable').sortable({
         placeholder: 'sort-highlight',

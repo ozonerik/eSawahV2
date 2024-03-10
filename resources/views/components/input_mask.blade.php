@@ -39,3 +39,19 @@
         </span>
     @endif
 </div>
+<script>
+document.addEventListener('livewire:load', function () {
+    $('#{{ $ids }}').inputmask();
+    $('#{{ $ids }}').change(function (e) {
+        let data = $(this).val();
+        @this.set('{{$name}}', data);
+    });
+})
+window.addEventListener('run_inputmask', event => {
+    $('#{{ $ids }}').inputmask();
+    $('#{{ $ids }}').change(function (e) {
+        let data = $(this).val();
+        @this.set('{{$name}}', data);
+    });
+})
+</script>

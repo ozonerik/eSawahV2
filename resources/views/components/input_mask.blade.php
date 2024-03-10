@@ -24,10 +24,10 @@
     data-provide="datepicker" 
     data-date-language="id" 
     data-date-autoclose="true" 
-    data-date-format="{{$formatdate}}" 
+    data-date-format="dd/mm/yyyy" 
     data-date-orientation="bottom" 
     data-date-today-highlight="true" 
-    onchange="this.dispatchEvent(new InputEvent('input'))"
+    
     >
     @elseif($typemask == 'email')
     <input data-inputmask-alias="email" data-mask @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >

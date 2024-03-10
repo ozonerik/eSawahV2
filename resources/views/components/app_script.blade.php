@@ -19,6 +19,19 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{get_googleapikey()}}&language=id&libraries=places"></script>
 <!-- Select2 -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<!-- InputMask -->
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+
+<script>
+document.addEventListener('livewire:load', function () {
+    $('[data-mask]').inputmask()
+})
+window.addEventListener('run_inputmask', event => {
+    $('[data-mask]').inputmask()
+})
+</script>
+
 <script>
     // Make the dashboard widgets sortable Using jquery UI
     $('.connectedSortable').sortable({

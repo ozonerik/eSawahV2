@@ -3,6 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Appconfig;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+
+
+if (!function_exists('conv_inputmask')) {
+    function conv_inputmask($string){
+        $nilai = '';
+        $s=str_replace(',','.',preg_replace('/[^0-9,|m]/i','', $string));
+        if(Str::is('*m*', $s)){
+            $nilai = Str::swap([
+                'm2' => '',
+                'm' => '',
+            ], $s);
+        }else{
+            $nilai =$s;
+        }
+        return $nilai;
+    }
+}
 
 if (!function_exists('get_hargabata')) {
     function get_hargabata(){

@@ -13,16 +13,18 @@ class Lanjas extends Component
     public $opsipawonganmulti=[];
 
     public function addLanja(){
-        $luas=$this->luas;
+        $regex=conv_inputmask($this->luas);
+        $luas=Manny::stripper($this->luas,['num','comma']);
         $tanggal=Carbon::parse($this->tanggal)->format("Y-m-d");
-        dd($luas);
     }
     public function mount(){
         $this->dispatchBrowserEvent('run_select2');
         $this->pawongan=Pawongan::get();
-        $this->luas='1500';
+        $this->luas='0';
         $this->tanggal=Carbon::parse(now())->format("d/m/Y");;
-        //dd($pawongan);
+        $string='1.200,45 m2';
+        $result= conv_inputmask($string);
+        dd($result);
     }
     public function render()
     {

@@ -44,14 +44,17 @@ document.addEventListener('livewire:load', function () {
     $('#{{ $ids }}').inputmask();
     $('#{{ $ids }}').change(function (e) {
         let data = $(this).val();
-        @this.set('{{$name}}', data);
+        let data2 = data.replace(/[Rp.|\.|.m2|.m|.bata|.bau|.ha|.kw|-]/g, '').replace(',','.');
+        console.log(data2);
+        @this.set('{{$name}}', data2);
     });
 })
 window.addEventListener('run_inputmask', event => {
     $('#{{ $ids }}').inputmask();
     $('#{{ $ids }}').change(function (e) {
         let data = $(this).val();
-        @this.set('{{$name}}', data);
+        let data2 = data.replace(/[Rp.|\.|.m2|.m|.bata|.bau|.ha|.kw]/g, '').replace(',','.');
+        @this.set('{{$name}}', data2);
     });
 })
 </script>

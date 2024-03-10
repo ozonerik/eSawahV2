@@ -13,9 +13,9 @@ class Lanjas extends Component
     public $opsipawonganmulti=[];
 
     public function addLanja(){
-        $luas=Manny::stripper($this->luas,['num']);
+        $luas=$this->luas;
         $tanggal=Carbon::parse($this->tanggal)->format("Y-m-d");
-        dd($tanggal);
+        dd($luas);
     }
     public function mount(){
         $this->dispatchBrowserEvent('run_select2');

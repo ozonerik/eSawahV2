@@ -33,7 +33,9 @@ if (!function_exists('get_version')) {
 
 if (!function_exists('get_googleapikey')) {
     function get_googleapikey(){
-        return 'AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4';
+        //return 'AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4';
+        $mapapi=Appconfig::find(1)->mapapikey;
+        return $mapapi;
     }
 }
 

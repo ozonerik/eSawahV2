@@ -2,7 +2,7 @@
     <label for="{{ $ids }}" class="@if(!empty($wajib)) text-danger  @endif">{{ $label }}</label>
     
     @if($typemask == 'harga')
-    <input data-inputmask="'prefix': 'Rp ','alias': 'decimal', 'radixPoint':',', 'groupSeparator': '.', 'autoGroup': true, 'digits': 0, 'digitsOptional': false, 'rightAlign': false " data-mask @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
+    <input data-inputmask="'shortcuts':{'r': '1000', 'j': '1000000','m':'1000000000','t':'1000000000000'},'prefix': 'Rp ','alias': 'decimal', 'radixPoint':',', 'groupSeparator': '.', 'autoGroup': true, 'digits': 0, 'digitsOptional': false, 'rightAlign': false " data-mask @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
     @elseif($typemask == 'luas')
     <input data-inputmask="'suffix': ' m2','alias': 'decimal', 'radixPoint':',', 'groupSeparator': '.', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'rightAlign': false " data-mask @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
     @elseif($typemask == 'panjang')

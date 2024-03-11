@@ -49,10 +49,10 @@ document.addEventListener('livewire:load', function () {
     });
 })
 window.addEventListener('run_inputmask', event => {
-    $('#{{ $ids }}').inputmask();
+/*     $('#{{ $ids }}').inputmask();
     $('#{{ $ids }}').change(function (e) {
         let data = $(this).val();
         @this.set('{{$name}}', data);
-    });
+    }); */
 })
 </script>

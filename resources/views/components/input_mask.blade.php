@@ -20,7 +20,7 @@
     @elseif($typemask == 'telp')
     <input wire:ignore data-inputmask="'autoUnmask': true, 'mask': ['9999-9999-999[9][9][9]']" @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
     @elseif($typemask == 'tanggal')
-    <input wire:ignore data-inputmask="'autoUnmask': true, 'alias':'datetime', 'inputformat':'dd/mm/yyyy' " @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control datepicker @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" autocomplete="off" 
+    <input wire:ignore data-inputmask="'alias':'datetime', 'inputformat':'dd/mm/yyyy' " @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control datepicker @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" autocomplete="off" 
     data-provide="datepicker" 
     data-date-language="id" 
     data-date-autoclose="true" 
@@ -30,7 +30,7 @@
     
     >
     @elseif($typemask == 'email')
-    <input wire:ignore data-inputmask="'alias':'email'"  @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
+    <input wire:ignore data-inputmask="'alias':'email', greedy: false"  @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
     @endif
     
     @if($errors->has( $name ))

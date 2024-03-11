@@ -20,6 +20,16 @@ class Lanjas extends Component
         $this->result=$value;
     }
 
+    public function updatedLuas($value){
+        $this->result=$value;
+    }
+
+    public function updatedTanggal($value){
+        dd($value);
+        $this->result=$value;
+    }
+
+
     public function mount(){
         $this->pawongan=Pawongan::get();
     }

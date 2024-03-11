@@ -43,6 +43,7 @@
 document.addEventListener('livewire:load', function () {
     //$('#{{ $ids }}').inputmask();
     $('#{{ $ids }}').on('keyup',function (e) {
+        console.log(this.value);
         //let data = $(this).val();
         //@this.set('{{$name}}', data);
     });

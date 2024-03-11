@@ -20,8 +20,8 @@
 <!-- Select2 -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- InputMask -->
-<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+<script src="{{ asset('plugins/inputmask509/jquery.inputmask.js') }}"></script>
+<script src="{{ asset('plugins/inputmask509/bindings/inputmask.binding.js') }}"></script>
 
 <script>
     // Make the dashboard widgets sortable Using jquery UI

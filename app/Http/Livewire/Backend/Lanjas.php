@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class Lanjas extends Component
 {
-    public $pawongan,$opsipawongan,$opsipawonganbs4,$luas,$bata,$tanggal;
+    public $pawongan,$opsipawongan,$opsipawonganbs4,$luas,$result,$tanggal;
     public $opsipawonganmulti=[];
 
     public function addLanja(){
@@ -18,11 +18,10 @@ class Lanjas extends Component
         $tanggal=Carbon::parse($this->tanggal)->format("Y-m-d");
     }
     public function updatedLuas($value){
-        $this->bata=conv_inputmask($value);
+        $this->result=conv_inputmask($value);
     }
     public function mount(){
         $this->pawongan=Pawongan::get();
-        $this->luas='0';
         $this->tanggal=Carbon::parse(now())->format("d/m/Y");;
     }
     public function render()

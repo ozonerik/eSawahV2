@@ -43,7 +43,8 @@
 document.addEventListener('livewire:load', function () {
     $('#{{ $ids }}').change(function (e) {
         console.log(this.value);
-        @this.set('{{$name}}', this.value);
+        //@this.set('{{$name}}', this.value);
+        Livewire.emit('runMask',this.value)
     });
 })
 window.addEventListener('run_inputmask', event => {

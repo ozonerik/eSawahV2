@@ -20,7 +20,7 @@
 <!-- Select2 -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- InputMask -->
-<script src="{{ asset('plugins/inputmask509/jquery.inputmask.js') }}"></script>
+<script src="{{ asset('plugins/inputmask509/inputmask.js') }}"></script>
 <script src="{{ asset('plugins/inputmask509/bindings/inputmask.binding.js') }}"></script>
 
 <script>

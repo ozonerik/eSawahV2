@@ -20,9 +20,7 @@
     @elseif($typemask == 'telp')
     <input wire:ignore data-inputmask="'autoUnmask': true, 'mask': ['9999-9999-999[9][9][9]']" @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
     @elseif($typemask == 'tanggal')
-    <input wire:ignore data-inputmask="'alias':'datetime', 'inputformat':'dd/mm/yyyy' " @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control datepicker @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" autocomplete="off" 
-    data-provide="datepicker" 
-    data-date-language="id" 
+    <input wire:ignore data-inputmask="'alias':'datetime', 'inputformat':'dd/mm/yyyy' " @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control datepicker @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" autocomplete="off"  
     data-date-autoclose="true" 
     data-date-format="dd/mm/yyyy" 
     data-date-orientation="bottom" 
@@ -41,15 +39,12 @@
 </div>
 <script>
 document.addEventListener('livewire:load', function () {
-    $('#{{ $ids }}').change(function (e) {
-        console.log(this.value);
-        //@this.set('{{$name}}', this.value);
-        //Livewire.emit('runMask',this.value)
-    });
-})
-window.addEventListener('run_inputmask', event => {
-    $('#{{ $ids }}').change(function (e) {
-        console.log(this.value);
+    $('.datepicker').datepicker({
+        autoclose:"true",
+        format:"dd/mm/yyyy",
+        orientation:"bottom",
+        highlight:"true" 
+    }).on('change', function(e) {
         @this.set('{{$name}}', this.value);
     });
 })

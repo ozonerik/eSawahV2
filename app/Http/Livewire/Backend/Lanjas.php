@@ -25,8 +25,11 @@ class Lanjas extends Component
     }
 
     public function updatedTanggal($value){
-        dd($value);
         $this->result=$value;
+    }
+
+    public function addLanja(){
+        dd($this->tanggal);
     }
 
 

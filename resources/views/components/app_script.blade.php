@@ -42,6 +42,147 @@ Inputmask.extendAliases({
         'digitsOptional': false, 
         'rightAlign': false,
         'removeMaskOnSubmit':true
+      },
+      'luas': {
+        'autoUnmask': true, 
+        'suffix': ' m2',
+        'alias': 'decimal',
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        }, 
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 2, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true 
+      },
+      'bata': {
+        'autoUnmask': true, 
+        'suffix': ' bata',
+        'alias': 'decimal',
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        }, 
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 2, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true 
+      },
+      'kwintal': {
+        'autoUnmask': true, 
+        'suffix': ' kw',
+        'alias': 'decimal',
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        }, 
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 2, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true 
+      },
+      'derajat': {
+        'autoUnmask': true, 
+        'suffix': ' °',
+        'alias': 'decimal',
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        }, 
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 2, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true 
+      },
+      'panjang': {
+        'autoUnmask': true, 
+        'suffix': ' m',
+        'alias': 'decimal',
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        }, 
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 2, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true 
+      },
+      'desimal': {
+        'autoUnmask': true, 
+        'alias': 'decimal',
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        }, 
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 2, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true 
+      },
+      'nomor': {
+        'autoUnmask': true, 
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        },
+        'alias': 'numeric', 
+        'decimalProtect':true,
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 0, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true
+      },
+      'telp': {
+        'autoUnmask': true, 
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        },
+        'mask': ['9999-9999-999[9][9][9]'],
+        'decimalProtect':true,
+        'rightAlign': false,
+        'removeMaskOnSubmit':true
+      },
+      'tanggal': {
+        'alias': 'datetime', 
+        'inputFormat': 'dd/mm/yyyy',
+        'rightAlign': false ,
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        },
+        'decimalProtect':true,
+        'rightAlign': false,
+        'removeMaskOnSubmit':true
       }
 }); 
 </script>

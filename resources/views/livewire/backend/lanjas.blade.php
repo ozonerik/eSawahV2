@@ -1,3 +1,18 @@
+@push('js')
+<script>
+$('#tanggal').datepicker({
+    autoclose:true,
+    format:'dd/mm/yyyy',
+    orientation:'bottom',
+    highlight:true,
+    language:'id',
+    todayHighlight:true,
+    todayBtn:true,
+}).on('changeDate', function(e) {
+    @this.set('tanggal', this.value);
+});
+</script>
+@endpush
 <div>
     <x-content_header name="Daftar Lanja" >
         <li class="breadcrumb-item active">Lanja</li>
@@ -6,7 +21,7 @@
     <div class="row mx-1">
         <x-card_form name="Daftar Lanja" width="12" order="1" smallorder="1" closeto="onRead">
             <form wire:submit.prevent="addLanja">
-                <x-input_mask typemask="harga" disabled="false" ids="luas" label="Luas" types="text" name="luas" placeholder="Type Luas" />
+                <x-input_mask typemask="telp" disabled="false" ids="luas" label="Luas" types="text" name="luas" placeholder="Type Luas" />
                 <x-input_mask typemask="tanggal" disabled="false" ids="tanggal" label="Tanggal" types="text" name="tanggal" placeholder="Type Tanggal" />
                 <x-input_form disabled="true" ids="result" label="Result" types="text" name="result" placeholder="Result"/>
                 <x-dropdown_form ids="opsipawongan" label="Pawongan Select" name="opsipawongan" :data="$pawongan" values="nama" pilih=""/>

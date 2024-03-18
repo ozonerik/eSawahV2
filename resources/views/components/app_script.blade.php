@@ -16,13 +16,35 @@
 <!-- bs-datepicker -->
 <script src="{{ asset('plugins/bs-datepicker/bs-datepicker.min.js') }}"></script>
 <script src="{{ asset('plugins/bs-datepicker/bs-datepicker-ID.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{get_googleapikey()}}&language=id&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{get_googleapikey()}}&language=id&libraries=places&loading=async"></script>
 <!-- Select2 -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- InputMask -->
 <script src="{{ asset('plugins/inputmask509/inputmask.js') }}"></script>
 <script src="{{ asset('plugins/inputmask509/bindings/inputmask.binding.js') }}"></script>
-
+<script>
+Inputmask.extendAliases({
+      'harga': {
+        'autoUnmask': true, 
+        'shortcuts':{'r': '1000', 'j': '1000000','m':'1000000000','t':'1000000000000'},
+        'prefix': 'Rp ',
+        'onBeforeMask': function (value) {
+            value=0;
+            return value;
+        },
+        'alias': 'numeric', 
+        'decimalProtect':true,
+        'radixPoint':',', 
+        'radixFocus':true,
+        'groupSeparator': '.', 
+        'autoGroup': true, 
+        'digits': 0, 
+        'digitsOptional': false, 
+        'rightAlign': false,
+        'removeMaskOnSubmit':true
+      }
+}); 
+</script>
 <script>
     // Make the dashboard widgets sortable Using jquery UI
     $('.connectedSortable').sortable({
@@ -94,5 +116,7 @@
         }
     }
 
-    toggleSwitch.addEventListener('change', switchTheme, false);
+    if(toggleSwitch != null){
+        toggleSwitch.addEventListener('change', switchTheme, false);
+    }
 </script>

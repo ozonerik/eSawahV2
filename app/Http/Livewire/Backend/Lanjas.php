@@ -12,14 +12,6 @@ class Lanjas extends Component
     public $pawongan,$opsipawongan,$opsipawonganbs4,$luas,$result,$tanggal;
     public $opsipawonganmulti=[];
 
-    protected $listeners = ['runMask'];
-
-    public function runMask($value){
-        //$result=conv_inputmask($this->luas);
-        //$luas=Manny::stripper($this->luas,['num','comma']);
-        $this->result=$value;
-    }
-
     public function updatedLuas($value){
         $this->result=$value;
     }
@@ -29,16 +21,17 @@ class Lanjas extends Component
     }
 
     public function addLanja(){
-        dd($this->tanggal);
+        dd('Add Lanja');
     }
 
 
     public function mount(){
+        $this->dispatchBrowserEvent('run_select2');
         $this->pawongan=Pawongan::get();
     }
     public function render()
     {
-        $this->dispatchBrowserEvent('run_select2');
+        
         return view('livewire.backend.lanjas')->extends('layouts.app');
     }
 }

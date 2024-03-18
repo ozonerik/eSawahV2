@@ -63,7 +63,7 @@ function showMaps($lat, $long, $ac, $iddiv){
 
     const letaksawah = @js($data);
     letaksawah.forEach((letak) => {
-        if(letak.latlang!==''){
+        if(letak.latlang!==null){
             let kordinat =letak.latlang.split(",");
             marksawah = new L.marker(kordinat, {icon: greenIcon}).addTo(map_init).bindPopup(letak.namasawah);
         }

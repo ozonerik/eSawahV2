@@ -15,6 +15,21 @@
     @endif
     @if($typemask == 'tanggal')
     <input wire:ignore data-inputmask="'alias':'tanggal'"  @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >
+        @push('js')
+        <script>
+            $('#{{ $ids }}').datepicker({
+                autoclose:true,
+                format:'dd/mm/yyyy',
+                orientation:'bottom',
+                highlight:true,
+                language:'id',
+                todayHighlight:true,
+                todayBtn:true,
+            }).on('changeDate', function(e) {
+                @this.set('{{ $name }}', $('#{{ $ids }}').val());
+            });
+        </script>
+        @endpush
     @endif
     @if($typemask == 'derajat')
     <input wire:ignore data-inputmask="'alias':'derajat'"  @if(!empty($wajib)) requiered @endif @if($disabled=="true") disabled @endif id="{{ $ids }}" type="{{ $types }}" wire:model="{{ $name }}" class="form-control @if($errors->has( $name )) is-invalid @endif"  placeholder="{{ $placeholder }}" >

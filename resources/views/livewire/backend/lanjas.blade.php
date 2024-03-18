@@ -1,18 +1,3 @@
-@push('js')
-<script>
-$('#tanggal').datepicker({
-    autoclose:true,
-    format:'dd/mm/yyyy',
-    orientation:'bottom',
-    highlight:true,
-    language:'id',
-    todayHighlight:true,
-    todayBtn:true,
-}).on('changeDate', function(e) {
-    @this.set('tanggal', this.value);
-});
-</script>
-@endpush
 <div>
     <x-content_header name="Daftar Lanja" >
         <li class="breadcrumb-item active">Lanja</li>

@@ -46,7 +46,7 @@ if (!function_exists('conv_inputmask')) {
         }else{
             $nilai =$s;
         }
-        return $nilai;
+        return floatval($nilai);
     }
 }
 
@@ -139,7 +139,7 @@ if (!function_exists('get_convtobata')) {
 
 if (!function_exists('get_Nconvtobata')) {
     function get_Nconvtobata($value){
-        $v=floatval($value)/14.00;
+        $v=floatval(conv_inputmask($value))/14.00;
         $s=round($v,2);
         $bata=$s;
         return $bata;
@@ -148,10 +148,10 @@ if (!function_exists('get_Nconvtobata')) {
 
 if (!function_exists('get_NBatatoluas')) {
     function get_NBatatoluas($value){
-        $v=floatval($value)*14.00;
+        $v=floatval(conv_inputmask($value))*14.00;
         $s=round($v,2);
-        $bata=$s;
-        return $bata;
+        $luas=$s;
+        return $luas;
     }
 }
 
@@ -245,7 +245,8 @@ if (!function_exists('get_lanja')) {
     function get_lanja($meter,$kw){
         $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
         $kw=floatval($kw);
-        $bata=round(floatval($meter)/14.00,2);
+        $meter=floatval($meter);
+        $bata=round(floatval($meter/14.00),2);
         $lanja=$bata/100;
         $val=round($lanja*$kw,2);
         //$nlanjakw=$a->format($val);
@@ -259,6 +260,7 @@ if (!function_exists('get_nlanja')) {
         $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
         $kw=floatval($kw);
         $harga=floatval($harga);
+        $meter=floatval($meter);
         $bata=round(floatval($meter/14.00),2);
         $lanja=$bata/100;
         $nlanjarp=round($lanja*$kw*$harga,2);

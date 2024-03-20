@@ -11,9 +11,9 @@ class script_lokasimeasure extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($emitmeasure)
     {
-        //
+        $this->emitmeasure=$emitmeasure;
     }
 
     /**

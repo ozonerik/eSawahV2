@@ -13,8 +13,15 @@ function showMeasureMaps($emitname, $lat, $long, $ac, $iddiv, $dragable,$popup){
         map_init = L.map($iddiv, {
             center: [$lat, $long],
             zoom: 18,
-            measureControl: true
         });
+        measureControl = new L.Control.Measure({ 
+            position: 'topright', 
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map_init);
 
         //https://stackoverflow.com/questions/9394190/leaflet-map-api-with-google-satellite-layer
         googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
@@ -49,16 +56,17 @@ function showMeasureMaps($emitname, $lat, $long, $ac, $iddiv, $dragable,$popup){
             map_init.fitBounds(featureGroup.getBounds());
         }
 
-        map_init.on('measurefinish', function(evt) {
+        map_init.on('measurefinish', function(results) {
+            Livewire.emit(@js($emitmeasure),{'ls': results.area.toFixed(2), 'kl': results.length.toFixed(2)});
             //Livewire.emitUp('postAdded');
-            writeResults(evt);
+            //writeResults(evt);
         });
     }
     
 }
-function writeResults(results) {
+/* function writeResults(results) {
     @this.set('luas', results.area.toFixed(2));
     @this.set('luasbata', ((results.area)/14).toFixed(2));
     @this.set('keliling', results.length.toFixed(2));
-}
+} */
 </script>

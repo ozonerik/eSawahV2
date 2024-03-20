@@ -4,7 +4,7 @@
 <x-get_mapmeasure eventname="resetLocation" emitname="getResetlocation" mapname="resetmap"/>
 <x-get_mapmeasure eventname="getLocation" emitname="getLatlangInput" mapname="gismap"/>
 <!-- init map -->
-<x-script_lokasimeasure/>
+<x-script_lokasimeasure emitmeasure="getMeasure" />
 @endpush
 <div>
     <x-content_header name="GIS" >

@@ -40,6 +40,7 @@ class Sawahs extends Component
         'delsawahselect',
         'onDelForceProses',
         'getLatlangInput',
+        'getMeasure',
     ];
     public $lt,$lg;
     public function mount(){
@@ -52,6 +53,14 @@ class Sawahs extends Component
     
     //awal get lokasi
     public $map_id = 0;
+
+    public function getMeasure($data){
+        //dd($data);
+        $this->luas=($data['ls']);
+        $this->luasbata= round(floatval($this->luas/14.00),2);
+        $this->keliling=($data['kl']);
+        //$this->onHitung();
+    }
 
     public function getLatlangInput($data)
     {

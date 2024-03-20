@@ -8,7 +8,8 @@ class Gis extends Component
 {
     protected $listeners = [
         'getLatlangInput',
-        'onGetAdress'
+        'onGetAdress',
+        'getMeasure'
     ];
 
     public $latlang,$luas,$luasbata,$keliling,$lokasi;
@@ -29,6 +30,14 @@ class Gis extends Component
     public function mount(){
         //$this->emit('postAdded', 'hallo');
         $this->resetForm();
+    }
+
+    public function getMeasure($data){
+        //dd($data);
+        $this->luas=($data['ls']);
+        $this->luasbata= round(floatval($this->luas/14.00),2);
+        $this->keliling=($data['kl']);
+        $this->onHitung();
     }
 
     public function getLatlangInput($data)

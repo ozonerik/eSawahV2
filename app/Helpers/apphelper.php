@@ -132,8 +132,8 @@ if (!function_exists('get_convtobata')) {
         $v=floatval($value)/14.00;
         $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
         $s=$a->format(round($v,2));
-        $bata=$s." bata";
-        return $bata;
+        //$bata=$s." bata";
+        return $s;
     }
 }
 
@@ -244,23 +244,25 @@ if (!function_exists('get_luassegi4')) {
 if (!function_exists('get_lanja')) {
     function get_lanja($meter,$kw){
         $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
-        $kw=intval($kw);
-        $bata=floatval($meter)/14.00;
+        $kw=floatval($kw);
+        $bata=round(floatval($meter)/14.00,2);
         $lanja=$bata/100;
         $val=round($lanja*$kw,2);
-        $nlanjakw=$a->format($val);
+        //$nlanjakw=$a->format($val);
         //$lanjatext=$nlanjakw." kw";
-        return $nlanjakw;
+        return $val;
     }
 }
 
 if (!function_exists('get_nlanja')) {
     function get_nlanja($meter,$kw,$harga){
+        $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
         $kw=floatval($kw);
         $harga=floatval($harga);
-        $bata=floatval($meter)/14.00;
+        $bata=round(floatval($meter/14.00),2);
         $lanja=$bata/100;
-        $nlanjarp=round(round($lanja*$kw,2)*$harga,0);
+        $nlanjarp=round($lanja*$kw*$harga,2);
+        //$lanjarp=$a->format($nlanjarp);
         //$nlanjatext=get_floatttorp($nlanjarp);
         return $nlanjarp;
     }
@@ -268,7 +270,7 @@ if (!function_exists('get_nlanja')) {
 
 if (!function_exists('get_floatttorp')) {
     function get_floatttorp($val){
-        $val = floatval($val);
+        $val = floatval(conv_inputmask($val));
         $a = new NumberFormatter("id-ID", NumberFormatter::CURRENCY);
         $a->setAttribute( $a::FRACTION_DIGITS, 0 );
         $result=$a->formatCurrency($val,"IDR");

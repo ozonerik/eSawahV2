@@ -20,7 +20,6 @@
 <!-- <x-script_lokasi/> -->
 
 <x-script_lokasimeasure/>
-<x-script_maskcurrency/>
 @endpush
 <div>
     <x-content_header name="Daftar Sawah" >

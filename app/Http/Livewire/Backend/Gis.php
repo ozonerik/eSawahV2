@@ -102,11 +102,11 @@ class Gis extends Component
     }
 
     public function updatedLuas($value){
-        $this->luasbata= get_Nconvtobata($this->luas);
+        $this->luasbata= get_Nconvtobata(conv_inputmask($this->luas));
         $this->onHitung();
     }
     public function updatedLuasbata($value){
-        $this->luas= get_NBatatoluas($this->luasbata);
+        $this->luas= get_NBatatoluas(conv_inputmask($this->luasbata));
         $this->onHitung();
     }
     public function updatedHgpadi($value){

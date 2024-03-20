@@ -177,8 +177,8 @@ if (!function_exists('get_conluas')) {
         $v=floatval($value);
         $a = new \NumberFormatter("id-ID", \NumberFormatter::DECIMAL);
         $s=$a->format(round($v,2));
-        $cluas=$s." m2";
-        return $cluas;
+        //$cluas=$s." m2";
+        return $s;
     }
 }
 
@@ -256,11 +256,11 @@ if (!function_exists('get_lanja')) {
 
 if (!function_exists('get_nlanja')) {
     function get_nlanja($meter,$kw,$harga){
-        $kw=intval($kw);
-        $harga=intval($harga);
+        $kw=floatval($kw);
+        $harga=floatval($harga);
         $bata=floatval($meter)/14.00;
         $lanja=$bata/100;
-        $nlanjarp=round($lanja*$kw,2)*$harga;
+        $nlanjarp=round(round($lanja*$kw,2)*$harga,0);
         //$nlanjatext=get_floatttorp($nlanjarp);
         return $nlanjarp;
     }

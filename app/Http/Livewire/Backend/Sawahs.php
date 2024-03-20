@@ -221,36 +221,26 @@ class Sawahs extends Component
         $this->l2=0;
         $this->la=0;
         $this->m=0;
-        $this->hgpadi=get_floatttorp(get_hargapadi());
+        $this->hgpadi=get_hargapadi();
         $this->lanja=get_nilailanja();
-        $this->ls1=get_conluas(0);
-        $this->ls2=get_conluas(0);
-        $this->ls3=get_convtobata(0);
-        $this->ls4=get_convtobata(0);
-        $this->lanjakw= get_lanja(0,$this->lanja);
-        $this->lanjarp= get_nlanja(0,$this->lanja,$this->hgpadi);
+        $this->ls1=0;
+        $this->ls2=0;
+        $this->ls3=0;
+        $this->ls4=0;
+        $this->lanjakw= 0;
+        $this->lanjarp= 0;
     }
     public function kalkulatorsawah(){
-        $this->validate(
-        [ 
-            'p1' => 'numeric|nullable',
-            'l1' => 'numeric|nullable',
-            'p2' => 'numeric|nullable',
-            'l2' => 'numeric|nullable',
-            'la' => 'numeric|nullable',
-            'm' => 'numeric|nullable',
-            'hgpadi' => 'required',
-            'lanja' => 'required|numeric',
-        ]);
         $p1=$this->p1;
         $l1=$this->l1;
         $p2=$this->p2;
         $l2=$this->l2;
         $la=$this->la;
         $m=$this->m;
-        $hgpadi=Manny::stripper($this->hgpadi,['num']);
+        $hgpadi=$this->hgpadi;
         $lanja=$this->lanja;
         if(empty($p2)||empty($l2)){
+            //dd('1');
             $p1=floatval($p1);
             $l1=floatval($l1);
             $ls1=get_Nconluas($p1*$l1);
@@ -260,7 +250,9 @@ class Sawahs extends Component
             $this->ls4=get_convtobata($p1*$l1);
             $this->lanjakw= get_lanja($ls1,$lanja);
             $this->lanjarp= get_nlanja($ls1,$lanja,$hgpadi);
+
         }elseif(!empty($m)){
+           // dd('2');
             $ls1=get_luassegi4($p1,$l1,$p2,$l2,$m);
             $ls2=get_luassegi4($p1,$l1,$p2,$l2,$m);
             $this->ls1=get_conluas($ls1);
@@ -270,11 +262,12 @@ class Sawahs extends Component
             $this->lanjakw= get_lanja($ls1,$lanja);
             $this->lanjarp= get_nlanja($ls1,$lanja,$hgpadi);
         }else{
+            //dd('3');
             $ls1=get_luaspersegi($p1,$l1,$p2,$l2);
             $this->ls1=get_conluas($ls1);
-            $this->ls2="";
+            $this->ls2=0;
             $this->ls3= get_convtobata($ls1);
-            $this->ls4="";
+            $this->ls4=0;
             $this->lanjakw= get_lanja($ls1,$lanja);
             $this->lanjarp= get_nlanja($ls1,$lanja,$hgpadi);
         }
@@ -305,23 +298,15 @@ class Sawahs extends Component
     public function resetKonversi(){
         $this->cluas=0;
         $this->cbata=0;
-        $this->conhgpadi=get_floatttorp(get_hargapadi());
+        $this->conhgpadi=get_hargapadi();
         $this->conlanja=get_nilailanja();
-        $this->clanjakw=get_lanja($this->cluas,$this->conlanja);
-        $this->clanjarp=get_nlanja($this->cluas,$this->conlanja,$this->conhgpadi);
+        $this->clanjakw=0;
+        $this->clanjarp=0;
     } 
     public function konversisawah(){
-        $this->validate(
-            [ 
-                'cluas' => 'numeric|nullable',
-                'cbata' => 'numeric|nullable',
-                'conhgpadi' => 'required',
-                'conlanja' => 'required|numeric',
-            ]);
-        
         $cluas=$this->cluas;
         $cbata=$this->cbata;
-        $conhgpadi=Manny::stripper($this->conhgpadi,['num']);
+        $conhgpadi=$this->conhgpadi;
         $conlanja=$this->conlanja;
         $this->clanjakw= get_lanja($cluas,$conlanja);
         $this->clanjarp= get_nlanja($cluas,$conlanja,$conhgpadi);

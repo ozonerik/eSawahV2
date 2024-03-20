@@ -5,7 +5,6 @@
 <x-get_mapmeasure eventname="getLocation" emitname="getLatlangInput" mapname="gismap"/>
 <!-- init map -->
 <x-script_lokasimeasure/>
-<x-script_maskcurrency/>
 @endpush
 <div>
     <x-content_header name="GIS" >

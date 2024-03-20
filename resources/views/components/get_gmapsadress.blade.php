@@ -34,7 +34,7 @@ async function initAutocomplete() {
                 var lokasi=document.getElementById(@js($inputname)).value;
                 //@this.set(@js($inputname), lokasi);
                 var ac=90;
-                Livewire.emit(@js($emitname), {'lat': lt, 'long': lg, 'lokasi':lokasi});
+                Livewire.emit(@js($emitname), {'lat': lt.toFixed(7), 'long': lg.toFixed(7), 'lokasi':lokasi});
             }
         }); 
 }

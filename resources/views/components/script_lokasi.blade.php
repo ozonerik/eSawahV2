@@ -37,7 +37,7 @@ function showMaps($emitname, $lat, $long, $ac, $iddiv, $dragable,$popup){
             marker.setLatLng(position, {
             draggable: 'true'
             }).bindPopup(position.lat.toFixed(7)+","+position.lng.toFixed(7)).openPopup().update();
-            Livewire.emit($emitname, {'lat': position.lat, 'long': position.lng});
+            Livewire.emit($emitname, {'lat': position.lat.toFixed(7), 'long': position.lng.toFixed(7)});
         });
 
         if($ac!==''){

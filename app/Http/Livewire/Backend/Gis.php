@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Backend;
 
 use Livewire\Component;
-use Spatie\Geocoder\Geocoder;
-use Manny;
 
 class Gis extends Component
 {
@@ -46,7 +44,8 @@ class Gis extends Component
         }
    
         if(empty($data['lokasi'])){
-            $geocoder=$this->onGetGeocoder($data['lat'],$data['long']);
+            //$geocoder=geo_alamat($data['lat'],$data['long']);
+            $geocoder=google_alamat($data['lat'],$data['long']);
             if($geocoder !== 'result_not_found'){
                 $this->lokasi=  $geocoder ;
             }else{
@@ -94,10 +93,12 @@ class Gis extends Component
         $this->luas=0;
         $this->luasbata=0;
         $this->keliling=0;
-        $this->hgpadi=get_floatttorp(get_hargapadi());
+        $this->hgpadi=get_hargapadi();
         $this->lanja=get_nilailanja();
-        $this->lanjakw=get_lanja($this->luas,$this->lanja);
-        $this->lanjarp=get_nlanja($this->luas,$this->lanja,$this->hgpadi);
+        $this->lanjakw=0;
+        $this->lanjarp=0;
+/*         $this->lanjakw=get_lanja($this->luas,$this->lanja);
+        $this->lanjarp=get_nlanja($this->luas,$this->lanja,$this->hgpadi); */
     }
 
     public function updatedLuas($value){
@@ -118,32 +119,24 @@ class Gis extends Component
     }
 
     public function onHitung(){
-         $this->validate(
+/*          $this->validate(
              [ 
                  'luas' => 'numeric|nullable',
                  'luasbata' => 'numeric|nullable',
-                 'hgpadi' => 'required',
+                 'hgpadi' => 'required|numeric',
                  'lanja' => 'required|numeric',
-             ]);
+             ]); */
             $luas=$this->luas;
             $luasbata=$this->luasbata;
-            $hgpadi=Manny::stripper($this->hgpadi,['num']);
+            $hgpadi=$this->hgpadi;
             $lanja=$this->lanja;
+            //$this->lanjakw=5;
             $this->lanjakw= get_lanja($luas,$lanja);
             $this->lanjarp= get_nlanja($luas,$lanja,$hgpadi);
     }
 
     public function onReset(){
         $this->resetForm();
-    }
-
-    public function onGetGeocoder($lat,$lng){
-        $client = new \GuzzleHttp\Client();
-        $geocoder = new Geocoder($client);
-        $geocoder->setApiKey(config('geocoder.key'));
-        $g=collect($geocoder->getAddressForCoordinates($lat,$lng));
-        $lokasi= $g->get('formatted_address');
-        return $lokasi;
     }
     
     public function render()

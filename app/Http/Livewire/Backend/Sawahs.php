@@ -9,7 +9,6 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Spatie\Geocoder\Geocoder;
 use Manny;
 
 class Sawahs extends Component
@@ -67,7 +66,8 @@ class Sawahs extends Component
         }
    
         if(empty($data['lokasi'])){
-            $geocoder=$this->onGetGeocoder($data['lat'],$data['long']);
+            //$geocoder=$this->onGetGeocoder($data['lat'],$data['long']);
+            $geocoder=google_alamat($data['lat'],$data['long']);
             if($geocoder !== 'result_not_found'){
                 $this->lokasi=  $geocoder ;
             }else{
@@ -144,15 +144,6 @@ class Sawahs extends Component
             'nlong' => $data[1],
             'kordinat' => $kordinat,
         ]);
-    }
-
-    public function onGetGeocoder($lat,$lng){
-        $client = new \GuzzleHttp\Client();
-        $geocoder = new Geocoder($client);
-        $geocoder->setApiKey(config('geocoder.key'));
-        $g=collect($geocoder->getAddressForCoordinates($lat,$lng));
-        $lokasi= $g->get('formatted_address');
-        return $lokasi;
     }
 
     //akhir get lokasi

@@ -4,7 +4,35 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Appconfig;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Spatie\Geocoder\Geocoder;
 
+if (!function_exists('geo_alamat')) {
+    function geo_alamat($lat,$lng){
+        $client = new \GuzzleHttp\Client();
+        $geocoder = new Geocoder($client);
+        $geocoder->setApiKey(config('geocoder.key'));
+        $g=collect($geocoder->getAddressForCoordinates(floatval($lat),floatval($lng)));
+        $location= $g->get('formatted_address');
+        return $location;
+    }
+}
+
+
+if (!function_exists('google_alamat')) {
+    function google_alamat($lt,$lg){
+        //lt= -6.7275824, lg= 108.5434431 apikey=AIzaSyC4n0qKTgofSQtwYANwBrNd5lO-_mFUwt4
+        $lt=(string)$lt;
+        $lg=(string)$lg;
+        $key=get_googleapikey();
+        if(!empty($lt)||!empty($lg)){
+            $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$lt.','.$lg.'&key='.$key );
+            if($response->successful()){
+                $data=json_decode($response, true);
+                return $alamat=$data['results'][3]['formatted_address'];
+            }
+        }
+    }
+}
 
 if (!function_exists('conv_inputmask')) {
     function conv_inputmask($string){
@@ -221,8 +249,8 @@ if (!function_exists('get_lanja')) {
         $lanja=$bata/100;
         $val=round($lanja*$kw,2);
         $nlanjakw=$a->format($val);
-        $lanjatext=$nlanjakw." kw";
-        return $lanjatext;
+        //$lanjatext=$nlanjakw." kw";
+        return $nlanjakw;
     }
 }
 
@@ -233,8 +261,8 @@ if (!function_exists('get_nlanja')) {
         $bata=floatval($meter)/14.00;
         $lanja=$bata/100;
         $nlanjarp=round($lanja*$kw,2)*$harga;
-        $nlanjatext=get_floatttorp($nlanjarp);
-        return $nlanjatext;
+        //$nlanjatext=get_floatttorp($nlanjarp);
+        return $nlanjarp;
     }
 }
 

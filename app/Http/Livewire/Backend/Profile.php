@@ -9,7 +9,6 @@ use Illuminate\Validation\Rules\Password;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Profile extends Component
@@ -25,12 +24,6 @@ class Profile extends Component
         $this->password_confirmation='';
         $this->resetErrorBag();
         $this->resetValidation();
-    }
-
-    private function deletefile($pathfile){
-        if(Storage::disk('public')->exists($pathfile)){
-            Storage::disk('public')->delete($pathfile);
-        }
     }
 
     public function render()
@@ -58,10 +51,7 @@ class Profile extends Component
             'name' => $this->name,
             'email' => $this->email,
         ]);
-        //flash message
         $this->alert('success', 'Profil berhasil diupdate');
-        //session()->flash('success', 'Profile Berhasil Diupdate.');
-        //redirect
         return redirect()->route('profile');
     }
 
@@ -80,26 +70,18 @@ class Profile extends Component
         ]);
         $myfile = User::findOrFail(Auth::user()->id);
         $this->oldpath = $myfile->photo;
-        //dd($this->oldpath);
-        $dir='photos'; 
         if(!empty($this->oldpath)){
-            $this->newpath=$this->photo->store($dir,'public'); //setingan di confi/filesystem
-            $this->deletefile($this->oldpath);
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->photo->path()));
             User::updateOrCreate(['id' => Auth::user()->id], [
                 'photo' => $this->newpath
             ]);
         }else{
-            $this->newpath=$this->photo->store($dir,'public');
-           //dd($this->newpath);
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->photo->path()));
             User::updateOrCreate(['id' => Auth::user()->id], [
                 'photo' => $this->newpath
             ]);
         }
-        //$this->photo->store('photos');
-        //flash message
         $this->alert('success', 'Photo berhasil diganti');
-        //session()->flash('success', 'Photo Berhasil Diubah.');
-        //redirect
         return redirect()->route('profile');
     }
 
@@ -114,10 +96,7 @@ class Profile extends Component
         User::updateOrCreate(['id' => Auth::user()->id], [
             'password' => Hash::make($this->password)
         ]);
-        //flash message
         $this->alert('success', 'Password berhasil diubah');
-       //session()->flash('success', 'Password Berhasil Diganti.');
-        //redirect
         return redirect()->route('profile');
     }
 }

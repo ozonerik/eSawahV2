@@ -11,7 +11,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
-use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 
 class Users extends Component
@@ -61,14 +61,9 @@ class Users extends Component
         $this->mode='trashed';
     }
     public function onResDel($id){
-        //dd('restore= '.$id);
         User::where('id',$id)->withTrashed()->restore();
-        //reset form
         $this->resetForm();
-        //flash message
-        //session()->now('success', 'Sawah berhasil direstore');
         $this->alert('success', 'User berhasil direstore');
-        //return redirect()->route('sawahs');
     }
     public function onDelForce($id){
         $this->ids=$id;
@@ -78,26 +73,11 @@ class Users extends Component
             'onConfirmed' => 'onDelForceProses'
         ]);
     }
-    public function onDelForceProses(){
-        //dd('delforce= '.$id);
-        //dd($this->ids);
-        $this->hapusfileDel($this->ids);
-        User::where('id',$this->ids)->withTrashed()->forceDelete();
-        //reset form
-        $this->resetForm();
-        //flash message
-        //session()->flash('success', 'Sawah berhasil dihapus permanen');
-        $this->alert('success', 'User berhasil dihapus permanen');
-        //return redirect()->route('sawahs');
-    }
 
-    private function hapusfileDel($id){
-        $this->oldpath = User::onlyTrashed()->findOrFail($id)->photo;
-        //dd($this->oldpath);
-        $dir='photos'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
+    public function onDelForceProses(){
+        User::where('id',$this->ids)->withTrashed()->forceDelete();
+        $this->resetForm();
+        $this->alert('success', 'User berhasil dihapus permanen');
     }
 
     public function updatedSelectPage($value){
@@ -106,7 +86,6 @@ class Users extends Component
         }else{
             $this->checked = [];
         }
-        //dd($this->checked);
     }
 
     public function updatedChecked($value){
@@ -119,27 +98,17 @@ class Users extends Component
 
     public function deluserselect()
     {
-        $this->hapusfileselect();
         User::whereIn('id',$this->checked)->delete();
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'User berhasil dihapus');
-        //session()->flash('success', 'User berhasil dihapus');
-        //redirect
         return redirect()->route('users');
     }
 
     public function deluser()
     {
-        $this->hapusfile($this->ids);
         User::findOrFail($this->ids)->delete();
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'User berhasil dihapus');
-        //session()->flash('success', 'User berhasil dihapus');
-        //redirect
         return redirect()->route('users');
     }
 
@@ -156,37 +125,10 @@ class Users extends Component
 
     }
 
-    private function deletefile($pathfile){
-        if(Storage::disk('public')->exists($pathfile)){
-            Storage::disk('public')->delete($pathfile);
-        }
-    }
-
-    private function hapusfile($id){
-        $this->oldpath = User::findOrFail($id)->photo;
-        //dd($this->oldpath);
-        $dir='photos'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
-    }
-
-    private function hapusfileselect(){
-        $myfile = User::whereIn('id', $this->checked)->get();
-        foreach($myfile as $q)
-        {
-            if(!empty( $q->photo )){
-                $this->deletefile( $q->photo );
-            }
-        }
-    }
-
     public function edituserselected()
     {
-        //dd(empty($this->opsiroles));
         $cek_password=( is_null($this->password) || $this->password=="" ) ;       
         if($cek_password){
-            //dd($this->password);
             $this->validate([
                 'opsiroles' => 'required',
             ],
@@ -200,7 +142,6 @@ class Users extends Component
                 $user->syncRoles([$this->opsiroles]);
             }
         }else{
-            //dd($this->password);
             $this->validate([
                 'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
                 'password_confirmation' => 'required',
@@ -217,21 +158,15 @@ class Users extends Component
                 $user->syncRoles([$this->opsiroles]);
             }
         }
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'User berhasil diupdate');
-        //session()->flash('success', 'User berhasil diupdate');
-        //redirect
         return redirect()->route('users');
     }
 
     public function edituser()
     {
-        //dd(empty($this->opsiroles));
         $cek_password=( is_null($this->password) || $this->password=="" ) ;       
         if($cek_password){
-            //dd($this->password);
             $this->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $this->ids,
@@ -246,7 +181,6 @@ class Users extends Component
                 'email' => $this->email,
             ]);
         }else{
-            //dd($this->password);
             $this->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email,' . $this->ids,
@@ -265,25 +199,19 @@ class Users extends Component
             ]);
         }
         $users->syncRoles([$this->opsiroles]);
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'User berhasil diupdate');
-        //session()->flash('success', 'User berhasil diupdate');
-        //redirect
         return redirect()->route('users');
     }
 
 
     public function adduser(){
-        //dd($this->opsiroles);
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required','confirmed',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
             'password_confirmation' => 'required',
             'opsiroles' => 'required',
-
         ],
         [
             'opsiroles.required' => 'The :attribute field is required.',
@@ -293,15 +221,12 @@ class Users extends Component
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
+            'email_verified_at' => Carbon::now(),
         ]);
         
         $users->assignRole($this->opsiroles);
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'User berhasil ditambahkan');
-        //session()->flash('success', 'User berhasil ditambahkan');
-        //redirect
         return redirect()->route('users');
     }
 
@@ -314,7 +239,6 @@ class Users extends Component
     
     public function onRead(){
         $this->mode='read';
-        //reset form
         $this->resetForm();
     }
 
@@ -332,7 +256,6 @@ class Users extends Component
         $this->roles=Role::get();
         $this->user_roles = User::findOrFail($id)->getRoleNames()->implode(',');
         $this->opsiroles = $this->user_roles;
-        //dd($this->user_roles);
         $this->mode='edit';
         $this->ids=$id;
         $user = User::findOrFail($id);
@@ -341,14 +264,12 @@ class Users extends Component
     }
 
     public function onEditSelect(){
-        //dd($this->checked);
         $this->dispatchBrowserEvent('run_select2');
         $this->mode='editselect';
         $this->roles=Role::get();
     }
 
     public function onDelSelect(){
-        //dd($this->checked);
         $this->mode='read';
         $users = User::whereIn('id',$this->checked);
         $this->confirm("Apakah anda yakin ingin hapus ?<p class='text-danger font-weight-bold'>".$users->pluck('name')->implode(', ')."</p>", 

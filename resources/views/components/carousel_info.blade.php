@@ -24,7 +24,8 @@
                         </div>
                         @endif
                         @if(!empty($q->img))
-                        <div class="carousel-bg rounded-top" style="background-image: url('{{ Storage::url($q->img) }}')">
+                        <div class="carousel-bg rounded-top" style="background-image: url('{{$q->img}}')">
+                        <!-- <div class="carousel-bg rounded-top" style="background-image: url('{{ Storage::url($q->img) }}')"> -->
                         @else
                         <div class="carousel-bg rounded-top bg-blank">
                         @endif

@@ -4,7 +4,7 @@
         <div class="card-body box-profile">
             <div class="text-center">
                 @if(!empty(Auth::user()->photo))
-                <img class="profile-user-img img-fluid img-circle" src="{{ asset('storage/'.Auth::user()->photo) }}" alt="User picture">
+                <img class="profile-user-img img-fluid img-circle" src="{{ Auth::user()->photo }}" alt="User picture">
                 @else
                 <img class="profile-user-img img-fluid img-circle" src="{{asset('img/avatar.png')}}" alt="User picture">
                 @endif

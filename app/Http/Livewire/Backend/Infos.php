@@ -7,7 +7,6 @@ use App\Models\Info;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 
 class Infos extends Component
 {
@@ -42,8 +41,6 @@ class Infos extends Component
             foreach ($requestData as $field)
                $q->orWhere($field, 'like', "%{$searchQuery}%");
         })->orderBy('updated_at', 'DESC')->paginate($this->perPage,['*'], 'infoPage');
-
-        //return Info::where('title','like','%'.$this->search.'%')->paginate($this->perPage,['*'], 'infoPage');
     }
     public function getRestoreinfoProperty()
     {
@@ -53,14 +50,9 @@ class Infos extends Component
         $this->mode='trashed';
     }
     public function onResDel($id){
-        //dd('restore= '.$id);
         Info::where('id',$id)->withTrashed()->restore();
-        //reset form
         $this->resetForm();
-        //flash message
-        //session()->now('success', 'Sawah berhasil direstore');
         $this->alert('success', 'Info berhasil direstore');
-        //return redirect()->route('sawahs');
     }
     public function onDelForce($id){
         $this->ids=$id;
@@ -71,16 +63,9 @@ class Infos extends Component
         ]);
     }
     public function onDelForceProses(){
-        //dd('delforce= '.$id);
-        //dd($this->ids);
-        $this->hapusfileDel($this->ids);
         Info::where('id',$this->ids)->withTrashed()->forceDelete();
-        //reset form
         $this->resetForm();
-        //flash message
-        //session()->flash('success', 'Sawah berhasil dihapus permanen');
         $this->alert('success', 'Info berhasil dihapus permanen');
-        //return redirect()->route('sawahs');
     }
     
     public function updatedSelectPage($value){
@@ -98,7 +83,6 @@ class Infos extends Component
     }
     public function render()
     {
-        //dd($this->Info);
         $data = [
             'Info'=>$this->Info,
             'Restoreinfo'=>$this->Restoreinfo,
@@ -106,41 +90,6 @@ class Infos extends Component
         return view('livewire.backend.infos',$data)->extends('layouts.app');
     }
     // Batas Akhir Fungsi Tabel
-    
-    private function deletefile($pathfile){
-        if(Storage::disk('public')->exists($pathfile)){
-            Storage::disk('public')->delete($pathfile);
-        }
-    }
-
-    private function hapusfileDel($id){
-        $this->oldpath = Info::onlyTrashed()->findOrFail($id)->photo;
-        //dd($this->oldpath);
-        $dir='info'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
-    }
-
-    private function hapusfile($id)
-    {
-        $this->oldpath = Info::findOrFail($id)->img;
-        $dir='info'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
-    }
-
-    public function hapusfileselect()
-    {
-        $info = Info::whereIn('id', $this->checked)->get();
-        foreach($info as $q)
-        {
-            if(!empty( $q->img )){
-                $this->deletefile( $q->img );
-            }
-        }
-    }
 
     private function resetForm()
     {
@@ -171,8 +120,6 @@ class Infos extends Component
     }
     
     public function addinfo(){
-        //dd($this->img);
-        $dir='info'; 
         if(!empty($this->img)){
             $this->validate(
             [ 
@@ -180,7 +127,7 @@ class Infos extends Component
                 'message' => 'required|min:4|max:255',
                 'img' => 'image|max:1024'
             ]);
-            $this->newpath=$this->img->store($dir,'public');
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->img->path()));
             $info=Info::updateOrCreate(['id' => $this->ids], [
                 'title' => $this->title,
                 'message' => $this->message,
@@ -197,11 +144,7 @@ class Infos extends Component
                     'message' => $this->message,
                 ]);
         }  
-
-        //flash message
         $this->alert('success', 'Info berhasil ditambahkan');
-        //session()->flash('success', 'Info terbaru berhasil ditambahkan');
-        //redirect
         return redirect()->route('infos');
     }
 
@@ -216,14 +159,9 @@ class Infos extends Component
 
     public function delinfo()
     {
-        //$this->hapusfile($this->ids);
         Info::findOrFail($this->ids)->delete();
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'Info berhasil dihapus');
-        //session()->flash('success', 'Info berhasil dihapus');
-        //redirect
         return redirect()->route('infos');
     }
 
@@ -237,14 +175,9 @@ class Infos extends Component
 
     public function delinfoselect()
     {
-        //$this->hapusfileselect();
         Info::whereIn('id',$this->checked)->delete();
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'Info berhasil dihapus');
-        //session()->flash('success', 'User berhasil dihapus');
-        //redirect
         return redirect()->route('infos');
     }
 
@@ -268,8 +201,7 @@ class Infos extends Component
                 'img' => 'nullable|image|max:1024'
             ]);
         if(!empty($this->img)){
-            $this->hapusfile($this->ids);
-            $this->newpath=$this->img->store($dir,'public');
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->img->path()));
         }else{
             $this->newpath=Info::findOrFail($this->ids)->img;
         }
@@ -279,11 +211,7 @@ class Infos extends Component
             'message' => $this->message,
             'img' => $this->newpath,
         ]);
-
-        //flash message
         $this->alert('success', 'Info berhasil diupdate');
-        //session()->flash('success', 'Info berhasil diupdate');
-        //redirect
         return redirect()->route('infos');
     }
 

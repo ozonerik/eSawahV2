@@ -111,12 +111,12 @@
                 <div class="form-group">
                     <div class="font-weight-bold mb-2">Photo Sawah</div>
                     @if(!empty($tmpimg))
-                    <img alt="images" src="{{ asset('storage/'. $tmpimg) }}" class="img-thumbnail rounded float-left mb-3" style="max-width:300px"/> 
+                    <img alt="images" src="{{ $tmpimg }}" class="img-thumbnail rounded float-left mb-3" style="max-width:300px"/> 
                     @else
                     <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded float-left mb-3" style="max-width:300px"/>
                     @endif
                 </div>
-                <x-file_form2 ids="img" label="" name="img" :placeholder="$filename" capture=""/>
+                <x-file_form2 ids="img" label="" name="editimg" :placeholder="$filename" capture=""/>
                 <button type="button" wire:click="onRead" class="btn btn-success float-left">Back</button>
                 <button type="submit" class="btn btn-primary float-right" wire:target="img" wire:loading.attr="disabled">Save</button>
             </form>

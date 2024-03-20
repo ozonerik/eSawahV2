@@ -64,7 +64,7 @@
                                     <!--gambar-->
                                     @if($val=="images"||$val=="photos"||$val=="img"||$val=="photo"||$val=="image")
                                         @if(!empty($row->$val))
-                                        <img alt="images" src="{{ asset('storage/'.$row->$val) }}" class="img-thumbnail rounded float-left" style="max-width:150px"/> 
+                                        <img alt="images" src="{{ $row->$val }}" class="img-thumbnail rounded float-left" style="max-width:150px"/> 
                                         @else
                                         <img alt="images" src="{{ asset('img/image.png') }}" class="img-thumbnail rounded float-left" style="max-width:150px"/> 
                                         @endif

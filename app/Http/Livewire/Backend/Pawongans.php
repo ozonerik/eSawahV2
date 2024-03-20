@@ -7,7 +7,6 @@ use App\Models\Pawongan;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class Pawongans extends Component
@@ -25,6 +24,7 @@ class Pawongans extends Component
     public $mode='read';
     public $ids,$nik,$nama,$alamat,$telp,$photo;
     public $oldpath,$newpath,$tmpphoto;
+    public $editphoto;
     public $filename="Choose File";
     protected $listeners = [
         'delpawongan',
@@ -54,14 +54,9 @@ class Pawongans extends Component
         $this->mode='trashed';
     }
     public function onResDel($id){
-        //dd('restore= '.$id);
         Pawongan::where('id',$id)->withTrashed()->restore();
-        //reset form
         $this->resetForm();
-        //flash message
-        //session()->now('success', 'Sawah berhasil direstore');
         $this->alert('success', 'Pawongan berhasil direstore');
-        //return redirect()->route('sawahs');
     }
     public function onDelForce($id){
         $this->ids=$id;
@@ -72,16 +67,9 @@ class Pawongans extends Component
         ]);
     }
     public function onDelForceProses(){
-        //dd('delforce= '.$id);
-        //dd($this->ids);
-        $this->hapusfileDel($this->ids);
         Pawongan::where('id',$this->ids)->withTrashed()->forceDelete();
-        //reset form
         $this->resetForm();
-        //flash message
-        //session()->flash('success', 'Sawah berhasil dihapus permanen');
         $this->alert('success', 'Pawongan berhasil dihapus permanen');
-        //return redirect()->route('sawahs');
     }
     public function updatedSelectPage($value){
         if($value){
@@ -98,7 +86,6 @@ class Pawongans extends Component
     }
     public function render()
     {
-        //dd($this->Info);
         $data = [
             'Pawongan'=>$this->Pawongan,
             'Restorepawongan'=>$this->Restorepawongan,
@@ -106,41 +93,6 @@ class Pawongans extends Component
         return view('livewire.backend.pawongans',$data)->extends('layouts.app');
     }
     // Batas Akhir Fungsi Tabel
-
-    private function deletefile($pathfile){
-        if(Storage::disk('public')->exists($pathfile)){
-            Storage::disk('public')->delete($pathfile);
-        }
-    }
-
-    private function hapusfileDel($id){
-        $this->oldpath = Pawongan::onlyTrashed()->findOrFail($id)->photo;
-        //dd($this->oldpath);
-        $dir='pawongan'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
-    }
-
-    private function hapusfile($id){
-        $this->oldpath = Pawongan::findOrFail($id)->photo;
-        //dd($this->oldpath);
-        $dir='pawongan'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
-    }
-
-    public function hapusfileselect()
-    {
-        $pawongan = Pawongan::whereIn('id', $this->checked)->get();
-        foreach($pawongan as $q)
-        {
-            if(!empty( $q->photo )){
-                $this->deletefile( $q->photo );
-            }
-        }
-    }
 
     private function resetForm()
     {
@@ -150,6 +102,8 @@ class Pawongans extends Component
         $this->alamat='';
         $this->telp='';
         $this->photo=null;
+        $this->editphoto=null;
+        $this->filename="Choose File";
         $this->resetErrorBag();
         $this->resetValidation();
 
@@ -157,6 +111,7 @@ class Pawongans extends Component
 
     public function onRead(){
         $this->mode='read';
+        $this->resetForm();
     }
 
     public function onAdd(){
@@ -172,17 +127,23 @@ class Pawongans extends Component
         }
     }
 
+    public function updatedEditphoto($value){
+        if($value){
+            $this->filename=$value->getClientOriginalName();
+        }else{
+            $this->filename="Choose File";
+        }
+    }
+
     public function addpawongan(){
-        //dd($this->img);
-        $dir='pawongan'; 
         if(!empty($this->photo)){
             $this->validate(
             [ 
                 'nik' => 'required|digits:16',
                 'nama' => 'required',
-                'photo' => 'image|max:1024'
+                'photo' => 'nullable|image|max:1024'
             ]);
-            $this->newpath=$this->photo->store($dir,'public');
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->photo->path()));
             $pawongan=Pawongan::updateOrCreate(['id' => $this->ids], [
                 'nik' => $this->nik,
                 'nama' => $this->nama,
@@ -205,11 +166,7 @@ class Pawongans extends Component
                     'user_id' => Auth::user()->id,
                 ]);
         }  
-
-        //flash message
         $this->alert('success', 'Pawongan berhasil ditambahkan');
-        //session()->flash('success', 'Info terbaru berhasil ditambahkan');
-        //redirect
         return redirect()->route('pawongans');
     }
 
@@ -224,14 +181,9 @@ class Pawongans extends Component
 
     public function delpawongan()
     {
-        //$this->hapusfile($this->ids);
         Pawongan::findOrFail($this->ids)->delete();
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'Pawongan berhasil dihapus');
-        //session()->flash('success', 'Info berhasil dihapus');
-        //redirect
         return redirect()->route('pawongans');
     }
 
@@ -245,14 +197,9 @@ class Pawongans extends Component
 
     public function delpawonganselect()
     {
-        //$this->hapusfileselect();
         Pawongan::whereIn('id',$this->checked)->delete();
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'Pawongan berhasil dihapus');
-        //session()->flash('success', 'User berhasil dihapus');
-        //redirect
         return redirect()->route('pawongans');
     }
 
@@ -270,18 +217,16 @@ class Pawongans extends Component
 
     public function editpawongan()
     {     
-        $dir='pawongan'; 
         $this->validate(
             [ 
                 'nik' => 'required|digits:16',
                 'nama' => 'required',
-                'photo' => 'image|max:1024'
+                'editphoto' => 'nullable|image|max:1024'
             ]);
-        if(!empty($this->photo)){
-            $this->hapusfile($this->ids);
-            $this->newpath=$this->photo->store($dir,'public');
+        if(!empty($this->editphoto)){
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->editphoto->path()));
         }else{
-            $this->newpath=Pawongan::findOrFail($this->ids)->photo;
+            $this->newpath=$this->photo;
         }
         
         $pawongan=Pawongan::updateOrCreate(['id' => $this->ids], [
@@ -292,11 +237,7 @@ class Pawongans extends Component
             'photo' => $this->newpath,
             'user_id' => Auth::user()->id,
         ]);
-
-        //flash message
         $this->alert('success', 'Pawongan berhasil diupdate');
-        //session()->flash('success', 'Info berhasil diupdate');
-        //redirect
         return redirect()->route('pawongans');
     }
 }

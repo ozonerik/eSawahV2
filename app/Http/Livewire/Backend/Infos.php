@@ -97,6 +97,8 @@ class Infos extends Component
         $this->title='';
         $this->message='';
         $this->img=null;
+        $this->editimg=null;
+        $this->filename="Choose File";
         $this->resetErrorBag();
         $this->resetValidation();
 
@@ -104,6 +106,7 @@ class Infos extends Component
 
     public function onRead(){
         $this->mode='read';
+        $this->resetForm();
     }
 
     public function onAdd(){
@@ -112,6 +115,14 @@ class Infos extends Component
     }
 
     public function updatedImg($value){
+        if($value){
+            $this->filename=$value->getClientOriginalName();
+        }else{
+            $this->filename="Choose File";
+        }
+    }
+
+    public function updatedEditimg($value){
         if($value){
             $this->filename=$value->getClientOriginalName();
         }else{
@@ -198,12 +209,12 @@ class Infos extends Component
             [ 
                 'title' => 'required|min:4|max:255',
                 'message' => 'required|min:4|max:255',
-                'img' => 'nullable|image|max:1024'
+                'editimg' => 'nullable|image|max:1024'
             ]);
-        if(!empty($this->img)){
-            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->img->path()));
+        if(!empty($this->editimg)){
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->editimg->path()));
         }else{
-            $this->newpath=Info::findOrFail($this->ids)->img;
+            $this->newpath=$this->img;
         }
         
         $info=Info::updateOrCreate(['id' => $this->ids], [

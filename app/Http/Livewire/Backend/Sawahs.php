@@ -7,7 +7,6 @@ use App\Models\Sawah;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Spatie\Geocoder\Geocoder;
@@ -37,6 +36,7 @@ class Sawahs extends Component
     public $conlanja="5";
     public $modecal="htluas";
     public $autocomplate;
+    public $editimg;
     protected $listeners = [
         'delsawahselect',
         'onDelForceProses',
@@ -393,11 +393,21 @@ class Sawahs extends Component
         $this->nop='';
         $this->nilaipajak=get_floatttorp(0);
         $this->img=null;
+        $this->editimg=null;
+        $this->filename="Choose File";
         $this->resetErrorBag();
         $this->resetValidation();
     }
 
     public function updatedImg($value){
+        if($value){
+            $this->filename=$value->getClientOriginalName();
+        }else{
+            $this->filename="Choose File";
+        }
+    }
+
+    public function updatedEditimg($value){
         if($value){
             $this->filename=$value->getClientOriginalName();
         }else{
@@ -425,7 +435,7 @@ class Sawahs extends Component
                 'tgljual' => 'nullable|date',
                 'nop' => 'nullable|string',
                 'nilaipajak' => 'nullable',
-                'img' => 'nullable|image|max:1024',
+                'editimg' => 'nullable|image|max:1024',
             ]);
         if(empty($this->hargabeli)){
             $this->hargabeli='0';
@@ -433,12 +443,11 @@ class Sawahs extends Component
         if(empty($this->hargajual)){
             $this->hargajual='0';
         }
-        $dir='photosawah'; 
-        if(!empty($this->img)){
-            $this->hapusfile($this->ids);
-            $this->newpath=$this->img->store($dir,'public');
+        //dd($this->editimg);
+        if(!empty($this->editimg)){
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->editimg->path()));
         }else{
-            $this->newpath=Sawah::findOrFail($this->ids)->img;
+            $this->newpath=$this->img;
         }  
         $info=Sawah::updateOrCreate(['id' => $this->ids], [
             'nosawah' => $this->nosawah,
@@ -461,15 +470,11 @@ class Sawahs extends Component
             'img' => $this->newpath,
             'user_id' => Auth::user()->id
         ]);
-        //flash message
         $this->alert('success', 'Sawah berhasil diupdate');
-        //session()->flash('success', 'Sawah berhasil diupdate');
-        //redirect
         return redirect()->route('sawahs');
     }
 
     public function onAdd(){
-        //dd($this->kordinat);
         $this->dispatchBrowserEvent('run_maskcurrency');
         $this->mode='add';
         $this->onGetAdress('add');
@@ -504,9 +509,9 @@ class Sawahs extends Component
         if(empty($this->hargajual)){
             $this->hargajual='0';
         }
-        $dir='photosawah'; 
+
         if(!empty($this->img)){
-            $this->newpath=$this->img->store($dir,'public');
+            $this->newpath="data:image/png;base64,".base64_encode(file_get_contents($this->img->path()));
         }else{
             $this->newpath='';
         }  
@@ -531,47 +536,16 @@ class Sawahs extends Component
             'img' => $this->newpath,
             'user_id' => Auth::user()->id
         ]);
-        //flash message
         $this->alert('success', 'Sawah berhasil ditambahkan');
-        //session()->flash('success', 'Sawah berhasil ditambahkan');
-        //redirect
         return redirect()->route('sawahs');
     }
 
     public function onDelete($id){
         $this->ids=$id;
         Sawah::findOrFail($this->ids)->delete();
-        //reset form
         $this->resetForm();
-        //flash message
         $this->alert('success', 'Sawah berhasil dihapus');
-        //session()->flash('success', 'Sawah berhasil dihapus');
-        //redirect
         return redirect()->route('sawahs');
-    }
-
-    private function deletefile($pathfile){
-        if(Storage::disk('public')->exists($pathfile)){
-            Storage::disk('public')->delete($pathfile);
-        }
-    }
-
-    private function hapusfile($id){
-        //dd($id);
-        $this->oldpath = Sawah::findOrFail($id)->img;
-        $dir='photosawah'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
-    }
-
-    private function hapusfileDel($id){
-        //dd($id);
-        $this->oldpath = Sawah::onlyTrashed()->findOrFail($id)->img;
-        $dir='photosawah'; 
-        if(!empty($this->oldpath)){
-            $this->deletefile($this->oldpath);
-        }
     }
 
     public function getRestoresawahProperty()
@@ -583,14 +557,9 @@ class Sawahs extends Component
     }
 
     public function onResDel($id){
-        //dd('restore= '.$id);
         Sawah::where('id',$id)->withTrashed()->restore();
-        //reset form
         $this->resetForm();
-        //flash message
-        //session()->now('success', 'Sawah berhasil direstore');
         $this->alert('success', 'Sawah berhasil direstore');
-        //return redirect()->route('sawahs');
     }
     
     
@@ -604,23 +573,15 @@ class Sawahs extends Component
     }
 
     public function onDelForceProses(){
-        //dd('delforce= '.$id);
-        //dd($this->ids);
-        $this->hapusfileDel($this->ids);
         Sawah::where('id',$this->ids)->withTrashed()->forceDelete();
-        //reset form
         $this->resetForm();
-        //flash message
-        //session()->flash('success', 'Sawah berhasil dihapus permanen');
         $this->alert('success', 'Sawah berhasil dihapus permanen');
-        //return redirect()->route('sawahs');
     }
 
     public function onDelSelect(){
         Sawah::whereIn('id',$this->checked)->delete();
         $this->resetForm();
         $this->alert('success', 'Sawah berhasil dihapus');
-        //session()->flash('success', 'Sawah berhasil dihapus');
         return redirect()->route('sawahs');
     }
 

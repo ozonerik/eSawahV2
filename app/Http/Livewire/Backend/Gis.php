@@ -150,7 +150,6 @@ class Gis extends Component
     
     public function render()
     {
-        $this->dispatchBrowserEvent('run_maskcurrency');
         return view('livewire.backend.gis')->extends('layouts.app');
     }
 }

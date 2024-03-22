@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Backend;
 use Livewire\Component;
 use App\Models\Appconfig;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Manny;
 
 class Appconfigs extends Component
 {
@@ -16,19 +15,19 @@ class Appconfigs extends Component
     {
         $config=Appconfig::find(1);
         $this->mapapikey= $config->mapapikey;
-        $this->hargapadi= get_floatttorp($config->hargapadi);
+        $this->hargapadi= $config->hargapadi;
         $this->nilailanja= $config->nilailanja;
-        $this->hargaemas=get_floatttorp(get_hargaemas());
-        $this->hargabata=get_floatttorp($config->hargabata);
+        $this->hargaemas=get_hargaemas();
+        $this->hargabata=$config->hargabata;
     }
 
     public function onReset(){
         $config=Appconfig::find(1);
         $this->mapapikey= $config->mapapikey;
-        $this->hargapadi= get_floatttorp($config->hargapadi);
+        $this->hargapadi= $config->hargapadi;
         $this->nilailanja= $config->nilailanja;
-        $this->hargaemas=get_floatttorp(get_hargaemas());
-        $this->hargabata=get_floatttorp($config->hargabata);
+        $this->hargaemas=get_hargaemas();
+        $this->hargabata=$config->hargabata;
     }
 
     public function editreferensi(){
@@ -42,9 +41,9 @@ class Appconfigs extends Component
         
         $config=Appconfig::updateOrCreate(['id' => '1'], [
             'mapapikey' => $this->mapapikey,
-            'hargapadi' => Manny::stripper($this->hargapadi,['num']),
-            'nilailanja' => $this->nilailanja,
-            'hargabata' => Manny::stripper($this->hargabata,['num']),
+            'hargapadi' => conv_inputmask($this->hargapadi),
+            'nilailanja' => conv_inputmask($this->nilailanja),
+            'hargabata' => conv_inputmask($this->hargabata),
         ]);
 
         //flash message
@@ -53,7 +52,6 @@ class Appconfigs extends Component
 
     public function render()
     {
-        $this->dispatchBrowserEvent('run_maskcurrency');
         return view('livewire.backend.appconfigs')->extends('layouts.app');
     }
 }

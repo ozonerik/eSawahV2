@@ -185,7 +185,6 @@ class Sawahs extends Component
     public function render()
     {
         //dd(Carbon::today()->toDateString());
-        $this->dispatchBrowserEvent('run_maskcurrency');
         $data = [
             'Sawah'=>$this->Sawah,
             'Restoresawah'=>$this->Restoresawah,
